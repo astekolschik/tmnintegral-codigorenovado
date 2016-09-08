@@ -57,13 +57,18 @@ public class LoginController {
 	        try {
 	        	User u = um.autenticarUsuario(user, password);
 				if (u != null){
-					session.setAttribute("user", u);
-					logManager.saveLoginLog(u.getId());
-					
-					myModel.put("alarms", reportManager.getAlarmsSentInTheLastHour());
-					myModel.put("logs", logManager.getLastUserLogs(u.getId()));
-					
-					return new ModelAndView("dashboard/index", "model", myModel);
+					if (u.getRole_id() != 4){
+						session.setAttribute("user", u);
+						logManager.saveLoginLog(u.getId());
+						
+						myModel.put("alarms", reportManager.getAlarmsSentInTheLastHour());
+						myModel.put("logs", logManager.getLastUserLogs(u.getId()));
+						
+						return new ModelAndView("dashboard/index", "model", myModel);
+					}else{
+						myModel.put("status", "El usuario esta pendiente de aprobacion.");
+						return new ModelAndView("index/login", "model", myModel);
+					}
 				}else{
 					myModel.put("status", "Error en el usuario/contraseña. Intente nuevamente.");
 					return new ModelAndView("index/login", "model", myModel);

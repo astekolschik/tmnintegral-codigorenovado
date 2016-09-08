@@ -13,6 +13,11 @@ function loadEnableUser(){
 	$('#main-content').load('user/enableUser.htm');
 }
 
+function loadAllowUser(){
+	$('#main-content').empty();
+	$('#main-content').load('user/allowUser.htm');
+}
+
 function selectAllCheckbox(chk){
 	var val = chk.checked;
 	$('input[type=checkbox]').each(function () {
@@ -58,6 +63,23 @@ function actualizarUsuarios(){
 
 	$('#main-content').empty();
 	$('#main-content').load('/TMNIntegralWeb/user/enableUser.htm?adminUserList=' + adminList + '&userList=' + userList + '&reportList=' + reportList,
+			function() {
+					//Remove modal leftovers
+					$("body").removeClass('modal-open');
+					$("div").remove(".modal-backdrop.fade.in");
+					//Load ok modal
+					$('#okModal').modal('show');
+	        }); 
+}
+
+function habilitarUsuarios(){
+	var userList = [];
+	$("input:checkbox[name=enabledCheck]:checked").each(function(){
+		userList.push($(this).val());
+	});
+	
+	$('#main-content').empty();
+	$('#main-content').load('/TMNIntegralWeb/user/allowUser.htm?enabledUserList=' + userList,
 			function() {
 					//Remove modal leftovers
 					$("body").removeClass('modal-open');

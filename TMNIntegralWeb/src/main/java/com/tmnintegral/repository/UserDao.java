@@ -5,6 +5,7 @@ package com.tmnintegral.repository;
 
 import java.util.List;
 
+import com.tmnintegral.domain.Client;
 import com.tmnintegral.domain.User;
 
 /**
@@ -32,5 +33,9 @@ public interface UserDao {
 	public List<User> getAdministratorUsers();
 
 	public List<User> getUsersList(int clientId);
+	
+	public List<Client> getClientList();
+
+	public List<User> getDisabledUserList(Integer clientId);
 	
 }

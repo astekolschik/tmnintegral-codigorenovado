@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.tmnintegral.domain.Client;
 import com.tmnintegral.domain.User;
 import com.tmnintegral.repository.UserDao;
 
@@ -134,6 +135,18 @@ public class JPAUserDao implements UserDao {
     @SuppressWarnings("unchecked")
 	public List<User> getUsersList(int clientId) {
 		return em.createQuery("select u from User u where u.client.id= " + clientId + " order by u.id").getResultList();
+	}
+
+    @Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+    public List<Client> getClientList() {
+    	return em.createQuery("select c from Client c order by c.id").getResultList();
+	}
+
+    @Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+	public List<User> getDisabledUserList(Integer clientId) {
+    	return em.createQuery("select u from User u where u.client.id= " + clientId + " and u.role_id=4 order by u.id").getResultList();
 	}
 
 }

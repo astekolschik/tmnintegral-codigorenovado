@@ -39,6 +39,7 @@ public class UserController {
 	@Autowired
 	private LogManager logManager;
 	
+	private static int PENDING_ROLE = 4;
 	private static int REGISTER_ROLE = 3;
 	private static int USER_ROLE = 2;
 	private static int ADMIN_ROLE = 1;
@@ -49,9 +50,10 @@ public class UserController {
 
 		Map<String, Object> myModel = new HashMap<String, Object>();
 		
-		if (request.getParameter("usuario") == null)
-			return new ModelAndView("index/register");
-		else{
+		if (request.getParameter("usuario") == null){
+			myModel.put("clients", this.um.getClients());
+			return new ModelAndView("index/register", "model", myModel);
+		}else{
 			
 			String user = request.getParameter("usuario");
 			String password = request.getParameter("password");
@@ -60,9 +62,11 @@ public class UserController {
 			String apellido = request.getParameter("apellido");
 			String direccion = request.getParameter("direccion");
 			String notas = request.getParameter("notas");
+			String client = request.getParameter("client");
 			
 	        try {
-				um.crearUsuario(user, nombre, apellido, email, password, REGISTER_ROLE, direccion, notas, ((User) session.getAttribute("user")).getClient());
+				um.crearUsuario(user, nombre, apellido, email, password, PENDING_ROLE, 
+						direccion, notas, client);
 				myModel.put("status", "Usuario creado con éxito!");
 				myModel.put("statusType", "OK");
 			} catch (Exception e) {
@@ -162,6 +166,32 @@ public class UserController {
 			}
 		}
 		return new ModelAndView("dashboard/user/enableUser", "model", myModel);
+    }
+
+	
+	@RequestMapping(value="user/allowUser.htm")
+    public ModelAndView allowUsers(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+            throws ServletException, IOException {
+
+		Map<String, Object> myModel = new HashMap<String, Object>();
+		User user = (User) session.getAttribute("user");
+		List<User> userList = this.um.getDisabledUserList(user.getClient().getId());
+		myModel.put("userList", userList);
+		
+		if (request.getParameter("enabledUserList") != null){
+			String[] enableUserList = request.getParameter("enabledUserList").split(",");
+			
+			Iterator<User> uIterator = userList.iterator();
+			while (uIterator.hasNext()){
+				User u = uIterator.next();
+				if (isInList(enableUserList, u.getUser_name()))
+					u.setRole_id(REGISTER_ROLE);
+				this.um.updateUser(u);
+			}
+			userList = this.um.getDisabledUserList(user.getClient().getId());
+			myModel.put("userList", userList);
+		}
+		return new ModelAndView("dashboard/user/allowUser", "model", myModel);
     }
 
 	private boolean isInList(String[] list, String value){

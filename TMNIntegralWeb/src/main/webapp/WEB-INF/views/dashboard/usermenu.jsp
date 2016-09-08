@@ -10,7 +10,8 @@
 				<li><a href="javascript:loadChgUser();"><i class="fa fa-circle-o"></i>Modificar</a></li>
 				<c:if test="${user.role_id == 1}">
 					<li><a href="javascript:loadDeleteUser();"><i class="fa fa-circle-o"></i>Eliminar Usuarios</a></li>
-					<li><a href="javascript:loadEnableUser();"><i class="fa fa-circle-o"></i>Habilitar Usuarios</a></li>
+					<li><a href="javascript:loadEnableUser();"><i class="fa fa-circle-o"></i>Modificar Usuarios</a></li>
+					<li><a href="javascript:loadAllowUser();"><i class="fa fa-circle-o"></i>Habilitar Usuarios</a></li>
 				</c:if>
 			</ul>
 	</c:if>

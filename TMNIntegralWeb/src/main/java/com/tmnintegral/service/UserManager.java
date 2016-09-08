@@ -69,13 +69,15 @@ public class UserManager implements Serializable{
 				String email, 
 				String password, 
 				int roleId, String direccion, String notas,
-				Client client) throws Exception{
+				String client) throws Exception{
 		
 		if (!existeUsuario(userName)){
 		
 			String encPwd = this.generarPassword(userName, password);
 			Role r = roleDao.getRole(roleId);
-			User u = new User(userName, encPwd, email, nombre, apellido, r, direccion, notas, client);
+			Client c = new Client();
+			c.setId(Integer.parseInt(client));
+			User u = new User(userName, encPwd, email, nombre, apellido, r, direccion, notas, c);
 
 			userDao.saveUser(u);
 			
@@ -234,4 +236,11 @@ public class UserManager implements Serializable{
 		this.userDao = userDao;
 	}
 
+	public List<Client> getClients(){
+		return this.userDao.getClientList();
+	}
+
+	public List<User> getDisabledUserList(Integer clientId) {
+		return this.userDao.getDisabledUserList(clientId);
+	}
 }

@@ -84,6 +84,16 @@
 					</div>
 				</div>
 				<div class="form-group">
+					<label class="control-label col-sm-2" for="client">Cliente:</label>
+					<div class="col-sm-10">
+						<select id="client" name="client" class="form-control">
+							<c:forEach items="${model.clients}" var="c">
+								<option value="${c.id}">${c.name}</option>
+							</c:forEach>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-default">Guardar</button>
 					</div>
