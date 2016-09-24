@@ -35,6 +35,14 @@ public class ReportManager implements Serializable{
 	private InventoryManager inventoryManager;
 
 	/**
+	 * 
+	 * @return List of reports name
+	 */
+	public List<Object[]> getReportNames(){
+		return reportDao.getReportNames();
+	}
+	
+	/**
 	 * Obtiene información para el reporte de memoria disponible para una lista de equipos
 	 * @param eqIds
 	 * @param from

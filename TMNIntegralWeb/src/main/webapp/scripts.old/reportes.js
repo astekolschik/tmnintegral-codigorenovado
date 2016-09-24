@@ -25,6 +25,7 @@ function validarFormReporte(){
 	return true;
 }
 
+
 function fillTable(info){
 	for (var i = 0; i < info.length; i++){
 		var eq = info[i];

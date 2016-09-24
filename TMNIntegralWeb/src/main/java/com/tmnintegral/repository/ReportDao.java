@@ -15,4 +15,6 @@ public interface ReportDao {
 	
 	public List<EquipmentInformation> getEquipmentInformation(int eqId, Date from, Date to);
 	
+	public List<Object[]> getReportNames();
+	
 }

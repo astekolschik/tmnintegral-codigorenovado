@@ -23,12 +23,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tmnintegral.domain.User;
 import com.tmnintegral.service.InventoryManager;
 import com.tmnintegral.service.LogManager;
 import com.tmnintegral.service.ReportManager;
 
 /**
- * @author Usuario
+ * @author Agustina
  *
  */
 @Controller
@@ -46,9 +47,11 @@ public class ReportController {
 	@RequestMapping(value="/monitoring/parametrosReporte.htm")
     public ModelAndView parametrosReporte(HttpSession session, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+		User currUser = (User) session.getAttribute("user");
 		
 		Map<String, Object> myModel = new HashMap<>();
-		myModel.put("devices", this.inventoryManager.getDeviceList());
+		myModel.put("reportList", this.reportManager.getReportNames());
+		myModel.put("devices", this.inventoryManager.getDeviceList(currUser.getClient().getId()));
 		
 		return new ModelAndView("dashboard/reportes/parametrosReporte", "model", myModel);
     }

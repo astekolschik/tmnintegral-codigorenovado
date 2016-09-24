@@ -43,33 +43,13 @@ function generarReporte(){
 	if (!validarFormReporte())
 		return;
 	var tiporeporte = $('#tipo-reporte').val();
-	var tiporeporte = $('#tipo-reporte').val();
-	var tiporeporte = $('#tipo-reporte').val();
-	var tiporeporte = $('#tipo-reporte').val();
+	var listaEquipos = $('#lista-equipos-value').val();
+	var desde = $('#fecha-desde').val();
+	var hasta = $('#fecha-hasta').val();
 	
 	$('#main-content').empty();
-	$('#main-content').load('/TMNIntegralWeb/inventory/deleteTipoEquipo.htm?teId=' + tipoEq, function(){
-		$('#goToAgregarTipoEquipo').click(function() {
-			  $('#tipoEquipoTabs a[href="#nuevoequipo"]').tab('show');
-			});
-		$('#nuevoequipotab').click(function(event){
-		    if ($(this).hasClass('disabled')) {
-		        return false;
-		    }
-		});
-		$('#editarequipotab').click(function(event){
-		    if ($(this).hasClass('disabled')) {
-		        return false;
-		    }
-		});
-		
-		$("#tipoEquiposTable").DataTable();
-
-		//Remove modal leftovers
-		$("body").removeClass('modal-open');
-		$("div").remove(".modal-backdrop.fade.in");
-		
-		//Load ok modal
-		$('#delConfirmModal').modal('show');
+	$('#main-content').load('monitoring/generarReporte.htm?tipo-reporte=' + tiporeporte 
+				+ '&lista-equipos-value=' + listaEquipos
+				+ '&fecha-deste=' + desde + '&fecha-hasta=' + hasta, function(){
 	});
 }

@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TemporalType;
 
 import org.springframework.stereotype.Repository;
@@ -56,6 +57,13 @@ public class JPAReportDao implements ReportDao {
     			+ " and ei.timestamp <= :d2"
     			+ " order by ei.timestamp").setParameter("d1", from, TemporalType.TIMESTAMP).setParameter("d2", to, TemporalType.TIMESTAMP)
     				.getResultList();
+	}
+
+    @Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+	public List<Object[]> getReportNames() {
+    	Query q = em.createNativeQuery("SELECT a.idVariable, a.description FROM variable_reportname a");
+    	return q.getResultList();
 	}
 
 }

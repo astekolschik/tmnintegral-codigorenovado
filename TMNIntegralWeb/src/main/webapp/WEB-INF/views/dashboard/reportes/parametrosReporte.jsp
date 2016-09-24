@@ -21,11 +21,14 @@
 					<div class="form-group">
 						<label>Tipo de Reporte</label> <select class="form-control" id="tipo-reporte" name="tipo-reporte">
 							<option value="-1">Ninguno</option>
-							<option value="1">Memoria disponible</option>
+							<!-- option value="1">Memoria disponible</option>
 							<option value="2">Memoria utilizada</option>
 							<option value="3">Tráfico entrante</option>
 							<option value="4">Tráfico saliente</option>
-							<option value="5">Utilización CPU</option>
+							<option value="5">Utilización CPU</option-->
+							<c:forEach items="${model.reportList}" var="repName">
+								<option value="${repName[0]}">${repName[1]}</option>
+							</c:forEach>
 						</select>
 					</div>
 					<div class="form-group">
