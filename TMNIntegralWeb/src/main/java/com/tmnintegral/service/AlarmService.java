@@ -36,7 +36,6 @@ public class AlarmService {
 		while (it.hasNext()){
 			InterfaceStatus is = it.next();
 			MailManager.sendAlarmMail(is.getElementName(), destList);
-			is.setRetry_enable(3);
 			this.interfaceDao.updateInterfaceStatus(is);
 		}
 	}

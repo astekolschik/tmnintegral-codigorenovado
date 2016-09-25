@@ -103,7 +103,7 @@ public class JPAInterfaceDao implements InterfaceDao{
     @Transactional(readOnly = true)
     @SuppressWarnings("unchecked")
 	public List<InterfaceStatus> getInterfacesDown() {
-		return em.createQuery("select i from InterfaceStatus i where i.valor='down' and retry_enable=0 order by i.id").getResultList();
+		return em.createQuery("select i from InterfaceStatus i where i.valor='down' order by i.id").getResultList();
 	}
 
     @Transactional(readOnly = false)
@@ -115,7 +115,7 @@ public class JPAInterfaceDao implements InterfaceDao{
     @Transactional(readOnly = true)
     @SuppressWarnings("unchecked")
 	public List<InterfaceStatus> getInterfaceAlarmed() {
-		return em.createQuery("select i from InterfaceStatus i where i.valor='down' and retry_enable=0 order by i.id").getResultList();
+		return em.createQuery("select i from InterfaceStatus i where i.valor='down' order by i.id").getResultList();
 	}
     
     @Transactional(readOnly = true)
@@ -126,7 +126,7 @@ public class JPAInterfaceDao implements InterfaceDao{
     	cal.setTime(new Date());
     	cal.add(Calendar.HOUR, -1);
     	Date oneHourBack = cal.getTime();
-		return em.createQuery("select i from InterfaceStatus i where i.valor='down' and retry_enable=0 and last_update_state > " + sdf.format(oneHourBack)).getResultList();
+		return em.createQuery("select i from InterfaceStatus i where i.valor='down' and last_update_state > " + sdf.format(oneHourBack)).getResultList();
 	}
 
     @Transactional(readOnly = true)

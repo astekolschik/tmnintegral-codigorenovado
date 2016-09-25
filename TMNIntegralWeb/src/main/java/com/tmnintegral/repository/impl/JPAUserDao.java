@@ -140,7 +140,7 @@ public class JPAUserDao implements UserDao {
     @Transactional(readOnly = true)
     @SuppressWarnings("unchecked")
     public List<Client> getClientList() {
-    	return em.createQuery("select c from Client c order by c.id").getResultList();
+    	return em.createQuery("select c from Client c where c.id!=0 order by c.id").getResultList();
 	}
 
     @Transactional(readOnly = true)

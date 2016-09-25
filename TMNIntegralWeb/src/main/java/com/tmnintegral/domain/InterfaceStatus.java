@@ -26,7 +26,6 @@ public class InterfaceStatus implements Serializable {
 	private String valor;
 	private String elementName;
 	private BigInteger last_update_state;
-	private int retry_enable;
 	
 	public InterfaceStatus(){
 		super();
@@ -38,16 +37,13 @@ public class InterfaceStatus implements Serializable {
 	 * @param valor
 	 * @param elementName
 	 * @param last_update_state
-	 * @param retry_enable
 	 */
-	public InterfaceStatus(int idVariable, String valor, String elementName, BigInteger last_update_state,
-			int retry_enable) {
+	public InterfaceStatus(int idVariable, String valor, String elementName, BigInteger last_update_state) {
 		super();
 		this.idVariable = idVariable;
 		this.valor = valor;
 		this.elementName = elementName;
 		this.last_update_state = last_update_state;
-		this.retry_enable = retry_enable;
 	}
 
 	/**
@@ -119,22 +115,6 @@ public class InterfaceStatus implements Serializable {
 	 */
 	public void setLast_update_state(BigInteger last_update_state) {
 		this.last_update_state = last_update_state;
-	}
-
-
-	/**
-	 * @return the retry_enable
-	 */
-	public int getRetry_enable() {
-		return retry_enable;
-	}
-
-
-	/**
-	 * @param retry_enable the retry_enable to set
-	 */
-	public void setRetry_enable(int retry_enable) {
-		this.retry_enable = retry_enable;
 	}
 
 

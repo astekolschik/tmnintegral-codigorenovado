@@ -88,3 +88,34 @@ function habilitarUsuarios(){
 					$('#okModal').modal('show');
 	        }); 
 }
+
+/****************************CLIENTS**************/
+function loadClients(){
+	$('#main-content').empty();
+	$('#main-content').load('client/clientes.htm', function(){
+		$('#goToAgregarCliente').click(function() {
+			  $('#clientesTabs a[href="#nuevocliente"]').tab('show');
+			});
+		
+		$("#clientsTable").DataTable();
+	});
+}
+
+function agregarCliente(){
+	var id = $('#clientId').val();
+	var descripcion = $('#description').val();
+	
+	$('#main-content').empty();
+	$('#main-content').load('/TMNIntegralWeb/client/updateClient.htm?descripcion=' + descripcion
+																			+ '&id=' + id, function(){
+		$('#goToAgregarCliente').click(function() {
+			  $('#clientesTabs a[href="#nuevocliente"]').tab('show');
+			});
+		
+		$("#clientsTable").DataTable();
+		
+		//Load ok modal
+		$('#createConfirmModal').modal('show');
+	});
+	
+}
