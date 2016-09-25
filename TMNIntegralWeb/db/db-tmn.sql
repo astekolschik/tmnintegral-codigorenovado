@@ -17089,6 +17089,24 @@ INSERT INTO `variable_devicetype` (`idVariable`, `idDeviceType`, `fieldName`, `t
 /*!40000 ALTER TABLE `variable_devicetype` ENABLE KEYS */;
 
 
+-- Volcando estructura para tabla tmnintegral.variable_reportname
+DROP TABLE IF EXISTS `variable_reportname`;
+CREATE TABLE IF NOT EXISTS `variable_reportname` (
+  `idVariable` int(11) NOT NULL,
+  `reportName` varchar(50) NOT NULL,
+  PRIMARY KEY (`idVariable`),
+  CONSTRAINT `FK_variable_reportname_variable` FOREIGN KEY (`idVariable`) REFERENCES `variable` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla tmnintegral.variable_reportname: ~0 rows (aproximadamente)
+DELETE FROM `variable_reportname`;
+/*!40000 ALTER TABLE `variable_reportname` DISABLE KEYS */;
+INSERT INTO `variable_reportname` (`idVariable`, `reportName`) VALUES
+	(13, 'Reporte de velocidad del equipo'),
+	(19, 'Reporte de uso de ancho de banda');
+/*!40000 ALTER TABLE `variable_reportname` ENABLE KEYS */;
+
+
 -- Volcando estructura para tabla tmnintegral.version
 DROP TABLE IF EXISTS `version`;
 CREATE TABLE IF NOT EXISTS `version` (
