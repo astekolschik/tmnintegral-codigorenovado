@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.json.JsonObject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +22,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tmnintegral.domain.User;
@@ -52,16 +54,19 @@ public class ReportController {
 		Map<String, Object> myModel = new HashMap<>();
 		myModel.put("reportList", this.reportManager.getReportNames());
 		myModel.put("devices", this.inventoryManager.getDeviceList(currUser.getClient().getId()));
+		myModel.put("interfaces", this.inventoryManager.getInterfaceList(currUser.getClient()));
 		
 		return new ModelAndView("dashboard/reportes/parametrosReporte", "model", myModel);
     }
 	
-	@RequestMapping(value="monitoring/generarReporte.htm")
-    public ModelAndView generarReporte(HttpSession session, HttpServletRequest request, HttpServletResponse response)
+	@RequestMapping(value="monitoring/generarReporte.htm", headers="Accept=*/*", produces="application/json; charset=UTF-8")
+	@ResponseBody
+    public String generarReporte(HttpSession session, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 		
 		String tipoReporte = request.getParameter("tipo-reporte");
 		String eqsId = request.getParameter("lista-equipos-value");
+		String interId = request.getParameter("lista-interfaces-value");
 		
 		String dateFromStr = request.getParameter("fecha-desde");
 		String dateToStr = request.getParameter("fecha-hasta");
@@ -75,28 +80,8 @@ public class ReportController {
 			System.err.println("Error al parsear las fechas");
 		}
 		
-		String resp = "";
-		switch(tipoReporte){
-			case "1"://Memoria disponible
-				resp = this.reportManager.getInformationForMemoriaDisponibleReport(eqsId.split(","), dateFrom, dateTo);
-				break;
-			case "2"://Memoria utilizada
-				resp = this.reportManager.getInformationForMemoriaUtilizadaReport(eqsId.split(","), dateFrom, dateTo);
-				break;
-			case "3"://Trafico entrante
-				resp = this.reportManager.getInformationForTraficoEntranteReport(eqsId.split(","), dateFrom, dateTo);
-				break;
-			case "4"://Trafico saliente
-				resp = this.reportManager.getInformationForTraficoSalienteReport(eqsId.split(","), dateFrom, dateTo);
-				break;
-			case "5"://Utilizacion CPU
-				resp = this.reportManager.getInformationForUtilizacionCPUReport(eqsId.split(","), dateFrom, dateTo);
-				break;
-		}
-		
-		Map<String, Object> myModel = new HashMap<>();
-		myModel.put("reportData", resp);
-		return new ModelAndView("reportes/reporte", "model", myModel);
+		JsonObject reportInfo = this.reportManager.getInformationForReports(tipoReporte, eqsId.split(","), interId.split(","), dateFrom, dateTo);
+		return "{}";// reportInfo.toString();
     }
 	
 	@RequestMapping(value="/monitoring/alarmas.htm")

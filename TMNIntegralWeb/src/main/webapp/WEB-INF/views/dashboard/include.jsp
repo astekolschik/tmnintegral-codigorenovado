@@ -17,6 +17,9 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+<!-- Google graphics for charts  -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 <c:if test="${not model.context}">
 
 	<!-- Bootstrap -->

@@ -14,65 +14,86 @@
 	Main content
  -->
 <section class="content">
-	<div class="box">
-		<div class="box box-primary">
-			<h3>Parámetros del reporte</h3>
-				<form method="post" role="form" action="">
-					<div class="form-group">
-						<label>Tipo de Reporte</label> <select class="form-control" id="tipo-reporte" name="tipo-reporte">
-							<option value="-1">Ninguno</option>
-							<!-- option value="1">Memoria disponible</option>
-							<option value="2">Memoria utilizada</option>
-							<option value="3">Tráfico entrante</option>
-							<option value="4">Tráfico saliente</option>
-							<option value="5">Utilización CPU</option-->
-							<c:forEach items="${model.reportList}" var="repName">
-								<option value="${repName[0]}">${repName[1]}</option>
-							</c:forEach>
-						</select>
-					</div>
-					<div class="form-group">
-						<label>Equipos</label> <input type="hidden"
-							name="lista-equipos-value" id="lista-equipos-value"> <select
-							class="form-control" multiple id="nombre-equipo"
-							name="nombre-equipo">
-							<c:forEach items="${model.devices}" var="equipo">
-								<option value="${equipo.device_id}">${equipo.hostName}
-									(${equipo.ip})</option>
-							</c:forEach>
-						</select>
-					</div>
-					<div class="form-group">
-						<label>Fecha desde</label>
-						<div class="input-group">
-							<div class="input-group-addon">
-								<i class="fa fa-calendar"></i>
-							</div>
-							<input type="date" class="form-control pull-right"
-								name="fecha-desde" id="fecha-desde">
+	<div class="row">
+		<div>
+			<div class="nav-tabs-custom">
+				<ul class="nav nav-tabs" id="reportesTab">
+					<li class="active"><a href="#parametrosReporte" data-toggle="tab">Parametros del reporte</a></li>
+					<li><a href="#reporte" data-toggle="tab">Reporte</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="active tab-pane" id="parametrosReporte">
+						<div class="box box-primary">
+							<form method="post" role="form" action="">
+								<div class="form-group">
+									<label>Tipo de Reporte</label> <select class="form-control" id="tipo-reporte" name="tipo-reporte">
+										<option value="-1">Ninguno</option>
+										<c:forEach items="${model.reportList}" var="repName">
+											<option value="${repName[0]}">${repName[1]}</option>
+										</c:forEach>
+									</select>
+								</div>
+								<div class="form-group">
+									<label>Equipos</label> <input type="hidden"
+										name="lista-equipos-value" id="lista-equipos-value"> <select
+										class="form-control" multiple id="nombre-equipo"
+										name="nombre-equipo">
+										<c:forEach items="${model.devices}" var="equipo">
+											<option value="${equipo.device_id}">${equipo.hostName}
+												(${equipo.ip})</option>
+										</c:forEach>
+									</select>
+								</div>
+								<div class="form-group">
+									<label>Interfaces</label> <input type="hidden"
+										name="lista-interfaces-value" id="lista-interfaces-value"> <select
+										class="form-control" multiple id="nombre-interface"
+										name="nombre-interface">
+										<c:forEach items="${model.interfaces}" var="i">
+											<option value="${i.id}">${i.name}
+												(${i.ipAdEntIfIndex})</option>
+										</c:forEach>
+									</select>
+								</div>
+								<div class="form-group">
+									<label>Fecha desde</label>
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-calendar"></i>
+										</div>
+										<input type="date" class="form-control pull-right"
+											name="fecha-desde" id="fecha-desde">
+									</div>
+								</div>
+								<div class="form-group">
+									<label>Fecha hasta</label>
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-calendar"></i>
+										</div>
+										<input type="date" class="form-control pull-right"
+											name="fecha-hasta" id="fecha-hasta">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
+										<button type="button" class="btn btn-danger"
+											onclick="javascript:generarReporte();">Generar</button>
+										<button type="reset" class="btn btn-danger">Limpiar</button>
+									</div>
+								</div>
+							</form>
 						</div>
 					</div>
-					<div class="form-group">
-						<label>Fecha hasta</label>
-						<div class="input-group">
-							<div class="input-group-addon">
-								<i class="fa fa-calendar"></i>
-							</div>
-							<input type="date" class="form-control pull-right"
-								name="fecha-hasta" id="fecha-hasta">
+					<!-- /.tab-pane -->
+					<div class="tab-pane" id="reporte">
+						<div class="box">
+							<h3>Reporte</h3>
+							<div id="report-content"></div>
 						</div>
 					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-							<button type="button" class="btn btn-danger"
-								onclick="javascript:generarReporte();">Generar</button>
-							<button type="reset" class="btn btn-danger">Limpiar</button>
-						</div>
-					</div>
-				</form>
+				</div>
+			</div>
 		</div>
 	</div>
-</section>
-<!-- /.content -->
-<!-- </div> -->
-<!-- /.content-wrapper -->
+</section> 

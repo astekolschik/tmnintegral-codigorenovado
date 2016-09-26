@@ -4,15 +4,28 @@
 package com.tmnintegral.service;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
+
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonValue;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.tmnintegral.domain.Device;
-import com.tmnintegral.domain.EquipmentInformation;
 import com.tmnintegral.domain.InterfaceStatus;
 import com.tmnintegral.repository.InterfaceDao;
 import com.tmnintegral.repository.ReportDao;
@@ -31,8 +44,6 @@ public class ReportManager implements Serializable{
 	private ReportDao reportDao;
 	@Autowired
 	private InterfaceDao interfaceDao;
-	@Autowired
-	private InventoryManager inventoryManager;
 
 	/**
 	 * 
@@ -42,257 +53,12 @@ public class ReportManager implements Serializable{
 		return reportDao.getReportNames();
 	}
 	
-	/**
-	 * Obtiene información para el reporte de memoria disponible para una lista de equipos
-	 * @param eqIds
-	 * @param from
-	 * @param to
-	 * @return
-	 */
-	public String getInformationForMemoriaDisponibleReport(String[] eqIds, Date from, Date to){
-		String res = "[";
-		for (int i = 0; i < eqIds.length; i++){
-			if (i != 0)
-				res = res + ",";
-			res = res + this.getInformationForMemoriaDisponibleReport(Integer.valueOf(eqIds[i]), from, to);
-		}
-		res += "]";
-		return res;
-	}
-	
-	/**
-	 * Obtiene información para el reporte de memoria disponible x equipo
-	 * @param eqID
-	 * @param from
-	 * @param to
-	 * @return
-	 */
-	public String getInformationForMemoriaDisponibleReport(int eqID, Date from, Date to){
-		Device d = this.inventoryManager.getDevice(eqID);
-		String result = "{ Equipment : '" + d.getHostName() + "-(" + d.getIp() + ")', "
-						+" Data: [";
-		
-		List<EquipmentInformation> eqInfo = this.getEquipmentInformationForReport(eqID, from, to);
-		Iterator<EquipmentInformation> itEq = eqInfo.iterator();
-		EquipmentInformation eq = null;
-		while (itEq.hasNext()){
-			eq = itEq.next();
-			result = result +
-						"{ Date: '" + eq.getTimestamp() + "',"
-						+ " Value: " + eq.getMemoria_disponible()
-						+ "}";
-			if (itEq.hasNext())
-				result = result + ",";
-		}
-		
-		result += 	"]"
-				+ "}";
-		return result;
-	}
-	
-	/**
-	 * Obtiene información para el reporte de memoria utilizada para una lista de equipos
-	 * @param eqIds
-	 * @param from
-	 * @param to
-	 * @return
-	 */
-	public String getInformationForMemoriaUtilizadaReport(String[] eqIds, Date from, Date to){
-		String res = "[";
-		for (int i = 0; i < eqIds.length; i++){
-			if (i != 0)
-				res = res + ",";
-			res = res + this.getInformationForMemoriaUtilizadaReport(Integer.valueOf(eqIds[i]), from, to);
-		}
-		res += "]";
-		return res;
-	}
-	
-	/**
-	 * Obtiene información para el reporte de memoria utilizada x equipo
-	 * @param eqID
-	 * @param from
-	 * @param to
-	 * @return
-	 */
-	public String getInformationForMemoriaUtilizadaReport(int eqID, Date from, Date to){
-		Device d = this.inventoryManager.getDevice(eqID);
-		String result = "{ Equipment : '" + d.getHostName() + "-(" + d.getIp() + ")', "
-						+" Data: [";
-		
-		List<EquipmentInformation> eqInfo = this.getEquipmentInformationForReport(eqID, from, to);
-		Iterator<EquipmentInformation> itEq = eqInfo.iterator();
-		EquipmentInformation eq = null;
-		while (itEq.hasNext()){
-			eq = itEq.next();
-			result = result +
-						"{ Date: '" + eq.getTimestamp() + "',"
-						+ " Value: " + eq.getMemoria_utilizada()
-						+ "}";
-			if (itEq.hasNext())
-				result = result + ",";
-		}
-		
-		result += 	"]"
-				+ "}";
-		return result;
-	}
-	
-	/**
-	 * Obtiene información para el reporte de trafico entrante para una lista de equipos
-	 * @param eqIds
-	 * @param from
-	 * @param to
-	 * @return
-	 */
-	public String getInformationForTraficoEntranteReport(String[] eqIds, Date from, Date to){
-		String res = "[";
-		for (int i = 0; i < eqIds.length; i++){
-			if (i != 0)
-				res = res + ",";
-			res = res + this.getInformationForTraficoEntranteReport(Integer.valueOf(eqIds[i]), from, to);
-		}
-		res += "]";
-		return res;
-	}
-	
-	/**
-	 * Obtiene información para el reporte de trafico entrante x equipo
-	 * @param eqID
-	 * @param from
-	 * @param to
-	 * @return
-	 */
-	public String getInformationForTraficoEntranteReport(int eqID, Date from, Date to){
-		Device d = this.inventoryManager.getDevice(eqID);
-		String result = "{ Equipment : '" + d.getHostName() + "-(" + d.getIp() + ")', "
-						+" Data: [";
-		
-		List<EquipmentInformation> eqInfo = this.getEquipmentInformationForReport(eqID, from, to);
-		Iterator<EquipmentInformation> itEq = eqInfo.iterator();
-		EquipmentInformation eq = null;
-		while (itEq.hasNext()){
-			eq = itEq.next();
-			result = result +
-						"{ Date: '" + eq.getTimestamp() + "',"
-						+ " Value: " + eq.getTrafico_entrante()
-						+ "}";
-			if (itEq.hasNext())
-				result = result + ",";
-		}
-		
-		result += 	"]"
-				+ "}";
-		return result;
-	}
-	
-	/**
-	 * Obtiene información para el reporte de trafico saliente para una lista de equipos
-	 * @param eqIds
-	 * @param from
-	 * @param to
-	 * @return
-	 */
-	public String getInformationForTraficoSalienteReport(String[] eqIds, Date from, Date to){
-		String res = "[";
-		for (int i = 0; i < eqIds.length; i++){
-			if (i != 0)
-				res = res + ",";
-			res = res + this.getInformationForTraficoSalienteReport(Integer.valueOf(eqIds[i]), from, to);
-		}
-		res += "]";
-		return res;
-	}
-	
-	/**
-	 * Obtiene información para el reporte de trafico saliente x equipo
-	 * @param eqID
-	 * @param from
-	 * @param to
-	 * @return
-	 */
-	public String getInformationForTraficoSalienteReport(int eqID, Date from, Date to){
-		Device d = this.inventoryManager.getDevice(eqID);
-		String result = "{ Equipment : '" + d.getHostName() + "-(" + d.getIp() + ")', "
-						+" Data: [";
-		
-		List<EquipmentInformation> eqInfo = this.getEquipmentInformationForReport(eqID, from, to);
-		Iterator<EquipmentInformation> itEq = eqInfo.iterator();
-		EquipmentInformation eq = null;
-		while (itEq.hasNext()){
-			eq = itEq.next();
-			result = result +
-						"{ Date: '" + eq.getTimestamp() + "',"
-						+ " Value: " + eq.getTrafico_saliente()
-						+ "}";
-			if (itEq.hasNext())
-				result = result + ",";
-		}
-		
-		result += 	"]"
-				+ "}";
-		return result;
-	}
-	
-	/**
-	 * Obtiene información para el reporte de utilizacion de cpu para una lista de equipos
-	 * @param eqIds
-	 * @param from
-	 * @param to
-	 * @return
-	 */
-	public String getInformationForUtilizacionCPUReport(String[] eqIds, Date from, Date to){
-		String res = "[";
-		for (int i = 0; i < eqIds.length; i++){
-			if (i != 0)
-				res = res + ",";
-			res = res + this.getInformationForUtilizacionCPUReport(Integer.valueOf(eqIds[i]), from, to);
-		}
-		res += "]";
-		return res;
-	}
-	
-	/**
-	 * Obtiene información para el reporte de la utilizacion de cpu x equipo
-	 * @param eqID
-	 * @param from
-	 * @param to
-	 * @return
-	 */
-	public String getInformationForUtilizacionCPUReport(int eqID, Date from, Date to){
-		Device d = this.inventoryManager.getDevice(eqID);
-		String result = "{ Equipment : '" + d.getHostName() + "-(" + d.getIp() + ")', "
-						+" Data: [";
-		
-		List<EquipmentInformation> eqInfo = this.getEquipmentInformationForReport(eqID, from, to);
-		Iterator<EquipmentInformation> itEq = eqInfo.iterator();
-		EquipmentInformation eq = null;
-		while (itEq.hasNext()){
-			eq = itEq.next();
-			result = result +
-						"{ Date: '" + eq.getTimestamp() + "',"
-						+ " Value: " + eq.getUtilizacion_cpu()
-						+ "}";
-			if (itEq.hasNext())
-				result = result + ",";
-		}
-		
-		result += 	"]"
-				+ "}";
-		return result;
-	}
-	
 	public List<InterfaceStatus> getAlarmsSent(){
 		return this.interfaceDao.getInterfaceAlarmed();
 	}
 	
 	public List<InterfaceStatus> getAlarmsSentInTheLastHour(){
 		return this.interfaceDao.getInterfaceAlarmedInTheLastHour();
-	}
-	
-	
-	private List<EquipmentInformation> getEquipmentInformationForReport(int eqID, Date from, Date to){
-		return this.reportDao.getEquipmentInformation(eqID, from, to);
 	}
 	
 	
@@ -309,6 +75,132 @@ public class ReportManager implements Serializable{
 	public void setInterfaceDao(InterfaceDao interfaceDao) {
 		this.interfaceDao = interfaceDao;
 	}
-	
 
+
+	/**
+	 * Obtiene la informacion para los reportes basandose en tipo de reporte, fechas y equipos seleccionados por el usuario
+	 * @param tipoReporte
+	 * @param equipmentList
+	 * @param strings 
+	 * @param dateFrom
+	 * @param dateTo
+	 * @return list with report information
+	 */
+	public JsonObject getInformationForReports(String tipoReporte, String[] equipmentList, String[] interfacesList, Date dateFrom, Date dateTo) {
+//		List<Object[]> retEqList = this.reportDao.getEquipmentInformationForReports(tipoReporte, equipmentList, dateFrom, dateTo);
+//		List<Object[]> retInList = this.reportDao.getInterfaceInformationForReports(tipoReporte, interfacesList, dateFrom, dateTo);
+		//TODO data model
+		List<Object[]> retEqList = new ArrayList<Object[]>();
+		List<Object[]> retInList = new ArrayList<Object[]>();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar c = Calendar.getInstance();
+		c.setTime(new Date());
+		Random r = new Random();
+		int maxX = 100, minX =0;
+		for (int i = 0; i < 10; i++){
+			String date = sdf.format(c.getTime());
+			c.add(Calendar.DATE, 1);
+			Object[] a = {date, "Device 1", r.nextFloat()* (maxX - minX) + minX};
+			retEqList.add(a);
+			Object[] b = {date, "Device 2", r.nextFloat()* (maxX - minX) + minX};
+			retEqList.add(b);
+			Object[] d = {date, "Interface 1", r.nextFloat()* (maxX - minX) + minX};
+			retInList.add(d);
+		}
+		
+		
+		JsonObjectBuilder retObj = Json.createObjectBuilder()
+				.add("cols", this.getColumnsForChart(retEqList, retInList))
+				.add("rows", this.getRowsForChart(retEqList, equipmentList.length, retInList, interfacesList.length));
+		return retObj.build();
+	}
+
+	/**
+	 * A partir de la lista de equipos e interfaces construye el json de las columnas del grafico
+	 * @param retEqList
+	 * @param retInList
+	 * @return
+	 */
+	private JsonArray getColumnsForChart(List<Object[]> retEqList, List<Object[]> retInList) {
+		JsonArrayBuilder columnsBuilder = Json.createArrayBuilder()
+				.add(Json.createObjectBuilder()
+						.add("id", "fecha")
+						.add("label", "Fecha")
+						.add("type", "string").build());
+		Set<String> listIncluded = new HashSet<String>();
+		//Iteramos sobre los equipos posibles
+		Iterator<Object[]> it = retEqList.iterator();
+		while (it.hasNext()){
+			Object[] curr = it.next();
+			if (!listIncluded.contains(curr[1])){
+				columnsBuilder.add(Json.createObjectBuilder()
+						.add("id", curr[1].toString())
+						.add("label", curr[1].toString())
+						.add("type", "number").build());
+			}
+		}
+		
+		listIncluded = new HashSet<String>();
+		//Iteramos sobre las interfaces posibles
+		it = retInList.iterator();
+		while (it.hasNext()){
+			Object[] curr = it.next();
+			if (!listIncluded.contains(curr[1])){
+				columnsBuilder.add(Json.createObjectBuilder()
+						.add("id", curr[1].toString())
+						.add("label", curr[1].toString())
+						.add("type", "number").build());
+			}
+		}
+		
+		return columnsBuilder.build();
+	}
+	
+	/**
+	 * A partir de la informacion de equipos/interfaces construye las filas de informacion para el grafico
+	 * @param retEqList
+	 * @param eqLength 
+	 * @param retInList
+	 * @param interfaceLength 
+	 * @return
+	 */
+	private JsonArray getRowsForChart(List<Object[]> retEqList, int eqLength, List<Object[]> retInList, int interfaceLength) {
+		JsonArrayBuilder rowsBuilder = Json.createArrayBuilder();
+		Map<String, List<Float>> valuesMap = new HashMap<String, List<Float>>();
+		//Iteramos sobre los equipos posibles
+		Iterator<Object[]> it = retEqList.iterator();
+		while (it.hasNext()){
+			Object[] curr = it.next();
+			if (!valuesMap.containsKey(curr[0]))
+				valuesMap.put((String) curr[0], new ArrayList<Float>());
+			((List<Float>)valuesMap.get(curr[0])).add((Float) curr[2]);
+		}
+		
+		//Iteramos sobre las interfaces posibles
+		it = retInList.iterator();
+		while (it.hasNext()){
+			Object[] curr = it.next();
+			if (!valuesMap.containsKey(curr[0]))
+				valuesMap.put((String) curr[0], new ArrayList<Float>());
+			((List<Float>)valuesMap.get(curr[0])).add((Float) curr[2]);
+		}
+		
+		Iterator<String> itMap = valuesMap.keySet().iterator();
+		JsonObjectBuilder valueObj;
+		JsonArrayBuilder valuesColObj;
+		while (itMap.hasNext()){
+			String date = itMap.next();
+
+			valueObj = Json.createObjectBuilder();
+			valuesColObj = Json.createArrayBuilder();
+			valuesColObj.add(Json.createObjectBuilder().add("v", date).build());
+			//Iterator<E>
+			
+			valueObj.add("c",valuesColObj.build());
+			rowsBuilder.add(valueObj.build());
+		}
+		return rowsBuilder.build();
+	}
 }
+

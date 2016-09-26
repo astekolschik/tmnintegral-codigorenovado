@@ -16,5 +16,11 @@ public interface ReportDao {
 	public List<EquipmentInformation> getEquipmentInformation(int eqId, Date from, Date to);
 	
 	public List<Object[]> getReportNames();
+
+	public List<Object[]> getEquipmentInformationForReports(String tipoReporte, String[] equipmentList, Date dateFrom,
+			Date dateTo);
+
+	public List<Object[]> getInterfaceInformationForReports(String tipoReporte, String[] interfacesList, Date dateFrom,
+			Date dateTo);
 	
 }

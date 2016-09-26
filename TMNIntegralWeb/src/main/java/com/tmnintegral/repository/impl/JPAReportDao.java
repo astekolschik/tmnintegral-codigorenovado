@@ -62,7 +62,23 @@ public class JPAReportDao implements ReportDao {
     @Transactional(readOnly = true)
     @SuppressWarnings("unchecked")
 	public List<Object[]> getReportNames() {
-    	Query q = em.createNativeQuery("SELECT a.idVariable, a.description FROM variable_reportname a");
+    	Query q = em.createNativeQuery("SELECT a.idVariable, a.reportName FROM variable_reportname a");
+    	return q.getResultList();
+	}
+
+	@Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+	public List<Object[]> getEquipmentInformationForReports(String tipoReporte, String[] equipmentList, Date dateFrom,
+			Date dateTo) {
+		Query q = em.createNativeQuery("SELECT a.idVariable, a.reportName FROM variable_reportname a");
+    	return q.getResultList();
+	}
+
+	@Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+	public List<Object[]> getInterfaceInformationForReports(String tipoReporte, String[] interfacesList, Date dateFrom,
+			Date dateTo) {
+		Query q = em.createNativeQuery("SELECT a.idVariable, a.reportName FROM variable_reportname a");
     	return q.getResultList();
 	}
 
