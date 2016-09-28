@@ -81,7 +81,7 @@ public class ReportController {
 		}
 		
 		JsonObject reportInfo = this.reportManager.getInformationForReports(tipoReporte, eqsId.split(","), interId.split(","), dateFrom, dateTo);
-		return "{}";// reportInfo.toString();
+		return reportInfo.toString();
     }
 	
 	@RequestMapping(value="/monitoring/alarmas.htm")

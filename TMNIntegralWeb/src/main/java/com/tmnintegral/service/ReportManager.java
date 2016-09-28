@@ -4,24 +4,18 @@
 package com.tmnintegral.service;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
-import java.util.Set;
 
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
-import javax.json.JsonValue;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -87,27 +81,26 @@ public class ReportManager implements Serializable{
 	 * @return list with report information
 	 */
 	public JsonObject getInformationForReports(String tipoReporte, String[] equipmentList, String[] interfacesList, Date dateFrom, Date dateTo) {
-//		List<Object[]> retEqList = this.reportDao.getEquipmentInformationForReports(tipoReporte, equipmentList, dateFrom, dateTo);
-//		List<Object[]> retInList = this.reportDao.getInterfaceInformationForReports(tipoReporte, interfacesList, dateFrom, dateTo);
-		//TODO data model
-		List<Object[]> retEqList = new ArrayList<Object[]>();
-		List<Object[]> retInList = new ArrayList<Object[]>();
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Calendar c = Calendar.getInstance();
-		c.setTime(new Date());
-		Random r = new Random();
-		int maxX = 100, minX =0;
-		for (int i = 0; i < 10; i++){
-			String date = sdf.format(c.getTime());
-			c.add(Calendar.DATE, 1);
-			Object[] a = {date, "Device 1", r.nextFloat()* (maxX - minX) + minX};
-			retEqList.add(a);
-			Object[] b = {date, "Device 2", r.nextFloat()* (maxX - minX) + minX};
-			retEqList.add(b);
-			Object[] d = {date, "Interface 1", r.nextFloat()* (maxX - minX) + minX};
-			retInList.add(d);
-		}
+		List<Object[]> retEqList = this.reportDao.getEquipmentInformationForReports(tipoReporte, equipmentList, dateFrom, dateTo);
+		List<Object[]> retInList = this.reportDao.getInterfaceInformationForReports(tipoReporte, interfacesList, dateFrom, dateTo);
+//		List<Object[]> retEqList = new ArrayList<Object[]>();
+//		List<Object[]> retInList = new ArrayList<Object[]>();
+//		
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//		Calendar c = Calendar.getInstance();
+//		c.setTime(new Date());
+//		Random r = new Random();
+//		int maxX = 100, minX =0;
+//		for (int i = 0; i < 10; i++){
+//			String date = sdf.format(c.getTime());
+//			c.add(Calendar.DATE, 1);
+//			Object[] a = {date, "Device 1", r.nextFloat()* (maxX - minX) + minX};
+//			retEqList.add(a);
+//			Object[] b = {date, "Device 2", r.nextFloat()* (maxX - minX) + minX};
+//			retEqList.add(b);
+//			Object[] d = {date, "Interface 1", r.nextFloat()* (maxX - minX) + minX};
+//			retInList.add(d);
+//		}
 		
 		
 		JsonObjectBuilder retObj = Json.createObjectBuilder()
@@ -128,32 +121,20 @@ public class ReportManager implements Serializable{
 						.add("id", "fecha")
 						.add("label", "Fecha")
 						.add("type", "string").build());
-		Set<String> listIncluded = new HashSet<String>();
-		//Iteramos sobre los equipos posibles
-		Iterator<Object[]> it = retEqList.iterator();
-		while (it.hasNext()){
-			Object[] curr = it.next();
-			if (!listIncluded.contains(curr[1])){
-				columnsBuilder.add(Json.createObjectBuilder()
-						.add("id", curr[1].toString())
-						.add("label", curr[1].toString())
-						.add("type", "number").build());
-			}
+		
+		for (int i = 0; i < retEqList.size(); i++){
+			columnsBuilder.add(Json.createObjectBuilder()
+					.add("id", String.valueOf(retEqList.get(i)[1]))
+					.add("label", String.valueOf(retEqList.get(i)[1]))
+					.add("type", "number").build());
 		}
 		
-		listIncluded = new HashSet<String>();
-		//Iteramos sobre las interfaces posibles
-		it = retInList.iterator();
-		while (it.hasNext()){
-			Object[] curr = it.next();
-			if (!listIncluded.contains(curr[1])){
-				columnsBuilder.add(Json.createObjectBuilder()
-						.add("id", curr[1].toString())
-						.add("label", curr[1].toString())
-						.add("type", "number").build());
-			}
+		for (int i = 0; i < retInList.size(); i++){
+			columnsBuilder.add(Json.createObjectBuilder()
+					.add("id", String.valueOf(retInList.get(i)[1]))
+					.add("label", String.valueOf(retInList.get(i)[1]))
+					.add("type", "number").build());
 		}
-		
 		return columnsBuilder.build();
 	}
 	
@@ -195,7 +176,10 @@ public class ReportManager implements Serializable{
 			valueObj = Json.createObjectBuilder();
 			valuesColObj = Json.createArrayBuilder();
 			valuesColObj.add(Json.createObjectBuilder().add("v", date).build());
-			//Iterator<E>
+			Iterator<Float> itValues = valuesMap.get(date).iterator();
+			while (itValues.hasNext()){
+				valuesColObj.add(Json.createObjectBuilder().add("v", itValues.next()).build());
+			}
 			
 			valueObj.add("c",valuesColObj.build());
 			rowsBuilder.add(valueObj.build());
