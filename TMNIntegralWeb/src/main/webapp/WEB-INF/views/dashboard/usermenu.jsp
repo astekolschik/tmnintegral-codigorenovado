@@ -40,10 +40,10 @@
 					<li><a href="javascript:displayTopologiaRed();"><i
 							class="fa fa-circle-o"></i>Topología de Red</a></li>
 				</ul></li>
-			<li class="treeview"><a href="javascript:displayInProgress();">
-					<i class="fa fa-files-o"></i><span>Configuracion</span><i
-					class="fa fa-angle-left pull-right"></i>
-			</a></li>
+<!-- 			<li class="treeview"><a href="javascript:displayInProgress();"> -->
+<!-- 					<i class="fa fa-files-o"></i><span>Configuracion</span><i -->
+<!-- 					class="fa fa-angle-left pull-right"></i> -->
+<!-- 			</a></li> -->
 		</c:if>
 		<!-- <li><a href="pages/widgets.html"> <i class="fa fa-th"></i>
 								<span>Widgets</span> <small class="label pull-right bg-green">new</small>
