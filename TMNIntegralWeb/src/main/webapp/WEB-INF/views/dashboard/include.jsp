@@ -66,11 +66,9 @@
 	</script>
 	<!-- Bootstrap 3.3.5 -->
 	<script src="js/dashboard/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-	<!-- Morris.js charts -->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"
 		type="text/javascript"></script>
-	<script src="plugins/morris/morris.min.js" type="text/javascript"></script>
 	<!-- Sparkline -->
 	<script src="js/dashboard/plugins/sparkline/jquery.sparkline.min.js"
 		type="text/javascript"></script>
@@ -164,11 +162,9 @@
 	</script>
 	<!-- Bootstrap 3.3.5 -->
 	<script src="../js/dashboard/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-	<!-- Morris.js charts -->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"
 		type="text/javascript"></script>
-	<script src="plugins/morris/morris.min.js" type="text/javascript"></script>
 	<!-- Sparkline -->
 	<script src="../js/dashboard/plugins/sparkline/jquery.sparkline.min.js"
 		type="text/javascript"></script>
