@@ -29,9 +29,16 @@
 					<ul class="nav navbar-nav">
 						<!-- User Account: style can be found in dropdown.less -->
 						<li class="dropdown user user-menu"><a href="#"
-							class="dropdown-toggle" data-toggle="dropdown"> <img
-								src="dist/img/user2-160x160.jpg" class="user-image"
-								alt="User Image"> <span class="hidden-xs"><c:out value="${sessionScope.user.name}"/></span>
+							class="dropdown-toggle" data-toggle="dropdown"> 
+							<c:if test="${empty sessionScope.user.imagePath}">
+								<img src="img/icon-user-default.png" class="user-image" width="160px" height="160px" id="mini-img-user-2"
+									alt="User Image"> 
+							</c:if>
+							<c:if test="${not empty sessionScope.user.imagePath}">
+								<img src="${sessionScope.user.imagePath}" class="user-image" width="160px" height="160px" id="mini-img-user-2"
+									alt="User Image"> 
+							</c:if>
+							<span class="hidden-xs"><c:out value="${sessionScope.user.name}"/></span>
 						</a>
 						</li>
 						<!-- Control Sidebar Toggle Button -->
@@ -48,8 +55,14 @@
 				<!-- Sidebar user panel -->
 				<div class="user-panel">
 					<div class="pull-left image">
-						<img src="dist/img/user2-160x160.jpg" class="img-circle" width="160px" height="160px"
-							alt="User Image">
+						<c:if test="${empty sessionScope.user.imagePath}">
+							<img src="img/icon-user-default.png" class="img-circle" width="160px" height="160px" id="mini-img-user-1"
+								alt="User Image">
+						</c:if>
+						<c:if test="${not empty sessionScope.user.imagePath}">
+							<img src="${sessionScope.user.imagePath}" class="img-circle" width="160px" height="160px" id="mini-img-user-1"
+								alt="User Image">
+						</c:if>
 					</div>
 					<div class="pull-left info">
 						<p><c:out value="${sessionScope.user.name}"/></p>

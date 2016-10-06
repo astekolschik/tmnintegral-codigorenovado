@@ -149,4 +149,10 @@ public class JPAUserDao implements UserDao {
     	return em.createQuery("select u from User u where u.client.id= " + clientId + " and u.role_id=4 order by u.id").getResultList();
 	}
 
+    @Transactional(readOnly = false)
+    @SuppressWarnings("unchecked")
+	public void updateUserImgPath(User user) {
+		em.createNativeQuery("update User set completePicDir='" + user.getCompletePicDir() + "' where user_id= " + user.getId()).executeUpdate();
+	}
+
 }

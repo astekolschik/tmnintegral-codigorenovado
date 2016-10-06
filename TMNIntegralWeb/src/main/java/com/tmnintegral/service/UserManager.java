@@ -243,4 +243,8 @@ public class UserManager implements Serializable{
 	public List<User> getDisabledUserList(Integer clientId) {
 		return this.userDao.getDisabledUserList(clientId);
 	}
+
+	public void updateUserImgPath(User user) {
+		this.userDao.updateUserImgPath(user);
+	}
 }

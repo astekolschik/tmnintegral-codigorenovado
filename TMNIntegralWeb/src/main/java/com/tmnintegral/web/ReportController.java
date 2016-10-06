@@ -51,7 +51,7 @@ public class ReportController {
             throws ServletException, IOException {
 		User currUser = (User) session.getAttribute("user");
 		
-		Map<String, Object> myModel = new HashMap<>();
+		Map<String, Object> myModel = new HashMap<String, Object>();
 		myModel.put("reportList", this.reportManager.getReportNames());
 		myModel.put("devices", this.inventoryManager.getDeviceList(currUser.getClient().getId()));
 		myModel.put("interfaces", this.inventoryManager.getInterfaceList(currUser.getClient()));
@@ -88,7 +88,7 @@ public class ReportController {
     public ModelAndView getAlarmas(HttpSession session, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 		
-		Map<String, Object> myModel = new HashMap<>();
+		Map<String, Object> myModel = new HashMap<String, Object>();
 		myModel.put("alarmas", this.reportManager.getAlarmsSent());
 		
 		return new ModelAndView("dashboard/reportes/alarmas", "model", myModel);

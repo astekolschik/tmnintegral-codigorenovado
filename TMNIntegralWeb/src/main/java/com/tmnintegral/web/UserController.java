@@ -3,6 +3,9 @@
  */
 package com.tmnintegral.web;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -10,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,6 +23,10 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tmnintegral.domain.User;
@@ -30,6 +38,7 @@ import com.tmnintegral.service.UserManager;
  *
  */
 @Controller
+@MultipartConfig
 public class UserController {
 
 	protected final Log logger = LogFactory.getLog(getClass());
@@ -193,6 +202,43 @@ public class UserController {
 		}
 		return new ModelAndView("dashboard/user/allowUser", "model", myModel);
     }
+	
+	
+	@RequestMapping(value="user/updateUserImage.htm",headers="Accept=*/*", produces="application/json; charset=UTF-8", method=RequestMethod.POST)
+	@ResponseBody
+	public String updateUserImage(@RequestParam("newImage") MultipartFile file, HttpServletRequest request, HttpSession session)
+            throws ServletException, IOException {
+		User user = (User)session.getAttribute("user");
+		if (!file.isEmpty()) {
+			try {
+				byte[] bytes = file.getBytes();
+
+				// Creating the directory to store file
+				String rootPath = request.getServletContext().getRealPath("/");
+				File dir = new File(rootPath + File.separator + "img" + File.separator + "users");
+				if (!dir.exists())
+					dir.mkdirs();
+
+				// Create the file on server
+				File serverFile = new File(dir.getAbsolutePath()
+						+ File.separator + (user.getId() + "-" + file.getOriginalFilename()));
+				BufferedOutputStream stream = new BufferedOutputStream(
+						new FileOutputStream(serverFile));
+				stream.write(bytes);
+				stream.close();
+
+				user.setCompletePicDir(user.getId() + "-" + file.getOriginalFilename());
+ 				this.um.updateUserImgPath(user);
+				session.setAttribute("user", user);
+			} catch (Exception e) {
+				return "Error al subir el archivo => " + e.getMessage();
+			}
+		} else {
+			return "El archivo esta vacio";
+		}
+		
+		return user.getImagePath();
+	}
 
 	private boolean isInList(String[] list, String value){
 		for (int i=0; i<list.length; i++){

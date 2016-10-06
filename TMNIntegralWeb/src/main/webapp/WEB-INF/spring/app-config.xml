@@ -13,6 +13,9 @@
        <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
          <property name="basename" value="messages"/>
        </bean>
+       <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		    <property name="maxUploadSize" value="50000000"/>
+		</bean>
 
        <!-- Scans the classpath of this application for @Components to deploy as beans -->
        <context:component-scan base-package="com.tmnintegral.web" />

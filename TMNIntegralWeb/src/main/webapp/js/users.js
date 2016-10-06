@@ -89,6 +89,28 @@ function habilitarUsuarios(){
 	        }); 
 }
 
+function uploadImage(){
+	var formData = new FormData();
+	formData.append('newImage', $('#new-profile-pic')[0].files[0]);
+	$.ajax({
+	    url: '/TMNIntegralWeb/user/updateUserImage.htm',
+	    data: formData,
+	    type: 'POST',
+	    contentType: false,
+	    processData: false,
+	    success: function(imgpath){
+	    	$('#main-img-user').attr("src", imgpath);
+	    	$('#mini-img-user-1').attr("src", imgpath);
+	    	$('#mini-img-user-2').attr("src", imgpath);
+	    	alert("La imagen se guardo correctamente.");
+	    },
+	    error: function(message){
+	    	alert("Error al subir el archivo");
+	    	console.log(message);
+	    }
+	});
+}
+
 /****************************CLIENTS**************/
 function loadClients(){
 	$('#main-content').empty();

@@ -37,5 +37,7 @@ public interface UserDao {
 	public List<Client> getClientList();
 
 	public List<User> getDisabledUserList(Integer clientId);
+
+	public void updateUserImgPath(User user);
 	
 }

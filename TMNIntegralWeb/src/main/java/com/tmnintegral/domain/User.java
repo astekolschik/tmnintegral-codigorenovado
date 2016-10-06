@@ -3,6 +3,7 @@
  */
 package com.tmnintegral.domain;
 
+import java.io.File;
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -34,6 +35,8 @@ public class User implements Serializable{
 	private String last_name;
 	private String address;
 	private String notas;
+	
+	private String completePicDir;
 	
 	private int role_id;
 	/*@ManyToOne//(cascade=CascadeType.ALL)  
@@ -225,6 +228,19 @@ public class User implements Serializable{
 	public void setClient(Client client) {
 		this.client = client;
 	}
-	
+
+	public String getCompletePicDir() {
+		return completePicDir;
+	}
+
+	public void setCompletePicDir(String completePicDir) {
+		this.completePicDir = completePicDir;
+	}
+
+	public String getImagePath(){
+		if(this.completePicDir != null)
+			return "img" + File.separator + "users" + File.separator + this.completePicDir;
+		return null;
+	}
 	
 }
