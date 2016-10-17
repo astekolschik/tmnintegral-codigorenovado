@@ -166,11 +166,11 @@ public class UserController {
 			while (uIterator.hasNext()){
 				User u = uIterator.next();
 				if (isInList(reportUserList, u.getUser_name()))
-					u.setRole_id(REGISTER_ROLE);
+					u.setRole(this.um.getRoleById(REGISTER_ROLE));
 				if (isInList(enableUserList, u.getUser_name()))
-					u.setRole_id(USER_ROLE);
+					u.setRole(this.um.getRoleById(USER_ROLE));
 				if (isInList(adminUserList, u.getUser_name()))
-					u.setRole_id(ADMIN_ROLE);
+					u.setRole(this.um.getRoleById(ADMIN_ROLE));
 				this.um.updateUser(u);
 			}
 		}
@@ -194,7 +194,7 @@ public class UserController {
 			while (uIterator.hasNext()){
 				User u = uIterator.next();
 				if (isInList(enableUserList, u.getUser_name()))
-					u.setRole_id(REGISTER_ROLE);
+					u.setRole(this.um.getRoleById(REGISTER_ROLE));
 				this.um.updateUser(u);
 			}
 			userList = this.um.getDisabledUserList(user.getClient().getId());

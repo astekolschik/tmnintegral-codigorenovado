@@ -38,11 +38,10 @@ public class User implements Serializable{
 	
 	private String completePicDir;
 	
-	private int role_id;
-	/*@ManyToOne//(cascade=CascadeType.ALL)  
-    @JoinTable(name="role")  
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="role_id")
 	private Role role;
-*/
+
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="client_id")
 	private Client client;
@@ -62,8 +61,7 @@ public class User implements Serializable{
 		this.address = direccion;
 		this.notas = notas;
 
-		this.role_id = role.getRole_id();
-//		this.role = role;
+		this.role = role;
 		this.client = client;
 	}
 
@@ -137,20 +135,6 @@ public class User implements Serializable{
 		this.last_name = lastName;
 	}
 
-//	/**
-//	 * @return the role
-//	 */
-//	public Role getRole() {
-//		return role;
-//	}
-//
-//	/**
-//	 * @param role the role to set
-//	 */
-//	public void setRole(Role role) {
-//		this.role = role;
-//	}
-
 	/**
 	 * @return the user_name
 	 */
@@ -163,20 +147,6 @@ public class User implements Serializable{
 	 */
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
-	}
-
-	/**
-	 * @return the role_id
-	 */
-	public int getRole_id() {
-		return role_id;
-	}
-
-	/**
-	 * @param role_id the role_id to set
-	 */
-	public void setRole_id(int role_id) {
-		this.role_id = role_id;
 	}
 
 	/**
@@ -241,6 +211,20 @@ public class User implements Serializable{
 		if(this.completePicDir != null)
 			return "img" + File.separator + "users" + File.separator + this.completePicDir;
 		return null;
+	}
+
+	/**
+	 * @return the role
+	 */
+	public Role getRole() {
+		return role;
+	}
+
+	/**
+	 * @param role the role to set
+	 */
+	public void setRole(Role role) {
+		this.role = role;
 	}
 	
 }

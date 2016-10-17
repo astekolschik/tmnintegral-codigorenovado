@@ -57,7 +57,7 @@ public class LoginController {
 	        try {
 	        	User u = um.autenticarUsuario(user, password);
 				if (u != null){
-					if (u.getRole_id() != 4){
+					if (u.getRole().getRole_id() != 4){
 						session.setAttribute("user", u);
 						logManager.saveLoginLog(u.getId());
 						

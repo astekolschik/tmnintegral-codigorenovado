@@ -41,26 +41,26 @@
 								<td>${user.lastName}</td>
 								<td>${user.email}</td>
 								<td>
-									<c:if test="${user.role_id==1}">
+									<c:if test="${user.role.role_id==1}">
 										<input type="checkbox" name="adminCheck" checked="checked" value="${user.user_name}"/>
 									</c:if>
-									<c:if test="${user.role_id!=1}">
+									<c:if test="${user.role.role_id!=1}">
 										<input type="checkbox" name="adminCheck" value="${user.user_name}"/>
 									</c:if>
 								</td>
 								<td>
-									<c:if test="${user.role_id==2}">
+									<c:if test="${user.role.role_id==2}">
 										<input type="checkbox" name="userCheck" checked="checked" value="${user.user_name}"/>
 									</c:if>
-									<c:if test="${user.role_id!=2}">
+									<c:if test="${user.role.role_id!=2}">
 										<input type="checkbox" name="userCheck" value="${user.user_name}"/>
 									</c:if>
 								</td>
 								<td>
-									<c:if test="${user.role_id==3}">
+									<c:if test="${user.role.role_id==3}">
 										<input type="checkbox" name="reportCheck" checked="checked" value="${user.user_name}"/>
 									</c:if>
-									<c:if test="${user.role_id!=3}">
+									<c:if test="${user.role.role_id!=3}">
 										<input type="checkbox" name="reportCheck" value="${user.user_name}"/>
 									</c:if>
 								</td>

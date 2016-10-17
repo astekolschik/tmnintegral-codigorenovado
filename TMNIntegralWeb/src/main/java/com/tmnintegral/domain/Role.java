@@ -4,10 +4,14 @@
 package com.tmnintegral.domain;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -29,9 +33,10 @@ public class Role implements Serializable {
 	private boolean allow_delete;
 	private boolean allow_update;
 	private boolean allow_reports;
-	
-//	@OneToMany(mappedBy="role", fetch=FetchType.LAZY)
-//	Set<User> users;
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="role", cascade= {CascadeType.PERSIST, CascadeType.MERGE})
+	private Set<User> users;
+
 	
 	public Role(){
 		super();
@@ -48,7 +53,6 @@ public class Role implements Serializable {
 		this.allow_reports = allowReports;
 	}
 
-	
 	/**
 	 * @return the role_id
 	 */
@@ -64,65 +68,87 @@ public class Role implements Serializable {
 	}
 
 	/**
-	 * @return the name
+	 * @return the role_name
 	 */
-	public String getName() {
+	public String getRole_name() {
 		return role_name;
 	}
+
 	/**
-	 * @param name the name to set
+	 * @param role_name the role_name to set
 	 */
-	public void setName(String name) {
-		this.role_name = name;
+	public void setRole_name(String role_name) {
+		this.role_name = role_name;
 	}
+
 	/**
-	 * @return the allowCreate
+	 * @return the allow_create
 	 */
-	public boolean isAllowCreate() {
+	public boolean isAllow_create() {
 		return allow_create;
 	}
+
 	/**
-	 * @param allowCreate the allowCreate to set
+	 * @param allow_create the allow_create to set
 	 */
-	public void setAllowCreate(boolean allowCreate) {
-		this.allow_create = allowCreate;
+	public void setAllow_create(boolean allow_create) {
+		this.allow_create = allow_create;
 	}
+
 	/**
-	 * @return the allowDelete
+	 * @return the allow_delete
 	 */
-	public boolean isAllowDelete() {
+	public boolean isAllow_delete() {
 		return allow_delete;
 	}
+
 	/**
-	 * @param allowDelete the allowDelete to set
+	 * @param allow_delete the allow_delete to set
 	 */
-	public void setAllowDelete(boolean allowDelete) {
-		this.allow_delete = allowDelete;
+	public void setAllow_delete(boolean allow_delete) {
+		this.allow_delete = allow_delete;
 	}
+
 	/**
-	 * @return the allowUpdate
+	 * @return the allow_update
 	 */
-	public boolean isAllowUpdate() {
+	public boolean isAllow_update() {
 		return allow_update;
 	}
+
 	/**
-	 * @param allowUpdate the allowUpdate to set
+	 * @param allow_update the allow_update to set
 	 */
-	public void setAllowUpdate(boolean allowUpdate) {
-		this.allow_update = allowUpdate;
+	public void setAllow_update(boolean allow_update) {
+		this.allow_update = allow_update;
 	}
+
 	/**
-	 * @return the allowReports
+	 * @return the allow_reports
 	 */
-	public boolean isAllowReports() {
+	public boolean isAllow_reports() {
 		return allow_reports;
 	}
+
 	/**
-	 * @param allowReports the allowReports to set
+	 * @param allow_reports the allow_reports to set
 	 */
-	public void setAllowReports(boolean allowReports) {
-		this.allow_reports = allowReports;
+	public void setAllow_reports(boolean allow_reports) {
+		this.allow_reports = allow_reports;
 	}
-	
-	
+
+	/**
+	 * @return the users
+	 */
+	public Set<User> getUsers() {
+		return users;
+	}
+
+	/**
+	 * @param users the users to set
+	 */
+	public void setUsers(Set<User> users) {
+		this.users = users;
+	}
+
 }

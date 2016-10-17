@@ -1,11 +1,11 @@
 <!-- sidebar menu: : style can be found in sidebar.less -->
 <ul class="sidebar-menu">
 	<li class="header">Menú Principal</li>
-	<c:if test="${user.role_id == 0}">
+	<c:if test="${user.role.role_id == 0}">
 		<li><a href="javascript:loadClients();"> <i class="fa fa-th"></i> <span>Clientes</span>
 		</a></li>
 	</c:if>
-	<c:if test="${user.role_id != 0}">
+	<c:if test="${user.role.role_id != 0}">
 		<c:if test="${not empty user}">
 			<li class="active treeview"><a href="#"> <i
 					class="fa fa-dashboard"></i> <span>Usuario</span> <i
@@ -14,7 +14,7 @@
 				<ul class="treeview-menu">
 					<li><a href="javascript:loadChgUser();"><i
 							class="fa fa-circle-o"></i>Modificar</a></li>
-					<c:if test="${user.role_id == 1}">
+					<c:if test="${user.role.role_id == 1}">
 						<li><a href="javascript:loadDeleteUser();"><i
 								class="fa fa-circle-o"></i>Eliminar Usuarios</a></li>
 						<li><a href="javascript:loadEnableUser();"><i
@@ -24,7 +24,7 @@
 					</c:if>
 				</ul></li>
 		</c:if>
-		<c:if test="${user.role_id == 1 or user.role_id == 2}">
+		<c:if test="${user.role.role_id == 1 or user.role.role_id == 2}">
 			<li class="treeview"><a href="#"> <i class="fa fa-files-o"></i><span>Inventario</span><i
 					class="fa fa-angle-left pull-right"></i>
 			</a>
@@ -40,10 +40,15 @@
 					<li><a href="javascript:displayTopologiaRed();"><i
 							class="fa fa-circle-o"></i>Topología de Red</a></li>
 				</ul></li>
-<!-- 			<li class="treeview"><a href="javascript:displayInProgress();"> -->
-<!-- 					<i class="fa fa-files-o"></i><span>Configuracion</span><i -->
-<!-- 					class="fa fa-angle-left pull-right"></i> -->
-<!-- 			</a></li> -->
+ 			<li class="treeview"><a href="javascript:displayInProgress();">
+ 					<i class="fa fa-files-o"></i><span>Configuracion</span><i
+ 					class="fa fa-angle-left pull-right"></i>
+	 			</a>
+ 				<ul class="treeview-menu">
+					<li><a href="javascript:displayConfiguracion();"><i
+							class="fa fa-circle-o"></i>Comandos</a></li>
+				</ul>
+ 			</li>
 		</c:if>
 		<!-- <li><a href="pages/widgets.html"> <i class="fa fa-th"></i>
 								<span>Widgets</span> <small class="label pull-right bg-green">new</small>

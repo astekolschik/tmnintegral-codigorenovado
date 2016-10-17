@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -18,7 +19,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.tmnintegral.domain.Command;
+import com.tmnintegral.domain.CommandKey;
+import com.tmnintegral.domain.User;
 import com.tmnintegral.service.ConfigurationManager;
 import com.tmnintegral.service.InventoryManager;
 
@@ -36,79 +38,27 @@ public class CommandController {
 	@Autowired
 	private InventoryManager im;
 	
-	@RequestMapping(value="/listComandos.htm")
-    public ModelAndView listarComandos(HttpServletRequest request, HttpServletResponse response)
+	@RequestMapping(value="/configuration/listComandos.htm")
+    public ModelAndView listarComandos(HttpServletRequest request, HttpServletResponse response, HttpSession session)
             throws ServletException, IOException {
 
 		Map<String, Object> myModel = new HashMap<String, Object>();
-		myModel.put("commandList", cm.getCommandList());
+		myModel.put("commandList", cm.getCommandList(((User)session.getAttribute("user")).getClient().getId()));
+		myModel.put("tipoEquipoList", this.im.getTipoEquiposList());
+		myModel.put("variablesList", this.cm.getVariablesList());
 		
-		return new ModelAndView("configurationManager/listComandos", "model", myModel);
+		return new ModelAndView("dashboard/configurationManager/listComandos", "model", myModel);
     }
 	
-	@RequestMapping(value="/displayComando.htm")
-    public ModelAndView mostrarComando(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-		Map<String, Object> myModel = new HashMap<String, Object>();
-		Command c = cm.getCommandById(
-				Integer.parseInt((String)request.getParameter("cId")));
-		myModel.put("commandObj", c);
-		myModel.put("deviceTypes", im.getTipoEquiposList());
-		
-		if (((String)request.getParameter("edit")).equals("true")){
-			myModel.put("edit", true);
-			myModel.put("displayEdit", "");
-		}else{
-			myModel.put("edit", false);
-			myModel.put("displayEdit", "none");
-		}
-		
-		return new ModelAndView("configurationManager/displayComando", "model", myModel);
-    }
-	
-	@RequestMapping(value="/nuevoComando.htm")
-	public ModelAndView nuevoComando(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-		
-		Map<String, Object> myModel = new HashMap<String, Object>();
-		Command c = new Command();
-		myModel.put("commandObj", c);
-		myModel.put("edit", true);
-		myModel.put("displayEdit", "");
-		return new ModelAndView("configurationManager/displayComando", "model", myModel);
-	}
-	
-	@RequestMapping(value="/updateComando.htm")
-	public ModelAndView actualizarComando(HttpServletRequest request, HttpServletResponse response)
+	@RequestMapping(value="configuration/deleteComando.htm")
+	public ModelAndView deleteComando(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 	        throws ServletException, IOException {
 		
-		String idComando = request.getParameter("idCommand");
-		String nombrecomando = request.getParameter("nameComm");
-		String comando = request.getParameter("defaultComm");
-		String tipoComando = request.getParameter("tipocomando");
+		String[] commandKey= request.getParameter("commandId").split(",");
 		
-		String[] dtValues = null;
-		if (request.getParameter("dtValues") != null)
-			dtValues = request.getParameter("dtValues").split(",");
+		this.cm.borrarComando(new CommandKey(Integer.parseInt(commandKey[0]), Integer.parseInt(commandKey[1]), commandKey[2]));
 		
-		if (idComando != null)
-			this.cm.modificarComando(Integer.parseInt(idComando), comando, tipoComando, dtValues);
-		else
-			this.cm.crearComando(nombrecomando, comando, tipoComando, dtValues);
-		
-		return this.listarComandos(request, response);
+		return this.listarComandos(request, response, session);
 	}
 	
-	
-	@RequestMapping(value="/deleteComando.htm")
-	public ModelAndView borrarComando(HttpServletRequest request, HttpServletResponse response)
-	        throws ServletException, IOException {
-		
-		String idComando = request.getParameter("cId");
-		
-		this.cm.borrarComando(Integer.valueOf(idComando));
-		
-		return this.listarComandos(request, response);
-	}
 }

@@ -29,7 +29,7 @@ public class SendMailController {
 
 	final static String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 	private static String username = "contacto.tmnintegral@gmail.com";
-	private static String password = "caece2015";
+	private static String password = "TMNIntegral2016";
 
     
     @RequestMapping(value="/contacto.htm")

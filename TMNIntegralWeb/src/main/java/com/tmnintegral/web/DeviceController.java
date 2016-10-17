@@ -81,15 +81,14 @@ public class DeviceController {
 		Integer id_device_type = Integer.parseInt(request.getParameter("id_device_type"));
 		Integer id_network = Integer.parseInt(request.getParameter("id_network"));
 		Integer id_configuration = Integer.parseInt(request.getParameter("id_configuration"));
-		Integer id_equipment_info = null;//Integer.parseInt(request.getParameter("id_equipment_info"));
 		String enable = request.getParameter("enable");
 		
 		if (idDevice != null)
 			this.im.modificarDevice(Integer.parseInt(idDevice), communityRead, hostName, iosType, iosVersion, ip, model, serialNumber, 
-					softwareRelease,id_device_type, id_network, id_configuration, id_equipment_info, enable);
+					softwareRelease,id_device_type, id_network, id_configuration, enable);
 		else
 			this.im.crearDevice(communityRead, hostName, iosType, iosVersion, ip, model, serialNumber, softwareRelease,
-					id_device_type, id_network, id_configuration, id_equipment_info, enable, ((User)session.getAttribute("user")).getClient());
+					id_device_type, id_network, id_configuration, enable, ((User)session.getAttribute("user")).getClient());
 		
 		return this.listDevice(request, response, session);
 	}

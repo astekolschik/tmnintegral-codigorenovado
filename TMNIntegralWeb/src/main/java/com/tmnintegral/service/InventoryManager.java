@@ -13,13 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.tmnintegral.domain.Client;
-import com.tmnintegral.domain.Configuration;
 import com.tmnintegral.domain.Device;
-import com.tmnintegral.domain.EquipmentInformation;
 import com.tmnintegral.domain.Interface;
 import com.tmnintegral.domain.Red;
 import com.tmnintegral.domain.TipoEquipo;
-import com.tmnintegral.repository.ConfigurationDao;
 import com.tmnintegral.repository.DeviceDao;
 import com.tmnintegral.repository.InterfaceDao;
 import com.tmnintegral.repository.RedDao;
@@ -43,8 +40,6 @@ public class InventoryManager implements Serializable{
 	private InterfaceDao interfaceDao;
 	@Autowired
 	private RedDao redDao;
-	@Autowired
-	private ConfigurationDao configurationDao;
 	@Autowired
 	private TopologiaDao topologiaDao;
 
@@ -176,7 +171,7 @@ public class InventoryManager implements Serializable{
 	}
 	
 	public Device modificarDevice(String communityRead, String hostName, String iosType, String iosVersion, String ip, int model,
-			int serialNumber, String softwareRelease, TipoEquipo tipoEquipo, Red network, Configuration configuration, EquipmentInformation equipmentInformation, Interface interfaz, String enable, Date last_update_date){
+			int serialNumber, String softwareRelease, TipoEquipo tipoEquipo, Red network, Interface interfaz, String enable, Date last_update_date){
 		Device d = this.getDevice(ip);
 		if (d != null){
 			if (!d.getCommunityRead().equals(communityRead))
@@ -195,14 +190,10 @@ public class InventoryManager implements Serializable{
 //				d.setSerialNumber(serialNumber);
 			if (!d.getSoftwareRelease().equals(softwareRelease))
 				d.setSoftwareRelease(softwareRelease);
-			if (d.getId_device_type()!=(tipoEquipo.getId()))
-				d.setId_device_type(tipoEquipo.getId());
-			if (d.getId_network()!= network.getId_network())
-				d.setId_network(network.getId_network());
-			if (d.getId_configuration()!= configuration.getId_configuration())
-				d.setId_configuration(configuration.getId_configuration());
-			if (d.getId_equipment_info()!= equipmentInformation.getEquipment_id())
-				d.setId_equipment_info(equipmentInformation.getEquipment_id());
+			if (d.getTipoEquipo().getId()!=(tipoEquipo.getId()))
+				d.setTipoEquipo(tipoEquipo);
+			if (d.getRed().getId_network()!= network.getId_network())
+				d.setRed(network);
 //			if (d.getId_interface()!=(interfaz.getId()))
 //				d.setId_interface(interfaz.getId());
 			if (!d.getEnable().equals(enable))
@@ -217,7 +208,7 @@ public class InventoryManager implements Serializable{
 	}
 	
 	public Device modificarDevice(int device_id, String communityRead, String hostName, String iosType, String iosVersion, String ip, int model,
-			int serialNumber, String softwareRelease, TipoEquipo tipoEquipo, Red network, Configuration configuration, EquipmentInformation equipmentInformation, Interface interfaz, String enable, Date last_update_date){
+			int serialNumber, String softwareRelease, TipoEquipo tipoEquipo, Red network, Interface interfaz, String enable, Date last_update_date){
 		Device d = this.getDevice(device_id);
 		if (d != null){
 			if (!d.getCommunityRead().equals(communityRead))
@@ -236,14 +227,10 @@ public class InventoryManager implements Serializable{
 //				d.setSerialNumber(serialNumber);
 			if (!d.getSoftwareRelease().equals(softwareRelease))
 				d.setSoftwareRelease(softwareRelease);
-			if (d.getId_device_type()!=(tipoEquipo.getId()))
-				d.setId_device_type(tipoEquipo.getId());
-			if (d.getId_network()!= network.getId_network())
-				d.setId_network(network.getId_network());
-			if (d.getId_configuration()!= configuration.getId_configuration())
-				d.setId_configuration(configuration.getId_configuration());
-			if (d.getId_equipment_info()!= equipmentInformation.getEquipment_id())
-				d.setId_equipment_info(equipmentInformation.getEquipment_id());
+			if (d.getTipoEquipo().getId()!=(tipoEquipo.getId()))
+				d.setTipoEquipo(tipoEquipo);
+			if (d.getRed().getId_network()!= network.getId_network())
+				d.setRed(network);
 //			if (d.getId_interface()!=(interfaz.getId()))
 //				d.setId_interface(interfaz.getId());
 			if (!d.getEnable().equals(enable))
@@ -270,11 +257,6 @@ public class InventoryManager implements Serializable{
 		return redDao.getRed(net);
 	}
 	
-	public Configuration getConfiguration (int id_configuration){return configurationDao.getConfiguration(id_configuration);}
-	
-	public EquipmentInformation getEquipmentInformation (int id_equipment_information){
-		return new EquipmentInformation();//equipmentInformationDao.getEquipmentInformation(id_equipment_information);
-	}
 	/*
 	 *
 	 *
@@ -319,8 +301,8 @@ public class InventoryManager implements Serializable{
 				i.setSubPort(subPort);
 			if (!i.getType().equals(type))
 				i.setType(type);
-			if (i.getId_device()!= deviceId)
-				i.setId_device(deviceId);
+			if (i.getDevice().getDevice_id() != deviceId)
+				i.setDevice(new Device(deviceId));
 			if (i.getIfIndex()!= ifIndex)
 				i.setIfIndex(ifIndex);
 			if (!i.getIpAdEntIfIndex().equals(ipAdEntIfIndex))
@@ -350,7 +332,7 @@ public class InventoryManager implements Serializable{
 		i.setPort(port);
 		i.setSubPort(subPort);
 		i.setType(type);
-		i.setId_device(deviceId);
+		i.setDevice(new Device(deviceId));
 		i.setIfIndex(ifIndex);
 		i.setIpAdEntIfIndex(ipAdEntIfIndex);
 		i.setMac(mac);
@@ -416,7 +398,7 @@ public class InventoryManager implements Serializable{
 	
 	public Device modificarDevice(int dId, String communityRead, String hostName, String iosType, String iosVersion, String ip,
 			String model, String serialNumber, String softwareRelease, Integer id_device_type, Integer id_network,
-			Integer id_configuration, Integer id_equipment_info, String enable){
+			Integer id_configuration, String enable){
 		
 		Device d = this.getDevice(dId);
 		if (!d.getCommunityRead().equals(communityRead))
@@ -435,14 +417,10 @@ public class InventoryManager implements Serializable{
 			d.setSerialNumber(serialNumber);
 		if (!d.getSoftwareRelease().equals(softwareRelease))
 			d.setSoftwareRelease(softwareRelease);
-		if (d.getDevice_id() != id_device_type)
-			d.setId_device_type(id_device_type);
-		if (d.getId_network() != id_network)
-			d.setId_network(id_network);
-		if (d.getId_configuration() != id_configuration)
-			d.setId_configuration(id_configuration);
-		if (d.getId_equipment_info() != id_equipment_info)
-			d.setId_equipment_info(id_equipment_info);
+		if (d.getTipoEquipo().getId() != id_device_type)
+			d.setTipoEquipo(new TipoEquipo(id_device_type));
+		if (d.getRed().getId_network() != id_network)
+			d.setRed(new Red(id_network));
 		if (!d.getEnable().equals(enable))
 			d.setEnable(enable);
 		d.setLast_update_date(new Date());
@@ -455,7 +433,7 @@ public class InventoryManager implements Serializable{
 	
 	public Device crearDevice(String communityRead, String hostName, String iosType, String iosVersion, String ip,
 			String model, String serialNumber, String softwareRelease, Integer id_device_type, Integer id_network,
-			Integer id_configuration, Integer id_equipment_info, String enable, Client client){
+			Integer id_configuration, String enable, Client client){
 		Device d = new Device();
 		d.setCommunityRead(communityRead);
 		d.setHostName(hostName);
@@ -465,10 +443,8 @@ public class InventoryManager implements Serializable{
 		d.setModel(model);
 		d.setSerialNumber(serialNumber);
 		d.setSoftwareRelease(softwareRelease);
-		d.setId_device_type(id_device_type);
-		d.setId_network(id_network);
-		d.setId_configuration(id_configuration);
-		d.setId_equipment_info(id_equipment_info);
+		d.setTipoEquipo(new TipoEquipo(id_device_type));
+		d.setRed(new Red(id_network));
 		d.setEnable(enable);
 		d.setLast_update_date(new Date());
 		d.setClient(client);

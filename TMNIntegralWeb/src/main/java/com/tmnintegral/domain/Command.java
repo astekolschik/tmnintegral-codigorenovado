@@ -4,18 +4,10 @@
 package com.tmnintegral.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -23,111 +15,170 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="commands") 
+@Table(name="variable_devicetype") 
 public class Command implements Serializable{
 
-	private static final long serialVersionUID = 1L;
-
-	@Id
-    @Column(name = "id_command")
-	private Integer id_command;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6222219832142242735L;
+	@EmbeddedId
+	private CommandKey key;
+	private String type;
+	private String regex;
+	private String operation;
+	private String invertir;
+	private String flt_umbral;
+	private String is_fault;
+	private String is_performance;
+	private String is_device;
 	
-	private String command_name;
-	private String command;
-	private String command_type;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name="command_devicetype",
-    		joinColumns={@JoinColumn(name="id_command", referencedColumnName="id_command")},
-    	    inverseJoinColumns={@JoinColumn(name="id_device_type", referencedColumnName="id")})
-	private Set<TipoEquipo> deviceTypes;
-	
-	public Command(){
+	/**
+	 * 
+	 */
+	public Command() {
 		super();
 	}
+
 	
-	public Command(Integer id, String name, String command, String command_type) {
+	/**
+	 * @param key
+	 * @param type
+	 * @param regex
+	 * @param operation
+	 * @param invertir
+	 * @param flt_umbral
+	 * @param is_fault
+	 * @param is_performance
+	 * @param is_device
+	 */
+	public Command(CommandKey key, String type, String regex, String operation, String invertir, String flt_umbral,
+			String is_fault, String is_performance, String is_device) {
 		super();
-		this.id_command = id;
-		this.command_name = name;
-		this.command = command;
-		this.command_type = command_type;
+		this.key = key;
+		this.type = type;
+		this.regex = regex;
+		this.operation = operation;
+		this.invertir = invertir;
+		this.flt_umbral = flt_umbral;
+		this.is_fault = is_fault;
+		this.is_performance = is_performance;
+		this.is_device = is_device;
 	}
-	
+
+
+
+
 	/**
-	 * @return the command
+	 * @return the type
 	 */
-	public String getCommand() {
-		return command;
-	}
-	/**
-	 * @param command the command to set
-	 */
-	public void setCommand(String command) {
-		this.command = command;
-	}
-	/**
-	 * @return the command_type
-	 */
-	public String getCommand_type() {
-		return command_type;
+	public String getType() {
+		return type;
 	}
 	/**
-	 * @param command_type the command_type to set
+	 * @param type the type to set
 	 */
-	public void setCommand_type(String command_type) {
-		this.command_type = command_type;
+	public void setType(String type) {
+		this.type = type;
+	}
+	/**
+	 * @return the regex
+	 */
+	public String getRegex() {
+		return regex;
+	}
+	/**
+	 * @param regex the regex to set
+	 */
+	public void setRegex(String regex) {
+		this.regex = regex;
+	}
+	/**
+	 * @return the operation
+	 */
+	public String getOperation() {
+		return operation;
+	}
+	/**
+	 * @param operation the operation to set
+	 */
+	public void setOperation(String operation) {
+		this.operation = operation;
+	}
+	/**
+	 * @return the invertir
+	 */
+	public String getInvertir() {
+		return invertir;
+	}
+	/**
+	 * @param invertir the invertir to set
+	 */
+	public void setInvertir(String invertir) {
+		this.invertir = invertir;
+	}
+	/**
+	 * @return the flt_umbral
+	 */
+	public String getFlt_umbral() {
+		return flt_umbral;
+	}
+	/**
+	 * @param flt_umbral the flt_umbral to set
+	 */
+	public void setFlt_umbral(String flt_umbral) {
+		this.flt_umbral = flt_umbral;
+	}
+	/**
+	 * @return the is_fault
+	 */
+	public String getIs_fault() {
+		return is_fault;
+	}
+	/**
+	 * @param is_fault the is_fault to set
+	 */
+	public void setIs_fault(String is_fault) {
+		this.is_fault = is_fault;
+	}
+	/**
+	 * @return the is_performance
+	 */
+	public String getIs_performance() {
+		return is_performance;
+	}
+	/**
+	 * @param is_performance the is_performance to set
+	 */
+	public void setIs_performance(String is_performance) {
+		this.is_performance = is_performance;
+	}
+	/**
+	 * @return the is_device
+	 */
+	public String getIs_device() {
+		return is_device;
+	}
+	/**
+	 * @param is_device the is_device to set
+	 */
+	public void setIs_device(String is_device) {
+		this.is_device = is_device;
 	}
 
 	/**
-	 * @return the deviceTypes
+	 * @return the key
 	 */
-	public Set<TipoEquipo> getDeviceTypes() {
-		return deviceTypes;
+	public CommandKey getKey() {
+		return key;
 	}
 
 	/**
-	 * @param deviceTypes the deviceTypes to set
+	 * @param key the key to set
 	 */
-	public void setDeviceTypes(Set<TipoEquipo> deviceTypes) {
-		this.deviceTypes = deviceTypes;
-	}
-
-	/**
-	 * @return the id_command
-	 */
-	public Integer getId_command() {
-		return id_command;
-	}
-
-	/**
-	 * @param id_command the id_command to set
-	 */
-	public void setId_command(Integer id_command) {
-		this.id_command = id_command;
-	}
-
-	/**
-	 * @return the command_name
-	 */
-	public String getCommand_name() {
-		return command_name;
-	}
-
-	/**
-	 * @param command_name the command_name to set
-	 */
-	public void setCommand_name(String command_name) {
-		this.command_name = command_name;
-	}
-	
-	public List<String> getDeviceTypesIds(){
-		List<String> strR = new ArrayList<String>();
-		Iterator<TipoEquipo> it = this.getDeviceTypes().iterator();
-		while (it.hasNext()){
-			strR.add(String.valueOf(it.next().getId()));
-		}
-		return strR;
+	public void setKey(CommandKey key) {
+		this.key = key;
 	}
 	
 }

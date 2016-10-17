@@ -34,6 +34,7 @@
 	<script src="js/users.js"></script>
 	<script src="js/inventory.js"></script>
 	<script src="js/monitoring.js"></script>
+	<script src="js/configuration.js"></script>
 
 	<!-- Theme style -->
 	<link rel="stylesheet" href="js/dashboard/dist/css/AdminLTE.min.css">

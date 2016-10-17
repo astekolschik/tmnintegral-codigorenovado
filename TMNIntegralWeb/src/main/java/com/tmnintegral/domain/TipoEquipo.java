@@ -8,14 +8,16 @@ import java.util.Set;
 
 import javax.json.Json;
 import javax.json.JsonObject;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * @author AGustina
+ * @author Agustina
  *
  */
 @Entity
@@ -28,6 +30,7 @@ public class TipoEquipo implements Serializable{
     @Column(name = "id")
 	private int id; 
 	
+	private String typeName;
 	private String description;
 	private String default_comm_read;
 	private String default_snmp_version;
@@ -35,15 +38,21 @@ public class TipoEquipo implements Serializable{
 	private String technology;
 	private String vendor;
 	
-	@ManyToMany(mappedBy="deviceTypes")
-	private Set<Command> commands;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="tipoEquipo", cascade= {CascadeType.PERSIST, CascadeType.MERGE})
+	private Set<Device> devices;
+
 	
 	public TipoEquipo(){
 		super();
 	}
 	
+	public TipoEquipo(int idTE){
+		super();
+		this.id = idTE;
+	}
+	
 	public TipoEquipo(int id, String description, String default_comm_read, String default_snmp_version, String driver, String technology,
-			String vendor) {
+			String vendor, String typeName) {
 		super();
 		this.id = id;
 		this.description = description;
@@ -52,6 +61,7 @@ public class TipoEquipo implements Serializable{
 		this.driver = driver;
 		this.technology = technology;
 		this.vendor = vendor;
+		this.typeName = typeName;
 	}
 	/**
 	 * @return the default_comm_read
@@ -127,20 +137,6 @@ public class TipoEquipo implements Serializable{
 	}
 
 	/**
-	 * @return the commands
-	 */
-	public Set<Command> getCommands() {
-		return commands;
-	}
-
-	/**
-	 * @param commands the commands to set
-	 */
-	public void setCommands(Set<Command> commands) {
-		this.commands = commands;
-	}
-
-	/**
 	 * @return the description
 	 */
 	public String getDescription() {
@@ -164,5 +160,33 @@ public class TipoEquipo implements Serializable{
 			.add("technology", this.getTechnology())
 			.add("vendor", this.getVendor()).build();
 		return obj;
+	}
+
+	/**
+	 * @return the typeName
+	 */
+	public String getTypeName() {
+		return typeName;
+	}
+
+	/**
+	 * @param typeName the typeName to set
+	 */
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
+
+	/**
+	 * @return the devices
+	 */
+	public Set<Device> getDevices() {
+		return devices;
+	}
+
+	/**
+	 * @param devices the devices to set
+	 */
+	public void setDevices(Set<Device> devices) {
+		this.devices = devices;
 	}
 }

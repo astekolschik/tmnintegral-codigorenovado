@@ -247,4 +247,9 @@ public class UserManager implements Serializable{
 	public void updateUserImgPath(User user) {
 		this.userDao.updateUserImgPath(user);
 	}
+	
+	public Role getRoleById(int idRole){
+		return this.roleDao.getRole(idRole);
+	}
+	
 }

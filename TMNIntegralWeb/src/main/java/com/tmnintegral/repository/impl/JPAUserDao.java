@@ -128,7 +128,7 @@ public class JPAUserDao implements UserDao {
     @Transactional(readOnly = true)
     @SuppressWarnings("unchecked")
 	public List<User> getAdministratorUsers() {
-    	return em.createQuery("select u from User u where u.role_id= " + ADMIN_ROLE + " order by u.id").getResultList();
+    	return em.createQuery("select u from User u where u.role.role_id= " + ADMIN_ROLE + " order by u.id").getResultList();
 	}
 
     @Transactional(readOnly = true)
@@ -146,7 +146,7 @@ public class JPAUserDao implements UserDao {
     @Transactional(readOnly = true)
     @SuppressWarnings("unchecked")
 	public List<User> getDisabledUserList(Integer clientId) {
-    	return em.createQuery("select u from User u where u.client.id= " + clientId + " and u.role_id=4 order by u.id").getResultList();
+    	return em.createQuery("select u from User u where u.client.id= " + clientId + " and u.role.role_id=4 order by u.id").getResultList();
 	}
 
     @Transactional(readOnly = false)

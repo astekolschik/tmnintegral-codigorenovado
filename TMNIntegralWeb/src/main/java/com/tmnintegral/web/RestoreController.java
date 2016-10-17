@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tmnintegral.domain.User;
 import com.tmnintegral.service.ConfigurationManager;
 
 /**
@@ -33,11 +35,11 @@ public class RestoreController {
 	private ConfigurationManager cm;
 	
 	@RequestMapping(value="/restoreConfiguration.htm")
-    public ModelAndView listarComandos(HttpServletRequest request, HttpServletResponse response)
+    public ModelAndView listarComandos(HttpServletRequest request, HttpServletResponse response, HttpSession session)
             throws ServletException, IOException {
 
 		Map<String, Object> myModel = new HashMap<String, Object>();
-		myModel.put("commands", cm.getCommandList());
+		myModel.put("commands", cm.getCommandList(((User)session.getAttribute("user")).getClient().getId()));
 		
 		return new ModelAndView("configurationManager/restoreConfiguration", "model", myModel);
     }

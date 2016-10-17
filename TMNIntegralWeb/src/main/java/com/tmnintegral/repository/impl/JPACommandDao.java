@@ -8,12 +8,13 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tmnintegral.domain.Command;
-import com.tmnintegral.domain.TipoEquipo;
+import com.tmnintegral.domain.CommandKey;
 import com.tmnintegral.repository.CommandDao;
 
 /**
@@ -47,35 +48,29 @@ public class JPACommandDao implements CommandDao{
 
     @Transactional(readOnly = true)
     @SuppressWarnings("unchecked")
-	public List<Command> getCommandList() {
-    	return em.createQuery("select c from Command c order by c.id_command").getResultList();
+	public List<Command> getCommandList(Integer clientId) {
+    	return em.createQuery("select c from Command c").getResultList();
 	}
 
     @Transactional(readOnly = false)
     @SuppressWarnings("unchecked")
-	public Command saveCommand(Command c) throws Exception {
-    	int cId = (Integer)em.createQuery("select max(id_command) + 1 from Command").getSingleResult();
-    	c.setId_command(cId);
-    	em.merge(c);
-    	return c;
-	}
-
-    @Transactional(readOnly = false)
-    @SuppressWarnings("unchecked")
-	public void updateCommand(Command c) {
-    	em.merge(c);
-	}
-
-    @Transactional(readOnly = false)
-    @SuppressWarnings("unchecked")
-	public void deleteCommand(Command c) {
-    	em.remove(c);
+	public void deleteCommand(CommandKey key) {
+    	em.createQuery("delete from Command c where c.key.idVariable=" + key.getIdVariable()
+    					+ " and c.key.idDeviceType=" + key.getIdDeviceType() 
+    					+ " and c.key.fieldName='" + key.getFieldName() + "'").executeUpdate();
 	}
 
     @Transactional(readOnly = false)
     @SuppressWarnings("unchecked")
 	public void deleteCommand(int cId) {
     	em.createQuery("delete from Command c where c.id_command =" + cId).executeUpdate();
+	}
+
+    @Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+    public List<Object[]> getVariables() {
+    	Query q = em.createNativeQuery("SELECT a.id, a.variableName FROM variable a");
+    	return q.getResultList();
 	}
 
 }

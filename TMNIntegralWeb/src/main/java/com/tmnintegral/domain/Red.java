@@ -1,15 +1,18 @@
 package com.tmnintegral.domain;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.json.Json;
 import javax.json.JsonObject;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -33,9 +36,18 @@ public class Red implements Serializable {
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="client_id")
 	private Client client;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="red", cascade= {CascadeType.PERSIST, CascadeType.MERGE})
+	private Set<Device> devices;
+
 
 	public Red(){
 		super();
+	}
+	
+	public Red(int netId){
+		super();
+		this.id_network = netId;
 	}
 	
 	/**
@@ -119,6 +131,20 @@ public class Red implements Serializable {
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+	/**
+	 * @return the devices
+	 */
+	public Set<Device> getDevices() {
+		return devices;
+	}
+
+	/**
+	 * @param devices the devices to set
+	 */
+	public void setDevices(Set<Device> devices) {
+		this.devices = devices;
 	}
 	
 }
