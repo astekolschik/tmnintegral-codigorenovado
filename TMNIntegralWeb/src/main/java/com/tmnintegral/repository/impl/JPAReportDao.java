@@ -50,15 +50,24 @@ public class JPAReportDao implements ReportDao {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		for (int i = 0; i < equipmentList.length; i++){
 			Query q = em.createNativeQuery(
-					"select a.last_update_state, e.elementName, a.valor " +
-							"from flt_interface_status a inner join variable b on a.idVariable=b.id " + 
-							"							 inner join element e on a.elementName=e.elementAlias " +
-							"where  	a.elementName = ( " +
-							"			select concat(hostname, '_', ip) from device where device_id = " + equipmentList[i] + " ) " +
+					"select a.last_update_state, a.elementName, a.valor " +
+							"from flt_interface_status a " +
+							"where  	a.elementName = '" + equipmentList[i] + "'" +
 							"		and a.last_update_state between '" + sdf.format(dateFrom)+ "' and '" + sdf.format(dateTo) + "' " +  
 							"		and b.id = " + tipoReporte + 
 							" order by a.last_update_state, a.elementName"
 					);
+//			Query q = em.createNativeQuery(
+//					"select a.last_update_state, e.elementName, a.valor " +
+//							"from flt_interface_status a inner join variable b on a.idVariable=b.id " + 
+//							"							 inner join element e on a.elementName=e.elementAlias " +
+//							"where  	a.elementName = ( " +
+//							"			select concat(hostname, '_', ip) from device where device_id = " + equipmentList[i] + " ) " +
+//							"		and a.last_update_state between '" + sdf.format(dateFrom)+ "' and '" + sdf.format(dateTo) + "' " +  
+//							"		and b.id = " + tipoReporte + 
+//							" order by a.last_update_state, a.elementName"
+//					);
+			
 			retList.addAll(q.getResultList());
 		}
 		
@@ -73,17 +82,26 @@ public class JPAReportDao implements ReportDao {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		for (int i = 0; i < interfacesList.length; i++){
 			Query q = em.createNativeQuery(
-					"select a.last_update_state, e.elementName, a.valor " +
-					" from flt_interface_status a inner join variable b on a.idVariable=b.id" + 
-					"							inner join element e on a.elementName=e.elementAlias " +
-					"	where  a.elementName = (select concat( " + 
-					"	(select concat(ip, '_', hostName) from device where device_id=(select id_device from interface where id=" + interfacesList[i] + ")), " +
-					"	'_', name) " + 
-					" from interface where id=" + interfacesList[i] + ")" + 
-					"		and a.last_update_state between '" + sdf.format(dateFrom)+ "' and '" + sdf.format(dateTo) + "' " +  
-					"		and b.id = " + tipoReporte + 
-					" order by a.last_update_state, a.elementName"
+					"select a.last_update_state, a.elementName, a.valor " +
+							"from flt_interface_status a " +
+							"where  	a.elementName = '" + interfacesList[i] + "'" +
+							"		and a.last_update_state between '" + sdf.format(dateFrom)+ "' and '" + sdf.format(dateTo) + "' " +  
+							"		and b.id = " + tipoReporte + 
+							" order by a.last_update_state, a.elementName"
 					);
+//			Query q = em.createNativeQuery(
+//					"select a.last_update_state, e.elementName, a.valor " +
+//					" from flt_interface_status a inner join variable b on a.idVariable=b.id" + 
+//					"							inner join element e on a.elementName=e.elementAlias " +
+//					"	where  a.elementName = (select concat( " + 
+//					"	(select concat(ip, '_', hostName) from device where device_id=(select id_device from interface where id=" + interfacesList[i] + ")), " +
+//					"	'_', name) " + 
+//					" from interface where id=" + interfacesList[i] + ")" + 
+//					"		and a.last_update_state between '" + sdf.format(dateFrom)+ "' and '" + sdf.format(dateTo) + "' " +  
+//					"		and b.id = " + tipoReporte + 
+//					" order by a.last_update_state, a.elementName"
+//					);
+			
 			retList.addAll(q.getResultList());
 		}
 		

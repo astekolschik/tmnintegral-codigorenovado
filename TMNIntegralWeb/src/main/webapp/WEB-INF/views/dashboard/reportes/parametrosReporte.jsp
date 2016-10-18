@@ -39,7 +39,7 @@
 										class="form-control" multiple id="nombre-equipo"
 										name="nombre-equipo">
 										<c:forEach items="${model.devices}" var="equipo">
-											<option value="${equipo.device_id}">${equipo.hostName}
+											<option value="${equipo.ip}_${equipo.hostName}">${equipo.hostName}
 												(${equipo.ip})</option>
 										</c:forEach>
 									</select>
@@ -50,7 +50,7 @@
 										class="form-control" multiple id="nombre-interface"
 										name="nombre-interface">
 										<c:forEach items="${model.interfaces}" var="i">
-											<option value="${i.id}">${i.name}
+											<option value="${i.device.ip}_${i.device.hostName}_${i.name}">${i.name}
 												(${i.ipAdEntIfIndex})</option>
 										</c:forEach>
 									</select>
