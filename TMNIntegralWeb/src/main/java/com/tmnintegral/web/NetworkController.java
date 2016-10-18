@@ -100,7 +100,7 @@ public class NetworkController {
 		return this.listRed(request, response, session);
 	}
 	
-	@RequestMapping(value="/callDiscoveryPgm.htm")
+	@RequestMapping(value="inventory/callDiscoveryPgm.htm")
 	public ModelAndView discoveryProgram(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 	        throws ServletException, IOException {
 		
@@ -110,6 +110,7 @@ public class NetworkController {
 		/*Process process = new ProcessBuilder(
 				"C:\\PathToExe\\MyExe.exe","param1","param2").start();*/
 
+		//TODO update dir
 		Process process = Runtime.getRuntime().exec("cmd /c dir C:\\Users"); 
 
 		InputStream is = process.getInputStream();

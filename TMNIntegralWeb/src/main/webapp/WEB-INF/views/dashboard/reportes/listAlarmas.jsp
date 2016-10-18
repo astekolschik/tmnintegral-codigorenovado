@@ -35,6 +35,7 @@
 									<thead>
 										<tr>
 											<td>Id</td>
+											<td>Variable</td>
 											<td>Objeto</td>
 											<td>Ver</td>
 											<td>Eliminar</td>
@@ -44,10 +45,8 @@
 										<c:forEach items="${model.alarmasList}" var="a">
 											<tr>
 												<td>${a.id}</td>
+												<td>${a.idVariable}</td>
 												<td>
-													<c:if test="${not empty a.idVariable}">
-														Variable: ${a.idVariable}
-													</c:if>
 													<c:if test="${not empty a.device}">
 														Equipo: ${a.device.hostName}
 													</c:if>
@@ -77,14 +76,6 @@
 					<div class="tab-pane" id="nuevaalarma">
 						<form method="post" class="form-horizontal">
 							<div class="form-group">
-								<label for="nombre" class="col-sm-2 control-label">Tipo de objeto</label>
-								<div class="col-sm-10">
-									<input type="radio" id="radio-obj" name="radio-obj" value="interface" onchange="javascript:displayComboNew()">Interface</input>
-									<input type="radio" id="radio-obj" name="radio-obj" value="variable" onchange="javascript:displayComboNew()">Variable</input>
-									<input type="radio" id="radio-obj" name="radio-obj" value="device" onchange="javascript:displayComboNew()">Equipo</input>
-								</div>
-							</div>
-							<div class="form-group" style="display: none;" id="combo-variable">
 								<label for="variable" class="col-sm-2 control-label">Variable</label>
 								<div class="col-sm-10">
 									<select id="variable" name="variable">
@@ -93,6 +84,13 @@
 											<option value="${variable[0]}">${variable[1]}</option>
 										</c:forEach>
 									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="nombre" class="col-sm-2 control-label">Tipo de objeto</label>
+								<div class="col-sm-10">
+									<input type="radio" id="radio-obj" name="radio-obj" value="interface" onchange="javascript:displayComboNew()">Interface</input>
+									<input type="radio" id="radio-obj" name="radio-obj" value="device" onchange="javascript:displayComboNew()">Equipo</input>
 								</div>
 							</div>
 							<div class="form-group" style="display: none;" id="combo-device">
@@ -134,6 +132,13 @@
 					</div>
 					<div class="tab-pane" id="editaralarma">
 						<form method="post" class="form-horizontal">
+							<div class="form-group">
+								<label for="variable-display" class="col-sm-2 control-label">Variable</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="variable-display" required="required"
+										name="variable-display" placeholder="Objeto" disabled="disabled">
+								</div>
+							</div>
 							<div class="form-group">
 								<label for="Objeto-display" class="col-sm-2 control-label">Objeto</label>
 								<div class="col-sm-10">

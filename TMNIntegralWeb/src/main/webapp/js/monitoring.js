@@ -134,17 +134,10 @@ function displayComboNew(){
 	case "interface":
 		$('#combo-interface').show();
 		$('#combo-device').hide();
-		$('#combo-variable').hide();
 		break;
 	case "device":
 		$('#combo-interface').hide();
 		$('#combo-device').show();
-		$('#combo-variable').hide();
-		break;
-	case "variable":
-		$('#combo-interface').hide();
-		$('#combo-device').hide();
-		$('#combo-variable').show();
 		break;
 	}
 }
@@ -156,10 +149,8 @@ function agregarAlarma(){
 		url = url + "idInt=" + $('#interface').val();
 	}else if (typealarm == 'device'){
 		url = url + "idDev=" + $('#device').val();
-	}else if (typealarm == 'variable'){
-		url = url + "idVar=" + $('#variable').val();
 	}
-	
+	url = url + "idVar=" + $('#variable').val();
 	url = url + "&dest=" + $('#destinatarios').val();
 	
 	$('#main-content').empty();
@@ -192,8 +183,7 @@ function displayAlarma(idAlarm){
         dataType: "json",
         success: function (response) {
         	$('#alarmasTabs a[href="#editaralarma"]').tab('show');
-        	if (response.idVariable != null)
-        		$('#Objeto-display').val('Variable: ' + response.idVariable);
+    		$('#variable-display').val(response.idVariable);
         	if (response.idDevice != null)
         		$('#Objeto-display').val('Equipo: ' + response.deviceName);
         	if (response.idInterface != null)

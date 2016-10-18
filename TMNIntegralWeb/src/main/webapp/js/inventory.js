@@ -772,3 +772,27 @@ function mostrarTopologiaConImagenes(topologia) {
     var options = {};
     network = new vis.Network(container, data, options);
 }
+
+function callDiscoveryPgm(){
+	$('#main-content').empty();
+	$('#main-content').load('inventory/callDiscoveryPgm.htm', function(){
+		$('#goToAgregarInterface').click(function() {
+			  $('#interfacesTabs a[href="#nuevaInterfaz"]').tab('show');
+			});
+		$('#nuevaInterfazTab').click(function(event){
+		    if ($(this).hasClass('disabled')) {
+		        return false;
+		    }
+		});
+		$('#editarInterfazTab').click(function(event){
+		    if ($(this).hasClass('disabled')) {
+		        return false;
+		    }
+		});
+		
+		$("#interfacesTable").DataTable();
+
+		//Load ok modal
+		$('#createConfirmDiscoveryModal').modal('show');
+	});
+}
