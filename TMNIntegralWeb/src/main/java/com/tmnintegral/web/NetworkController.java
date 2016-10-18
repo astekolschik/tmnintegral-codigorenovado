@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.json.JsonObject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -46,8 +47,8 @@ public class NetworkController {
 		
 		//TODO
 		Map<String, Object> myModel = new HashMap<String, Object>();
-//		JsonObject topologia = this.im.obtenerTopologiaDeRed();
-//		myModel.put("networkGraph", topologia.toString().replace("\"", "'"));
+		JsonObject topologia = this.im.obtenerTopologiaDeRed();
+		myModel.put("networkGraph", topologia.toString().replace("\"", "'"));
 		
 		
 		return new ModelAndView("dashboard/inventory/displayNetwork", "model", myModel);
