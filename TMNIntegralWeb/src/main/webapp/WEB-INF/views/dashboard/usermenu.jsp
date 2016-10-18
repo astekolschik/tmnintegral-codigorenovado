@@ -60,7 +60,9 @@
 				<li><a href="javascript:displayInicioReportes();"><i
 						class="fa fa-circle-o"></i>Reportes</a></li>
 				<li><a href="javascript:displayAlarmasEnviadas();"><i
-						class="fa fa-circle-o"></i>Alarmas</a></li>
+						class="fa fa-circle-o"></i>Alarmas Enviadas</a></li>
+				<li><a href="javascript:configurarAlarmas();"><i
+						class="fa fa-circle-o"></i>Configurar Alarmas</a></li>
 			</ul></li>
 	</c:if>
 	<li><a href="logout.htm"> <i class="fa fa-th"></i> <span>Cerrar

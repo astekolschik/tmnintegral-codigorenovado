@@ -84,15 +84,6 @@ public class ReportController {
 		return reportInfo.toString();
     }
 	
-	@RequestMapping(value="/monitoring/alarmas.htm")
-    public ModelAndView getAlarmas(HttpSession session, HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-		
-		Map<String, Object> myModel = new HashMap<String, Object>();
-		myModel.put("alarmas", this.reportManager.getAlarmsSent());
-		
-		return new ModelAndView("dashboard/reportes/alarmas", "model", myModel);
-    }
 	
 	/**
 	 * @param logManager the logManager to set

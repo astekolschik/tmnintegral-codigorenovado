@@ -9,12 +9,14 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.tmnintegral.domain.Alarm;
 import com.tmnintegral.repository.ReportDao;
 
 /**
@@ -106,6 +108,37 @@ public class JPAReportDao implements ReportDao {
 		}
 		
 		return retList;
+	}
+
+	@Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+	public List<Alarm> getAlarmsConfigured(Integer clientId) {
+		return em.createQuery("select a from Alarm a where a.client.id=" + clientId).getResultList();
+	}
+
+	@Transactional(readOnly = false)
+    @SuppressWarnings("unchecked")
+	public void deleteAlarm(Integer id) {
+		em.createQuery("delete from Alarm a where a.id=" + id).executeUpdate();
+	}
+
+	@Transactional(readOnly = false)
+    @SuppressWarnings("unchecked")
+	public void saveAlarm(Alarm alarm) {
+		em.merge(alarm);
+	}
+
+	@Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+	public Alarm getAlarm(int alarmId) {
+		Alarm alarm = null;
+    	try{
+    		alarm = (Alarm) em.createQuery(
+    				"select a from Alarm a where a.id=" + alarmId).getSingleResult();
+    	}catch(NoResultException e){
+    		//log ("No se encontro el usuario con id: " + userId);
+    	}
+    	return alarm;
 	}
 
 }

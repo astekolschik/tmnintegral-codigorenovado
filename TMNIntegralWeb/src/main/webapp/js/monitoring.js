@@ -1,6 +1,33 @@
+$(document).on("click", ".open-DeleteAlarmDialog", function () {
+     var alarmId = $(this).data('id');
+     $("#alarmDelId").val(alarmId);
+});
+
 function displayAlarmasEnviadas(){
 	$('#main-content').empty();
-	$('#main-content').load('monitoring/alarmas.htm', function(){
+	$('#main-content').load('monitoring/listadoAlarmasEnviadas.htm', function(){
+		$('#goToAgregarAlarma').click(function() {
+			$('#alarmasTabs a[href="#nuevaalarma"]').tab('show');
+		});
+		$('#nuevaalarmatab').click(function(event){
+		    if ($(this).hasClass('disabled')) {
+		        return false;
+		    }
+		});
+		$('#editaralarmatab').click(function(event){
+		    if ($(this).hasClass('disabled')) {
+		        return false;
+		    }
+		});
+		
+		
+		$("#alarmasTable").DataTable();
+	});
+}
+
+function configurarAlarmas(){
+	$('#main-content').empty();
+	$('#main-content').load('monitoring/configurarAlarmas.htm', function(){
 		$("#alarmasTable").DataTable();
 	});
 }
@@ -66,6 +93,112 @@ function generarReporte(){
     	    };
     	    var chart = new google.charts.Line(document.getElementById('report-content'));
     	    chart.draw(data, options);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+           console.log(textStatus, errorThrown);
+        }
+    });
+}
+
+function deleteAlarma(){
+	var alarmid = $('#alarmDelId').val();
+	$('#main-content').empty();
+	$('#main-content').load('/TMNIntegralWeb/monitoring/eliminarAlarma.htm?alarmId=' + alarmid, function(){
+		$('#goToAgregarAlarma').click(function() {
+			$('#alarmasTabs a[href="#nuevaalarma"]').tab('show');
+		});
+		$('#nuevaalarmatab').click(function(event){
+		    if ($(this).hasClass('disabled')) {
+		        return false;
+		    }
+		});
+		$('#editaralarmatab').click(function(event){
+		    if ($(this).hasClass('disabled')) {
+		        return false;
+		    }
+		});
+		
+		
+		$("#alarmasTable").DataTable();
+		//Remove modal leftovers
+		$("body").removeClass('modal-open');
+		$("div").remove(".modal-backdrop.fade.in");
+		
+		//Load ok modal
+		$('#delConfirmModal').modal('show');
+	});
+}
+
+function displayComboNew(){
+	switch($('input[name=radio-obj]:checked').val()){
+	case "interface":
+		$('#combo-interface').show();
+		$('#combo-device').hide();
+		$('#combo-variable').hide();
+		break;
+	case "device":
+		$('#combo-interface').hide();
+		$('#combo-device').show();
+		$('#combo-variable').hide();
+		break;
+	case "variable":
+		$('#combo-interface').hide();
+		$('#combo-device').hide();
+		$('#combo-variable').show();
+		break;
+	}
+}
+
+function agregarAlarma(){
+	var typealarm = $('input[name=radio-obj]:checked').val();
+	var url = "/TMNIntegralWeb/monitoring/createAlarm.htm?";
+	if (typealarm == 'interface'){
+		url = url + "idInt=" + $('#interface').val();
+	}else if (typealarm == 'device'){
+		url = url + "idDev=" + $('#device').val();
+	}else if (typealarm == 'variable'){
+		url = url + "idVar=" + $('#variable').val();
+	}
+	
+	url = url + "&dest=" + $('#destinatarios').val();
+	
+	$('#main-content').empty();
+	$('#main-content').load(url, function(){
+		$('#goToAgregarAlarma').click(function() {
+			$('#alarmasTabs a[href="#nuevaalarma"]').tab('show');
+		});
+		$('#nuevaalarmatab').click(function(event){
+		    if ($(this).hasClass('disabled')) {
+		        return false;
+		    }
+		});
+		$('#editaralarmatab').click(function(event){
+		    if ($(this).hasClass('disabled')) {
+		        return false;
+		    }
+		});
+		
+		
+		$("#alarmasTable").DataTable();
+		$('#createConfirmModal').modal('show');
+	});
+	
+}
+
+function displayAlarma(idAlarm){
+	$.ajax({
+        url: "/TMNIntegralWeb/monitoring/displayAlarm.htm?id=" + idAlarm,
+        type: "POST",
+        dataType: "json",
+        success: function (response) {
+        	$('#alarmasTabs a[href="#editaralarma"]').tab('show');
+        	if (response.idVariable != null)
+        		$('#Objeto-display').val('Variable: ' + response.idVariable);
+        	if (response.idDevice != null)
+        		$('#Objeto-display').val('Equipo: ' + response.deviceName);
+        	if (response.idInterface != null)
+        		$('#Objeto-display').val('Interface: ' + response.interfaceName);
+        	$('#destinatarios-display').val(response.destinatarios);
         },
         error: function(jqXHR, textStatus, errorThrown) {
            console.log(textStatus, errorThrown);

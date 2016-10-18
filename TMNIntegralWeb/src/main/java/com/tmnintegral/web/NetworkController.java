@@ -45,11 +45,9 @@ public class NetworkController {
             throws ServletException, IOException {
 
 		
-		//TODO
 		Map<String, Object> myModel = new HashMap<String, Object>();
 		JsonObject topologia = this.im.obtenerTopologiaDeRed();
 		myModel.put("networkGraph", topologia.toString().replace("\"", "'"));
-		
 		
 		return new ModelAndView("dashboard/inventory/displayNetwork", "model", myModel);
     }
