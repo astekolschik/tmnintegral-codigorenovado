@@ -43,11 +43,13 @@ public class ConfigurationManager implements Serializable{
 	
 	/**
 	 * Devuelve el comando seleccionado en el id
+	 * @param fieldname 
+	 * @param te 
 	 * @param commandid
 	 * @return
 	 */
-	public Command getCommandById(int command){
-		return this.commandDao.getCommand(command);
+	public Command getCommandById(int varid, int te, String fieldname){
+		return this.commandDao.getCommand(varid, te, fieldname);
 	}
 
 	/**
@@ -60,5 +62,34 @@ public class ConfigurationManager implements Serializable{
 
 	public List<Object[]> getVariablesList() {
 		return this.commandDao.getVariables();
+	}
+
+	public void crearComando(Command newCommand) {
+		this.commandDao.crearComando(newCommand);		
+	}
+
+	/**
+	 * 
+	 * @param idVariable
+	 * @param idTipoEquipo
+	 * @param fieldName
+	 * @param type
+	 * @param regex
+	 * @param operation
+	 * @param isDevice
+	 */
+	public void actualizarComando(Integer idVariable, Integer idTipoEquipo, String fieldName, String type, String regex,
+			String operation, String isDevice) {
+		Command oldCommand = this.getCommandById(idVariable, idTipoEquipo, fieldName);
+		if (oldCommand.getType() != type)
+			oldCommand.setType(type);
+		if (oldCommand.getRegex() != regex)
+			oldCommand.setRegex(regex);
+		if (oldCommand.getOperation() != operation)
+			oldCommand.setOperation(operation);
+		if (oldCommand.getIs_device() != isDevice)
+			oldCommand.setIs_device(isDevice);
+		
+		this.commandDao.updateComando(oldCommand);
 	}
 }

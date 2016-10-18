@@ -14,7 +14,7 @@ import com.tmnintegral.domain.CommandKey;
  */
 public interface CommandDao {
 
-	public Command getCommand(int commandId);
+	public Command getCommand(int commandId, int te, String fieldname);
 	
 	public List<Command> getCommandList(Integer clientid);
 	
@@ -23,5 +23,9 @@ public interface CommandDao {
 	public void deleteCommand(int cId);
 
 	public List<Object[]> getVariables();
+
+	public void crearComando(Command newCommand);
+	
+	public void updateComando(Command newCommand);
 	
 }

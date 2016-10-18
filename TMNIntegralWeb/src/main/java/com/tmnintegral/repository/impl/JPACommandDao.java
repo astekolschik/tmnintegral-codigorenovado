@@ -36,10 +36,13 @@ public class JPACommandDao implements CommandDao{
 	
     @Transactional(readOnly = true)
     @SuppressWarnings("unchecked")
-	public Command getCommand(int commandId) {
+	public Command getCommand(int varid, int te, String fieldname) {
     	Command command = null;
     	try{
-    		command = (Command) em.createQuery("select c from Command c where c.id_command = " + commandId).getSingleResult();
+    		command = (Command) em.createQuery(
+    				"select c from Command c where c.key.idVariable=" + varid
+    						+ " and c.key.idDeviceType=" + te
+    						+ " and c.key.fieldName='" + fieldname + "'").getSingleResult();
     	}catch(NoResultException e){
     		//log ("No se encontro el usuario con id: " + userId);
     	}
@@ -71,6 +74,18 @@ public class JPACommandDao implements CommandDao{
     public List<Object[]> getVariables() {
     	Query q = em.createNativeQuery("SELECT a.id, a.variableName FROM variable a");
     	return q.getResultList();
+	}
+
+    @Transactional(readOnly = false)
+    @SuppressWarnings("unchecked")
+    public void crearComando(Command newCommand) {
+    	em.merge(newCommand);
+	}
+    
+    @Transactional(readOnly = false)
+    @SuppressWarnings("unchecked")
+	public void updateComando(Command newCommand) {
+		em.merge(newCommand);
 	}
 
 }

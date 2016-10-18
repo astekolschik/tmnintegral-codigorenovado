@@ -4,8 +4,9 @@
 package com.tmnintegral.domain;
 
 import java.io.Serializable;
-import java.util.Set;
 
+import javax.json.Json;
+import javax.json.JsonObject;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -180,5 +181,17 @@ public class Command implements Serializable{
 	public void setKey(CommandKey key) {
 		this.key = key;
 	}
-	
+
+	public JsonObject toJSON(){
+		JsonObject obj = Json.createObjectBuilder()
+			.add("variableId", this.getKey().getIdVariable())
+			.add("tipoequipoId", this.getKey().getIdDeviceType())
+			.add("fieldname", this.getKey().getFieldName())
+			.add("type", this.getType() != null ? this.getType() : "")
+			.add("regex", this.getRegex() != null ? this.getRegex() : "")
+			.add("operation", this.getOperation() != null ? this.getOperation() : "")
+			.add("isdevice", this.getIs_device() != null ? this.getIs_device() : "").build();
+		return obj;
+	}
+
 }

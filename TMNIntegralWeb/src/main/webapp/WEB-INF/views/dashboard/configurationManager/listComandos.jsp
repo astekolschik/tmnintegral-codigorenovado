@@ -49,11 +49,11 @@
 												<td>${command.type}</td>
 												<td>${command.operation}</td>
 												<td style="text-align: center;"><a
-													onclick="javascript:displayCommand(${command.key.idVariable},${command.key.idDeviceType},${command.key.fieldName}, false);">
+													onclick="javascript:displayCommand('${command.key.idVariable}','${command.key.idDeviceType}','${command.key.fieldName}', false);">
 														<i class="fa fa-search"></i>
 												</a></td>
 												<td style="text-align: center;"><a
-													onclick="javascript:displayCommand(${command.key.idVariable},${command.key.idDeviceType},${command.key.fieldName}, true);">
+													onclick="javascript:displayCommand('${command.key.idVariable}','${command.key.idDeviceType}','${command.key.fieldName}', true);">
 														<i class="fa fa-edit"></i>
 												</a></td>
 												<td style="text-align: center;">
@@ -78,6 +78,9 @@
 								<div class="col-sm-10">
 									<select id="variable" name="variable">
 										<option selected="selected">Seleccione la variable</option>
+										<c:forEach items="${model.variablesList}" var="variable">
+											<option value="${variable[0]}">${variable[1]}</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>
@@ -85,7 +88,10 @@
 								<label for="tipoequipo" class="col-sm-2 control-label">Tipo de equipo</label>
 								<div class="col-sm-10">
 									<select id="tipoequipo" name="tipoequipo">
-										<option selected="selected">Seleccione el tipo de equipo</option>
+										<option selected="selected" value="0">Seleccione el tipo de equipo</option>
+										<c:forEach items="${model.tipoEquipoList}" var="te">
+											<option value="${te.id}">${te.description}</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>
@@ -118,6 +124,14 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<div class="checkbox">
+			                        <label for="enabled" class="col-sm-2 control-label">
+			                          <input type="checkbox" name="isdevice" id="isdevice">
+			                          Es para equipo?
+			                        </label>
+			                      </div>
+							</div>
+							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
 									<button type="button" class="btn btn-danger" onclick="javascript:agregarComando();">Agregar</button>
 									<button type="reset" class="btn btn-danger">Limpiar</button>
@@ -132,6 +146,9 @@
 								<div class="col-sm-10">
 									<select id="variable-display" name="variable-display">
 										<option selected="selected">Seleccione la variable</option>
+										<c:forEach items="${model.variablesList}" var="variable">
+											<option value="${variable[0]}">${variable[1]}</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>
@@ -139,7 +156,10 @@
 								<label for="tipoequipo-display" class="col-sm-2 control-label">Tipo de equipo</label>
 								<div class="col-sm-10">
 									<select id="tipoequipo-display" name="tipoequipo-display">
-										<option selected="selected">Seleccione el tipo de equipo</option>
+										<option selected="selected" value="0">Seleccione el tipo de equipo</option>
+										<c:forEach items="${model.tipoEquipoList}" var="te">
+											<option value="${te.id}">${te.description}</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>
@@ -170,6 +190,14 @@
 									<input type="text" class="form-control" id="operation-display" required="required"
 										name="operation-display" placeholder="Operacion">
 								</div>
+							</div>
+							<div class="form-group">
+								<div class="checkbox">
+			                        <label for="isdevice-display" class="col-sm-2 control-label">
+			                          <input type="checkbox" name="isdevice-display" id="isdevice-display">
+			                          Es para equipo?
+			                        </label>
+			                      </div>
 							</div>
 							<div class="form-group" id="button-edition">
 								<div class="col-sm-offset-2 col-sm-10">
