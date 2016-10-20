@@ -57,6 +57,12 @@ public class Interface implements Serializable {
 	}
 	
 
+	public Interface(Integer iId) {
+		super();
+		this.id = iId;
+	}
+
+
 	public JsonObject toJSON(){
 		JsonObject obj = Json.createObjectBuilder()
 			.add("id", this.getId())

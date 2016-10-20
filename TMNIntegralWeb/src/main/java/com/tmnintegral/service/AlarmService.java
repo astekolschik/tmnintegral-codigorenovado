@@ -26,7 +26,7 @@ public class AlarmService {
 	private UserDao userDao;
 
 	/**
-	 * Genera un email avisando de los equipos caídos
+	 * Chequea las alarmas 
 	 */
 	@Scheduled(cron="* */20 * * * ?")
 	public void triggerAlarm(){
@@ -50,7 +50,14 @@ public class AlarmService {
 		}
 		return mailList;
 	}
-
+	
+	/**
+	 * 
+	 */
+	private void checkConfiguredAlarms(){
+		
+	}
+	
 	/**
 	 * @param interfaceDao the interfaceDao to set
 	 */

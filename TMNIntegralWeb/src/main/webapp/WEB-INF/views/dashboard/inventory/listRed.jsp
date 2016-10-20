@@ -76,6 +76,7 @@
 								<a href="#" id="goToAgregarRed">
 									<button type="button" class="btn btn-primary">Agregar</button>
 								</a>
+								<button type="button" class="btn btn-danger" onclick="javascript:callDiscoveryPgm();">Descubrir red</button>
 							</div>
 						</div>
 					</div>
@@ -217,6 +218,22 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 					<h4 class="modal-title">La red fue creada correctamente</h4>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline pull-left"	data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="createConfirmDiscoveryModal" class="modal fade modal-success" role="dialog">
+	  <div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">La red fue leida correctamente</h4>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-outline pull-left"	data-dismiss="modal">Cerrar</button>

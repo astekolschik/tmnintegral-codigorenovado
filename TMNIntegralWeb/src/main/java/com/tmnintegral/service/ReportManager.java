@@ -20,6 +20,7 @@ import javax.json.JsonObjectBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.tmnintegral.domain.Alarm;
 import com.tmnintegral.domain.InterfaceStatus;
 import com.tmnintegral.repository.InterfaceDao;
 import com.tmnintegral.repository.ReportDao;
@@ -185,6 +186,22 @@ public class ReportManager implements Serializable{
 			rowsBuilder.add(valueObj.build());
 		}
 		return rowsBuilder.build();
+	}
+
+	public List<Alarm> getAlarmsConfigured(Integer clientId) {
+		return this.reportDao.getAlarmsConfigured(clientId);
+	}
+
+	public void eliminarAlarma(Integer id) {
+		this.reportDao.deleteAlarm(id);
+	}
+
+	public void crearAlarma(Alarm alarm) {
+		this.reportDao.saveAlarm(alarm);
+	}
+
+	public Alarm getAlarmById(int alarmId) {
+		return this.reportDao.getAlarm(alarmId);
 	}
 }
 
