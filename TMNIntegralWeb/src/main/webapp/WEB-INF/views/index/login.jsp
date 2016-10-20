@@ -9,7 +9,7 @@
 
 <!-- Bootstrap -->
 <link rel="stylesheet" href="css/bootstrap.css">
-
+ <link rel="stylesheet" href="css/TMNIntegral.css">
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -19,11 +19,10 @@
 </head>
 <body>
 	<!-- Menu general -->
-	<%@ include file="/WEB-INF/views/index/menu.jsp"%>
 
-	<div class="well" id="ingresar">
-		<h2 class="text-left">
-			<span class="text-left">Ingresar</span>
+	<div class="col-md-6 col-md-offset-3" id="ingresar">
+		<h2 class="text-center">
+			 <a id="loginlink" href="index.htm"><span><b>TMN</b> Integral</span></a>
 		</h2>
 		<hr>
 		<div class="container">
@@ -53,7 +52,7 @@
 						<button type="submit" class="btn btn-default">Ingresar</button>
 					</div>
 				</div>
-				<div>
+				<div class="col-md-6 col-md-offset-3">
 					<a href="/TMNIntegralWeb/olvidePass.htm">Olvide mi contraseña</a>
 				</div>
 			</form>

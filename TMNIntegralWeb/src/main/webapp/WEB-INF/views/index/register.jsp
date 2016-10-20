@@ -9,7 +9,7 @@
 
 <!-- Bootstrap -->
 <link rel="stylesheet" href="css/bootstrap.css">
-
+ <link rel="stylesheet" href="css/TMNIntegral.css">
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -21,8 +21,8 @@
 	<!-- Menu general -->
 	<%@ include file="/WEB-INF/views/index/menu.jsp"%>
 
-	<div class="well" id="ingresar">
-		<h2 class="text-left">
+	<div class="col-md-6 col-md-offset-3" id="ingresar">
+		<h2 class="text-center">
 			<span class="text-left">Información del Usuario</span>
 		</h2>
 		<hr>
@@ -86,7 +86,7 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="client">Cliente:</label>
 					<div class="col-sm-10">
-						<select id="client" name="client" class="form-control">
+						<select id="client" name="client" class="form-control" style="width: 300px">
 							<c:forEach items="${model.clients}" var="c">
 								<option value="${c.id}">${c.name}</option>
 							</c:forEach>
