@@ -134,15 +134,23 @@
 							<div class="form-group">
 								<label for="tipoEquipoId" class="col-sm-2 control-label">Tipo de equipo</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="tipoEquipoId" required="required"
-										name="tipoEquipoId" placeholder="tipoEquipo">
+									<select class="form-control" id="tipoEquipoId" name="tipoEquipoId">
+										<option value="-1">Ninguno</option>
+										<c:forEach items="${model.tipoEquipoList}" var="equipo">
+											<option value="${equipo.id}">${equipo.typeName}</option>
+										</c:forEach>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="networkId" class="col-sm-2 control-label">Red</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="networkId" required="required"
-										name="networkId" placeholder="networkId">
+									<select class="form-control" id="networkId" name="networkId">
+										<option value="-1">Ninguno</option>
+										<c:forEach items="${model.redesList}" var="net">
+											<option value="${net.id_network}">${net.network}</option>
+										</c:forEach>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
@@ -236,15 +244,23 @@
 							<div class="form-group">
 								<label for="display-tipoEquipoId" class="col-sm-2 control-label">Tipo de equipo</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="display-tipoEquipoId" required="required"
-										name="display-tipoEquipoId" placeholder="tipoEquipo">
+									<select class="form-control" id="display-tipoEquipoId" name="display-tipoEquipoId">
+										<option value="-1">Ninguno</option>
+										<c:forEach items="${model.tipoEquipoList}" var="equipo">
+											<option value="${equipo.id}">${equipo.typeName}</option>
+										</c:forEach>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="display-networkId" class="col-sm-2 control-label">Red</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="display-networkId" required="required"
-										name="display-networkId" placeholder="networkId">
+									<select class="form-control" id="display-networkId" name="display-networkId">
+										<option value="-1">Ninguno</option>
+										<c:forEach items="${model.redesList}" var="net">
+											<option value="${net.id_network}">${net.network}</option>
+										</c:forEach>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">

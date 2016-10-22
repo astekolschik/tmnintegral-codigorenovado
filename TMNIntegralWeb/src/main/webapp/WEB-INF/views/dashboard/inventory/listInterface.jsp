@@ -133,8 +133,12 @@
 							<div class="form-group">
 								<label for="idDevice" class="col-sm-2 control-label">Equipo</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="idDevice" required="required"
-										name="idDevice" placeholder="idDevice">
+									<select class="form-control" id="idDevice" name="idDevice">
+										<option value="-1">Ninguno</option>
+										<c:forEach items="${model.equiposList}" var="equipo">
+											<option value="${equipo.device_id}">${equipo.hostName}</option>
+										</c:forEach>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
@@ -248,8 +252,12 @@
 							<div class="form-group">
 								<label for="display-idDevice" class="col-sm-2 control-label">Equipo</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="display-idDevice" required="required"
-										name="display-idDevice" placeholder="idDevice">
+									<select class="form-control" id="display-idDevice" name="display-idDevice">
+										<option value="-1">Ninguno</option>
+										<c:forEach items="${model.equiposList}" var="equipo">
+											<option value="${equipo.device_id}">${equipo.hostName}</option>
+										</c:forEach>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">

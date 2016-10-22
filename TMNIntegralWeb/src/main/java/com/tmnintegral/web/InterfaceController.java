@@ -37,6 +37,7 @@ public class InterfaceController {
 
 		Map<String, Object> myModel = new HashMap<String, Object>();
 		myModel.put("interfaceList", im.getInterfaceList(((User)session.getAttribute("user")).getClient()));
+		myModel.put("equiposList", this.im.getDeviceList(((User)session.getAttribute("user")).getClient().getId()));
 		
 		return new ModelAndView("dashboard/inventory/listInterface", "model", myModel);
     }

@@ -40,6 +40,8 @@ public class DeviceController {
 		Map<String, Object> myModel = new HashMap<String, Object>();
 		User currUser = (User) session.getAttribute("user");
 		myModel.put("deviceList", im.getDeviceList(currUser.getClient().getId()));
+		myModel.put("tipoEquipoList", this.im.getTipoEquiposList());
+		myModel.put("redesList", this.im.getRedList(currUser.getClient()));
 		
 		return new ModelAndView("dashboard/inventory/listDevice", "model", myModel);
     }
