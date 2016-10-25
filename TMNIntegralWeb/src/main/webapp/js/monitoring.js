@@ -150,8 +150,10 @@ function agregarAlarma(){
 	}else if (typealarm == 'device'){
 		url = url + "idDev=" + $('#device').val();
 	}
-	url = url + "idVar=" + $('#variable').val();
+	url = url + "&idVar=" + $('#variable').val();
 	url = url + "&dest=" + $('#destinatarios').val();
+	if ($('#umbral').val() != '')
+		url = url + "&umbral=" + $('#umbral').val();
 	
 	$('#main-content').empty();
 	$('#main-content').load(url, function(){
@@ -189,6 +191,7 @@ function displayAlarma(idAlarm){
         	if (response.idInterface != null)
         		$('#Objeto-display').val('Interface: ' + response.interfaceName);
         	$('#destinatarios-display').val(response.destinatarios);
+        	$('#umbral-display').val(response.umbral);
         },
         error: function(jqXHR, textStatus, errorThrown) {
            console.log(textStatus, errorThrown);

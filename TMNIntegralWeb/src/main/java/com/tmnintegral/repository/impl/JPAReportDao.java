@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tmnintegral.domain.Alarm;
+import com.tmnintegral.domain.InterfaceStatus;
 import com.tmnintegral.repository.ReportDao;
 
 /**
@@ -141,4 +142,17 @@ public class JPAReportDao implements ReportDao {
     	return alarm;
 	}
 
+	@Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+	public List<Alarm> getAlarmsConfigured() {
+		return em.createQuery("select a from Alarm a").getResultList();
+	}
+
+	public List<InterfaceStatus> getStatus(int variableId, String elementName){
+		return em.createQuery("select is from InterfaceStatus is"
+				+ " where is.idVariable=" + variableId + " and is.elementName='" + elementName + "'"
+				+ " order by is.last_update_state desc"
+				+ " limit 3").getResultList();
+	}
+	
 }

@@ -99,7 +99,7 @@
 									<select id="device" name="device">
 										<option selected="selected">Seleccione el equipo</option>
 										<c:forEach items="${model.deviceList}" var="device">
-											<option value="${device.device_id}">${device.hostName}</option>
+											<option value="${device.device_id},${device.ip}_${device.hostName}">${device.hostName}</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -110,7 +110,7 @@
 									<select id="interface" name="interface">
 										<option selected="selected">Seleccione la interfaz</option>
 										<c:forEach items="${model.interfacesList}" var="i">
-											<option value="${i.id}">${i.name}</option>
+											<option value="${i.id},${i.device.ip}_${i.device.hostName}_${i.name}">${i.name}</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -120,6 +120,13 @@
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="destinatarios" required="required"
 										name="destinatarios" placeholder="Destinatarios">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="umbral" class="col-sm-2 control-label">Umbral de comparacion(de ser necesario)</label>
+								<div class="col-sm-10">
+									<input type="number" class="form-control" id="umbral" required="required"
+										name="umbral" placeholder="Umbral">
 								</div>
 							</div>
 							<div class="form-group">
@@ -151,6 +158,13 @@
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="destinatarios-display" required="required"
 										name="destinatarios-display" placeholder="Destinatarios" disabled="disabled">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="umbral-display" class="col-sm-2 control-label">Umbral de comparacion(de ser necesario)</label>
+								<div class="col-sm-10">
+									<input type="number" class="form-control" id="umbral-display" required="required"
+										name="umbral-display" placeholder="Umbral">
 								</div>
 							</div>
 						</form>

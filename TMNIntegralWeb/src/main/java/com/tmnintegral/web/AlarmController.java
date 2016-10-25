@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tmnintegral.domain.Alarm;
-import com.tmnintegral.domain.Command;
 import com.tmnintegral.domain.Device;
 import com.tmnintegral.domain.Interface;
 import com.tmnintegral.domain.User;
@@ -79,18 +78,26 @@ public class AlarmController {
 	public ModelAndView createAlarm(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 	        throws ServletException, IOException {
 		
+		String elementName = "";
 		Integer varId = request.getParameter("idVar") != null ? Integer.parseInt(request.getParameter("idVar")) : null;
-		Integer eId = request.getParameter("idDev") != null? Integer.parseInt(request.getParameter("idDev")) : null;
+		String eId = request.getParameter("idDev");
 		Device d = null;
-		if (eId != null)
-			d = new Device(eId);
-		Integer iId = request.getParameter("idInt") != null ? Integer.parseInt(request.getParameter("idInt")) : null;
+		if (eId != null){
+			String[] dev = eId.split(",");
+			d = new Device(Integer.parseInt(dev[0]));
+			elementName = dev[1];
+		}
+		String iId = request.getParameter("idInt");
 		Interface i = null;
-		if (iId != null)
-			i = new Interface(iId);
+		if (iId != null){
+			String[] interf = iId.split(",");
+			i = new Interface(Integer.parseInt(interf[0]));
+			elementName = interf[1];
+		}
 		String dest = request.getParameter("dest");
+		Integer umbral = request.getParameter("umbral") != null ? Integer.parseInt(request.getParameter("umbral")) : null;
 
-		Alarm alarm = new Alarm(null, varId, d, i, dest, ((User)session.getAttribute("user")).getClient());
+		Alarm alarm = new Alarm(null, varId, d, i, dest, ((User)session.getAttribute("user")).getClient(), elementName, umbral);
 		this.reportManager.crearAlarma(alarm);
 		
 		return this.configurarAlarmas(session, request, response);

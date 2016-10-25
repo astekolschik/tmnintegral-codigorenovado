@@ -46,6 +46,10 @@ public class Alarm implements Serializable{
 	private Interface interfaz;
 	
 	private String destination;
+	
+	private String elementName;
+	
+	private Integer umbral;
 
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="client_id")
@@ -64,15 +68,20 @@ public class Alarm implements Serializable{
 	 * @param device
 	 * @param interfaz
 	 * @param destination
+	 * @param elementName
+	 * @param umbral
 	 * @param client
 	 */
-	public Alarm(Integer id, Integer idVariable, Device device, Interface interfaz, String destination, Client client) {
+	public Alarm(Integer id, Integer idVariable, Device device, Interface interfaz, String destination, Client client,
+			String elementName, Integer umbral) {
 		super();
 		this.id = id;
 		this.idVariable = idVariable;
 		this.device = device;
 		this.interfaz = interfaz;
 		this.destination = destination;
+		this.elementName = elementName;
+		this.umbral = umbral;
 		this.client = client;
 	}
 
@@ -167,7 +176,31 @@ public class Alarm implements Serializable{
 			.add("deviceName", this.getDevice() != null ? this.getDevice().getHostName() : "")
 			.add("idInterface", this.getInterfaz() != null ? String.valueOf(this.getInterfaz().getId()) : "")
 			.add("interfaceName", this.getInterfaz() != null ? this.getInterfaz().getName() : "")
+			.add("elementName", this.getElementName() != null ? this.getElementName() : "")
+			.add("umbral", this.getUmbral() != null ? String.valueOf(this.getUmbral()) : "")
 			.add("destinatarios", this.getDestination() != null ? this.getDestination() : "").build();
 		return obj;
+	}
+
+	/**
+	 * @return the elementName
+	 */
+	public String getElementName() {
+		return elementName;
+	}
+
+	/**
+	 * @param elementName the elementName to set
+	 */
+	public void setElementName(String elementName) {
+		this.elementName = elementName;
+	}
+
+	public Integer getUmbral() {
+		return umbral;
+	}
+
+	public void setUmbral(Integer umbral) {
+		this.umbral = umbral;
 	}
 }

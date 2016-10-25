@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.tmnintegral.domain.Alarm;
+import com.tmnintegral.domain.InterfaceStatus;
 
 /**
  * @author Agustina
@@ -26,5 +27,9 @@ public interface ReportDao {
 	public void saveAlarm(Alarm alarm);
 
 	public Alarm getAlarm(int alarmId);
+
+	public List<Alarm> getAlarmsConfigured();
+	
+	public List<InterfaceStatus> getStatus(int variableId, String elementName);
 	
 }

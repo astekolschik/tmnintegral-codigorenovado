@@ -9,10 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import com.tmnintegral.domain.InterfaceStatus;
-import com.tmnintegral.domain.User;
-import com.tmnintegral.repository.InterfaceDao;
-import com.tmnintegral.repository.UserDao;
+import com.tmnintegral.domain.Alarm;
 
 /**
  * @author Agustina
@@ -21,55 +18,52 @@ import com.tmnintegral.repository.UserDao;
 public class AlarmService {
 	
 	@Autowired
-	private InterfaceDao interfaceDao;
-	@Autowired
-	private UserDao userDao;
+	private ReportManager ReportManager;
 
 	/**
 	 * Chequea las alarmas 
 	 */
-	@Scheduled(cron="* */20 * * * ?")
+	@Scheduled(cron="* */50 * * * ?")
 	public void triggerAlarm(){
-		List<InterfaceStatus> downList = this.interfaceDao.getInterfacesDown();
-		String destList = this.getMailList();
-		Iterator<InterfaceStatus> it = downList.iterator();
-		while (it.hasNext()){
-			InterfaceStatus is = it.next();
-			MailManager.sendAlarmMail(is.getElementName(), destList);
-			this.interfaceDao.updateInterfaceStatus(is);
-		}
+		processConfiguredAlarms();
 	}
-	
-	private String getMailList(){
-		String mailList = "";
-		List<User> adminUsers = this.userDao.getAdministratorUsers();
-		Iterator<User> itUser = adminUsers.iterator();
-		while(itUser.hasNext()){
-			User u = itUser.next();
-			mailList = mailList + u.getEmail() + ",";
+
+	/**
+	 * 
+	 */
+	private void processConfiguredAlarms() {
+		List<Alarm> alarms = this.ReportManager.getAlarmsConfigured();
+		Iterator<Alarm> itAlarms = alarms.iterator();
+		Alarm a;
+		while (itAlarms.hasNext()){
+			a = itAlarms.next();
+			this.processAlarm(a);
 		}
-		return mailList;
 	}
 	
 	/**
 	 * 
+	 * @param alarm
 	 */
-	private void checkConfiguredAlarms(){
-		
+	private void processAlarm(Alarm a){
+		if (this.ReportManager.getAlarmValue(a)){
+			MailManager.sendAlarmMail(a.getElementName(), a.getDestination());
+		}
 	}
 	
+
 	/**
-	 * @param interfaceDao the interfaceDao to set
+	 * @return the reportManager
 	 */
-	public void setInterfaceDao(InterfaceDao interfaceDao) {
-		this.interfaceDao = interfaceDao;
+	public ReportManager getReportManager() {
+		return ReportManager;
 	}
 
 	/**
-	 * @param userDao the userDao to set
+	 * @param reportManager the reportManager to set
 	 */
-	public void setUserDao(UserDao userDao) {
-		this.userDao = userDao;
+	public void setReportManager(ReportManager reportManager) {
+		ReportManager = reportManager;
 	}
 
 }

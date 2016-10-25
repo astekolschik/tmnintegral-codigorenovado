@@ -203,5 +203,28 @@ public class ReportManager implements Serializable{
 	public Alarm getAlarmById(int alarmId) {
 		return this.reportDao.getAlarm(alarmId);
 	}
+
+	public List<Alarm> getAlarmsConfigured() {
+		return this.reportDao.getAlarmsConfigured();
+	}
+	
+	public boolean getAlarmValue(Alarm a){
+		List<InterfaceStatus> status = this.reportDao.getStatus(a.getIdVariable(), a.getElementName());
+		//sumo los valores
+		Iterator<InterfaceStatus> itStatus = status.iterator();
+		Float total = new Float(0);
+		while (itStatus.hasNext()){
+			total += Float.valueOf(itStatus.next().getValor());
+		}
+		//chequeo dependiendo del tipo de alarma
+		if (total >= 0 && total <=3){
+			if (total == 0)
+				return true;
+		}else{
+			if (total%3 >= a.getUmbral())
+				return true;
+		}
+		return false;
+	}
 }
 
