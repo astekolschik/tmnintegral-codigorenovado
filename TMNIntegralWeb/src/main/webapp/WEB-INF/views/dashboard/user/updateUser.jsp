@@ -82,24 +82,23 @@
 						</div>
 						<!-- /.tab-pane -->
 						<div class="tab-pane" id="settings">
-							<form method="post" class="form-horizontal" action="user/updateUser.htm" onsubmit="return createUserValidate();">
-								<input type="hidden" id="saveUser" name="saveUser">
+							<form method="post" class="form-horizontal">
 								<div class="form-group">
-									<label for="inputName" class="col-sm-2 control-label">Nombre</label>
+									<label for="nombre" class="col-sm-2 control-label">Nombre</label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control" id="nombre" name="nombre"
 											placeholder="Nombre" value="${model.userObj.name}">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputEmail" class="col-sm-2 control-label">Apellido</label>
+									<label for="apellido" class="col-sm-2 control-label">Apellido</label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control" id="apellido" name="apellido"
 											placeholder="Apellido" value="${model.userObj.last_name}">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputName" class="col-sm-2 control-label">Email</label>
+									<label for="email" class="col-sm-2 control-label">Email</label>
 									<div class="col-sm-10">
 										<input type="email" class="form-control" id="email" name="email"
 											placeholder="Email" value="${model.userObj.email}">
@@ -135,7 +134,7 @@
 								</div>
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-10">
-										<button type="submit" class="btn btn-danger">Actualizar</button>
+										<button type="button" onclick="javascript:actualizarDatosUsuario();" class="btn btn-danger">Actualizar</button>
 									</div>
 								</div>
 							</form>
@@ -149,8 +148,23 @@
 			<!-- /.col -->
 		</div>
 		<!-- /.row -->
-
 	</section>
 	<!-- /.content -->
+	<div id="updateConfirmModal" class="modal fade modal-success" role="dialog">
+	  <div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">El usuario fue modificado correctamente</h4>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline pull-left"	data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
 <!-- </div> -->
 <!-- /.content-wrapper -->

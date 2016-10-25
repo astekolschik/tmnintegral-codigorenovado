@@ -45,6 +45,33 @@ function eliminarUsuarios(){
 	}
 }
 
+function actualizarDatosUsuario(){
+	if (!createUserValidate())
+		return;
+	
+	var nombre = $('#nombre').val();
+	var apellido = $('#apellido').val();
+	var email = $('#email').val();
+	var password = $('#password').val();
+	var direccion = $('#direccion').val();
+	var notas = $('#notas').val();
+	
+	$('#main-content').empty();
+	$('#main-content').load(('/TMNIntegralWeb/user/updateUser.htm?nombre=' + nombre
+																			+ '&apellido=' + apellido
+																			+ '&email=' + email
+																			+ '&password=' + password
+																			+ '&direccion=' + direccion
+																			+ '&notas=' + notas
+																			+ '&saveUser=true').replace(/ /g, "%20"), function(){
+		//Load ok modal
+		$('#updateConfirmModal').modal('show');
+	});
+
+}
+
+
+
 function actualizarUsuarios(){
 	var adminList = [];
 	$("input:checkbox[name=adminCheck]:checked").each(function(){
