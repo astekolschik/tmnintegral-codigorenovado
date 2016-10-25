@@ -5,6 +5,7 @@ package com.tmnintegral.web;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -20,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tmnintegral.domain.InterfaceStatus;
 import com.tmnintegral.domain.User;
+import com.tmnintegral.service.InventoryManager;
 import com.tmnintegral.service.LogManager;
 import com.tmnintegral.service.ReportManager;
 import com.tmnintegral.service.UserManager;
@@ -40,7 +43,9 @@ public class LoginController {
 	private LogManager logManager;
 	@Autowired
 	private ReportManager reportManager;
-
+	@Autowired
+	private InventoryManager inventoryManager;
+	
 	@RequestMapping(value="/login.htm")
     public ModelAndView login(HttpSession session, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -61,8 +66,12 @@ public class LoginController {
 						session.setAttribute("user", u);
 						logManager.saveLoginLog(u.getId());
 						
-						myModel.put("alarms", reportManager.getAlarmsSentInTheLastHour());
+						List<InterfaceStatus> alarms = reportManager.getAlarmsSentInTheLastHour();
+						myModel.put("alarms", alarms);
+						myModel.put("alarmsLastHr", alarms.size());
 						myModel.put("logs", logManager.getLastUserLogs(u.getId()));
+						myModel.put("equipmentSize", this.inventoryManager.getDeviceList(u.getClient().getId()).size());
+						myModel.put("usersSize", this.um.getUserList(u.getClient().getId()).size());
 						
 						return new ModelAndView("dashboard/index", "model", myModel);
 					}else{
@@ -143,6 +152,30 @@ public class LoginController {
 	 */
 	public void setLogManager(LogManager logManager) {
 		this.logManager = logManager;
+	}
+
+	public ReportManager getReportManager() {
+		return reportManager;
+	}
+
+	public void setReportManager(ReportManager reportManager) {
+		this.reportManager = reportManager;
+	}
+
+	public InventoryManager getInventoryManager() {
+		return inventoryManager;
+	}
+
+	public void setInventoryManager(InventoryManager inventoryManager) {
+		this.inventoryManager = inventoryManager;
+	}
+
+	public UserManager getUm() {
+		return um;
+	}
+
+	public LogManager getLogManager() {
+		return logManager;
 	}
 	
 }

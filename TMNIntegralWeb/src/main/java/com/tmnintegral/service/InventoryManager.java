@@ -150,7 +150,7 @@ public class InventoryManager implements Serializable{
 		return this.deviceDao.getDeviceList();
 	}
 	
-	public Object getDeviceList(Integer id) {
+	public List<Device> getDeviceList(Integer id) {
 		return this.deviceDao.getDeviceList(id);
 	}
 	

@@ -105,7 +105,6 @@ public class UserController {
 			User userobj = (User)(session.getAttribute("user"));
 			myModel.put("logs", logManager.getLastUserLogs(userobj.getId()));
 			myModel.put("userObj", userobj);
-			return new ModelAndView("dashboard/user/updateUser", "model", myModel);
 		}else{
 			String username = ((User)(session.getAttribute("user"))).getUser_name();
 			String nombre = request.getParameter("nombre");
@@ -122,8 +121,8 @@ public class UserController {
 			myModel.put("userObj", userobj);
 			myModel.put("saveMessage", "Usuario actualizado con exito.");
 			myModel.put("context", true);
-			return new ModelAndView("dashboard/index", "model", myModel);
 		}
+		return new ModelAndView("dashboard/user/updateUser", "model", myModel);
     }
 	
 	@RequestMapping(value="user/deleteUser.htm")
