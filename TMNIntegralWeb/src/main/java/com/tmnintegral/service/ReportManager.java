@@ -22,8 +22,10 @@ import org.springframework.stereotype.Component;
 
 import com.tmnintegral.domain.Alarm;
 import com.tmnintegral.domain.InterfaceStatus;
+import com.tmnintegral.domain.User;
 import com.tmnintegral.repository.InterfaceDao;
 import com.tmnintegral.repository.ReportDao;
+import com.tmnintegral.repository.UserDao;
 
 /**
  * Encargado del manejo y armado de reportes
@@ -39,6 +41,8 @@ public class ReportManager implements Serializable{
 	private ReportDao reportDao;
 	@Autowired
 	private InterfaceDao interfaceDao;
+	@Autowired
+	private UserDao userDao;
 
 	/**
 	 * 
@@ -225,6 +229,26 @@ public class ReportManager implements Serializable{
 				return true;
 		}
 		return false;
+	}
+	
+	public List<Object[]> getDevicesDown(){
+		return this.reportDao.getDevicesDown();
+	}
+	
+	public String getAdminDestinationsForClient(int clientid){
+		List<User> adminusers = this.userDao.getAdminEmails(clientid);
+		Iterator<User> itusers = adminusers.iterator();
+		String emails = "";
+		while (itusers.hasNext()){
+			if (!emails.equals(""))
+				emails += ";";
+			emails += itusers.next().getEmail();
+		}
+		return emails;
+	}
+
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
 	}
 }
 

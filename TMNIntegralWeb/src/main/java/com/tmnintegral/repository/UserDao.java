@@ -40,4 +40,6 @@ public interface UserDao {
 
 	public void updateUserImgPath(User user);
 	
+	public List<User> getAdminEmails(int client);
+	
 }

@@ -32,4 +32,8 @@ public interface ReportDao {
 	
 	public List<InterfaceStatus> getStatus(int variableId, String elementName);
 	
+	public List<Object[]> getDevicesDown();
+	
+	public List<Object[]> getInterfacesDown();
+	
 }

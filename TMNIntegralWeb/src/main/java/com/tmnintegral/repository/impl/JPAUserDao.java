@@ -155,4 +155,10 @@ public class JPAUserDao implements UserDao {
 		em.createNativeQuery("update User set completePicDir='" + user.getCompletePicDir() + "' where user_id= " + user.getId()).executeUpdate();
 	}
 
+    @Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+	public List<User> getAdminEmails(int client) {
+    	return em.createQuery("select u from User u where u.client.id= " + client + " and u.role.role_id=1 order by u.id").getResultList();
+	}
+
 }

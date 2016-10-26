@@ -148,11 +148,42 @@ public class JPAReportDao implements ReportDao {
 		return em.createQuery("select a from Alarm a").getResultList();
 	}
 
+	@Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
 	public List<InterfaceStatus> getStatus(int variableId, String elementName){
 		return em.createQuery("select is from InterfaceStatus is"
 				+ " where is.idVariable=" + variableId + " and is.elementName='" + elementName + "'"
 				+ " order by is.last_update_state desc"
 				+ " limit 3").getResultList();
+	}
+
+	@Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+	public List<Object[]> getDevicesDown() {
+		return em.createNativeQuery(
+				"select concat(concat(d.ip, \"_\"),d.hostname) as \"elementName\", d.client_id from device d "
+						+ "where \"test\" in (select a.elementName from (select f.elementName, sum(f.valor) as \"suma\" "
+						+ "from flt_interface_status f " 
+						+ "where \"suma\"=0 "
+						+ "group by f.idVariable, f.elementName "
+						+ "order by f.last_update_state desc "
+						+ "limit 3) a)"
+				).getResultList();
+	}
+
+	@Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+	public List<Object[]> getInterfacesDown() {
+		//TODO review
+		return em.createNativeQuery(
+				"select concat(concat(d.ip, \"_\"),d.hostname) as \"elementName\", d.client_id from device d "
+						+ "where \"test\" in (select a.elementName from (select f.elementName, sum(f.valor) as \"suma\" "
+						+ "from flt_interface_status f " 
+						+ "where \"suma\"=0 "
+						+ "group by f.idVariable, f.elementName "
+						+ "order by f.last_update_state desc "
+						+ "limit 3) a)"
+				).getResultList();
 	}
 	
 }

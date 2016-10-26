@@ -26,6 +26,23 @@ public class AlarmService {
 	@Scheduled(cron="* */50 * * * ?")
 	public void triggerAlarm(){
 		processConfiguredAlarms();
+		processGeneralAlarms();
+	}
+
+	/**
+	 * 
+	 */
+	private void processGeneralAlarms() {
+		List<Object[]> devDown = this.ReportManager.getDevicesDown();
+		Iterator<Object[]> itDevs = devDown.iterator();
+		while (itDevs.hasNext()){
+			Object[] dev = itDevs.next();
+			MailManager.sendAlarmMail(String.valueOf(dev[0]), this.getAdminEmailForClient(Integer.parseInt(String.valueOf(dev[1]))));
+		}
+	}
+
+	private String getAdminEmailForClient(Integer client) {
+		return this.ReportManager.getAdminDestinationsForClient(client);
 	}
 
 	/**
