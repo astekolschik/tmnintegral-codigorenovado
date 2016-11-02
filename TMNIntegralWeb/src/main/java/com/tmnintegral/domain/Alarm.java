@@ -4,9 +4,11 @@
 package com.tmnintegral.domain;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.json.Json;
 import javax.json.JsonObject;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -55,6 +58,9 @@ public class Alarm implements Serializable{
 	@JoinColumn(name="client_id")
 	private Client client;
 	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="alarm", cascade= {CascadeType.PERSIST, CascadeType.MERGE})
+	private Set<AlarmSent> alarmSents;
+
 	/**
 	 * 
 	 */
@@ -202,5 +208,19 @@ public class Alarm implements Serializable{
 
 	public void setUmbral(Integer umbral) {
 		this.umbral = umbral;
+	}
+
+	/**
+	 * @return the alarmSents
+	 */
+	public Set<AlarmSent> getAlarmSents() {
+		return alarmSents;
+	}
+
+	/**
+	 * @param alarmSents the alarmSents to set
+	 */
+	public void setAlarmSents(Set<AlarmSent> alarmSents) {
+		this.alarmSents = alarmSents;
 	}
 }

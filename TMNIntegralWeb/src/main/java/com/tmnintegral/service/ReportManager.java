@@ -21,9 +21,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.tmnintegral.domain.Alarm;
+import com.tmnintegral.domain.AlarmSent;
 import com.tmnintegral.domain.InterfaceStatus;
 import com.tmnintegral.domain.User;
-import com.tmnintegral.repository.InterfaceDao;
 import com.tmnintegral.repository.ReportDao;
 import com.tmnintegral.repository.UserDao;
 
@@ -40,8 +40,6 @@ public class ReportManager implements Serializable{
 	@Autowired
 	private ReportDao reportDao;
 	@Autowired
-	private InterfaceDao interfaceDao;
-	@Autowired
 	private UserDao userDao;
 
 	/**
@@ -52,12 +50,17 @@ public class ReportManager implements Serializable{
 		return reportDao.getReportNames();
 	}
 	
-	public List<InterfaceStatus> getAlarmsSent(){
-		return this.interfaceDao.getInterfaceAlarmed();
+	public void saveAlarmSent(AlarmSent is){
+		this.reportDao.saveAlarmSent(is);
 	}
 	
-	public List<InterfaceStatus> getAlarmsSentInTheLastHour(){
-		return this.interfaceDao.getInterfaceAlarmedInTheLastHour();
+	
+	public List<AlarmSent> getAlarmsSent(){
+		return this.reportDao.getAlarmsSent();
+	}
+	
+	public List<AlarmSent> getAlarmsSentInTheLastHour(){
+		return this.reportDao.getAlarmsInTheLastHour();
 	}
 	
 	
@@ -67,14 +70,6 @@ public class ReportManager implements Serializable{
 	public void setReportDao(ReportDao reportDao) {
 		this.reportDao = reportDao;
 	}
-
-	/**
-	 * @param interfaceDao the interfaceDao to set
-	 */
-	public void setInterfaceDao(InterfaceDao interfaceDao) {
-		this.interfaceDao = interfaceDao;
-	}
-
 
 	/**
 	 * Obtiene la informacion para los reportes basandose en tipo de reporte, fechas y equipos seleccionados por el usuario

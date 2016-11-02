@@ -64,13 +64,11 @@
 							<!-- /.box-header -->
 							<div class="box-body">
 								<ul class="todo-list">
-									<c:forEach items="${model.alarms}" var="a">
+									<c:forEach items="${model.alarms}" var="alarmsent">
 										<li>
 											<span class="handle"> <i class="fa fa-ellipsis-v"></i> <i class="fa fa-ellipsis-v"></i></span> 
-											<span class="text">{$a.elementName}</span> 
-											<div class="tools">
-												<i class="fa fa-edit" onclick="javascript:displayAlarmInfo({$a.id});"></i>
-											</div>
+											<span class="text">${alarmsent.id}</span>
+											<span class="text">${alarmsent.datesent}</span> 
 										</li>
 									</c:forEach>
 								</ul>

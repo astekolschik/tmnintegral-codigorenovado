@@ -409,9 +409,9 @@ function deleteRed(){
 }
 
 function agregarRed(){
-	nombre = $('#nombre').val();
-	enabled =  $('#enabled').val() == 'on' ? 1 : 0
-	descripcion = $('#descripcion').val();
+	var nombre = $('#nombre').val();
+	var enabled =  $('#enabled').val() == 'on' ? 1 : 0
+	var descripcion = $('#descripcion').val();
 	
 	$('#main-content').empty();
 	$('#main-content').load(('/TMNIntegralWeb/inventory/updateRed.htm?network=' + nombre

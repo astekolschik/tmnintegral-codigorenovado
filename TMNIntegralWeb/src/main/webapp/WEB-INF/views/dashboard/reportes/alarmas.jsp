@@ -24,22 +24,24 @@
 				<table id="alarmasTable" class="table table-bordered table-striped">
 					<thead>
 						<tr>
-							<td>Elemento</td>
-							<td>Tipo de Alarma</td>
+							<td>Id</td>
+							<td>Variable</td>
+							<td>Equipo</td>
 							<td>Última actualización</td>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach items="${model.alarmas}" var="a">
 							<tr>
-								<td>${a.elementName}</td>
-								<td>${a.valor}</td>
-								<td>${a.lastUpdateDate}</td>
+								<td>${a.id}</td>
+								<td>${a.alarm.idVariable}</td>
+								<td>${a.alarm.idVariable}</td>
+								<td>${a.alarm.elementName}</td>
+								<td>${a.datesent}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmModal">Eliminar</button>
 			</div>
 		</div>
 	</div>

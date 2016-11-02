@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import com.tmnintegral.domain.Alarm;
+import com.tmnintegral.domain.AlarmSent;
 
 /**
  * @author Agustina
@@ -23,7 +24,7 @@ public class AlarmService {
 	/**
 	 * Chequea las alarmas 
 	 */
-	@Scheduled(cron="* */50 * * * ?")
+	@Scheduled(cron="* */10 * * * ?")
 	public void triggerAlarm(){
 		processConfiguredAlarms();
 		processGeneralAlarms();
@@ -55,6 +56,9 @@ public class AlarmService {
 		while (itAlarms.hasNext()){
 			a = itAlarms.next();
 			this.processAlarm(a);
+			AlarmSent sent = new AlarmSent();
+			sent.setAlarm(a);
+			this.ReportManager.saveAlarmSent(sent);
 		}
 	}
 	

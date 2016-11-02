@@ -5,6 +5,7 @@ package com.tmnintegral.repository.impl;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tmnintegral.domain.Alarm;
+import com.tmnintegral.domain.AlarmSent;
 import com.tmnintegral.domain.InterfaceStatus;
 import com.tmnintegral.repository.ReportDao;
 
@@ -151,10 +153,10 @@ public class JPAReportDao implements ReportDao {
 	@Transactional(readOnly = true)
     @SuppressWarnings("unchecked")
 	public List<InterfaceStatus> getStatus(int variableId, String elementName){
-		return em.createQuery("select is from InterfaceStatus is"
-				+ " where is.idVariable=" + variableId + " and is.elementName='" + elementName + "'"
-				+ " order by is.last_update_state desc"
-				+ " limit 3").getResultList();
+		return em.createQuery("select i from InterfaceStatus i"
+				+ " where i.idVariable=" + variableId + " and i.elementName='" + elementName + "'"
+				+ " order by i.last_update_state desc"
+				+ " ").setMaxResults(3).getResultList();
 	}
 
 	@Transactional(readOnly = true)
@@ -167,8 +169,8 @@ public class JPAReportDao implements ReportDao {
 						+ "where \"suma\"=0 "
 						+ "group by f.idVariable, f.elementName "
 						+ "order by f.last_update_state desc "
-						+ "limit 3) a)"
-				).getResultList();
+						+ ") a)"
+				).setMaxResults(3).getResultList();
 	}
 
 	@Transactional(readOnly = true)
@@ -182,8 +184,34 @@ public class JPAReportDao implements ReportDao {
 						+ "where \"suma\"=0 "
 						+ "group by f.idVariable, f.elementName "
 						+ "order by f.last_update_state desc "
-						+ "limit 3) a)"
-				).getResultList();
+						+ ") a)"
+				).setMaxResults(3).getResultList();
+	}
+
+	@Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+	public List<AlarmSent> getAlarmsInTheLastHour() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String eDate = sdf.format(new Date());
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.HOUR, -1);
+		String sDate = sdf.format(cal.getTime());
+		return em.createQuery("select a from AlarmSent a where a.datesent between '"
+				+ sDate
+				+ "' and '" + eDate + "'").getResultList();
+	}
+
+	@Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+	public List<AlarmSent> getAlarmsSent() {
+		return em.createQuery("select a from AlarmSent a order by a.datesent desc").getResultList();
+	}
+
+	@Transactional(readOnly = false)
+    @SuppressWarnings("unchecked")
+	public void saveAlarmSent(AlarmSent is) {
+		em.merge(is);
 	}
 	
 }

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tmnintegral.domain.AlarmSent;
 import com.tmnintegral.domain.InterfaceStatus;
 import com.tmnintegral.domain.User;
 import com.tmnintegral.service.InventoryManager;
@@ -66,7 +67,7 @@ public class LoginController {
 						session.setAttribute("user", u);
 						logManager.saveLoginLog(u.getId());
 						
-						List<InterfaceStatus> alarms = reportManager.getAlarmsSentInTheLastHour();
+						List<AlarmSent> alarms = reportManager.getAlarmsSentInTheLastHour();
 						myModel.put("alarms", alarms);
 						myModel.put("alarmsLastHr", alarms.size());
 						myModel.put("logs", logManager.getLastUserLogs(u.getId()));

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.tmnintegral.domain.Alarm;
+import com.tmnintegral.domain.AlarmSent;
 import com.tmnintegral.domain.InterfaceStatus;
 
 /**
@@ -35,5 +36,11 @@ public interface ReportDao {
 	public List<Object[]> getDevicesDown();
 	
 	public List<Object[]> getInterfacesDown();
+
+	public List<AlarmSent> getAlarmsInTheLastHour();
+
+	public List<AlarmSent> getAlarmsSent();
+
+	public void saveAlarmSent(AlarmSent is);
 	
 }
