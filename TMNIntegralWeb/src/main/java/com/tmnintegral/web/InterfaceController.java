@@ -74,16 +74,16 @@ public class InterfaceController {
 		String status = request.getParameter("status");
 		String alias = request.getParameter("alias");
 		String name = request.getParameter("name");
-		Integer shelf= (request.getParameter("shelf")!= "")?Integer.parseInt(request.getParameter("shelf")):null;
-		Integer slot = (request.getParameter("slot")!= "")?Integer.parseInt(request.getParameter("slot")):null;
-		Integer port = (request.getParameter("port")!= "")?Integer.parseInt(request.getParameter("port")):null;
-		Integer subport = (request.getParameter("subport")!= "")?Integer.parseInt(request.getParameter("subport")):null;
+		Integer shelf= (request.getParameter("shelf")!= null && !request.getParameter("shelf").equals(""))?Integer.parseInt(request.getParameter("shelf")):null;
+		Integer slot = (request.getParameter("slot")!= null && !request.getParameter("slot").equals(""))?Integer.parseInt(request.getParameter("slot")):null;
+		Integer port = (request.getParameter("port")!= null && !request.getParameter("port").equals(""))?Integer.parseInt(request.getParameter("port")):null;
+		Integer subport = (request.getParameter("subport")!= null && !request.getParameter("subport").equals(""))?Integer.parseInt(request.getParameter("subport")):null;
 		String type = request.getParameter("type");
-		Integer device = (request.getParameter("device")!= "")?Integer.parseInt(request.getParameter("device")):null;
-		Integer ifIndex = (request.getParameter("ifIndex")!= "")?Integer.parseInt(request.getParameter("ifIndex")):null;
+		Integer device = (request.getParameter("device")!= null && !request.getParameter("device").equals(""))?Integer.parseInt(request.getParameter("device")):null;
+		Integer ifIndex = (request.getParameter("ifIndex")!= null && !request.getParameter("ifIndex").equals(""))?Integer.parseInt(request.getParameter("ifIndex")):null;
 		String ipAdEntIfIndex = request.getParameter("ipAdEntIfIndex");
 		String mac = request.getParameter("mac");
-		Integer ip_next_hop = (request.getParameter("ip_next_hop")!= "")?Integer.parseInt(request.getParameter("ip_next_hop")):null;
+		String ip_next_hop = request.getParameter("ip_next_hop");
 		String mac_next_hop = request.getParameter("mac_next_hop");
 		
 		

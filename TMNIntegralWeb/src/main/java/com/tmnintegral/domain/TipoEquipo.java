@@ -153,12 +153,12 @@ public class TipoEquipo implements Serializable{
 	public JsonObject toJSON(){
 		JsonObject obj = Json.createObjectBuilder()
 			.add("id", this.getId())
-			.add("descripcion", this.getDescription())
-			.add("defaultComm", this.getDefault_comm_read())
-			.add("defaultSNMP", this.getDefault_snmp_version())
-			.add("driver", this.getDriver())
-			.add("technology", this.getTechnology())
-			.add("vendor", this.getVendor()).build();
+			.add("descripcion", this.getDescription() != null ? this.getDescription() : "")
+			.add("defaultComm", this.getDefault_comm_read()!= null ? this.getDefault_comm_read() : "")
+			.add("defaultSNMP", this.getDefault_snmp_version()!= null ? this.getDefault_snmp_version() : "")
+			.add("driver", this.getDriver()!= null ? this.getDriver() : "")
+			.add("technology", this.getTechnology()!= null ? this.getTechnology() : "")
+			.add("vendor", this.getVendor()!= null ? this.getVendor() : "").build();
 		return obj;
 	}
 

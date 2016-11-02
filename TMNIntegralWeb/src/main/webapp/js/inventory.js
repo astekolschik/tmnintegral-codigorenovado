@@ -26,20 +26,20 @@ function displayLisTipoEquipo(){
 }
 
 function agregarTipoEquipo(){
-	descripcion = $('#descripcion').val();
-	defaultComm = $('#defaultComm').val();
-	defaultSNMP = $('#defaultSNMP').val();
-	driver = $('#driver').val();
-	technology = $('#technology').val();
-	vendor = $('#vendor').val();
+	var descripcion = $('#descripcion').val();
+	var defaultComm = $('#defaultComm').val();
+	var defaultSNMP = $('#defaultSNMP').val();
+	var driver = $('#driver').val();
+	var technology = $('#technology').val();
+	var vendor = $('#vendor').val();
 	
 	$('#main-content').empty();
-	$('#main-content').load('/TMNIntegralWeb/inventory/updateTipoEquipo.htm?descripcion=' + descripcion
+	$('#main-content').load(('/TMNIntegralWeb/inventory/updateTipoEquipo.htm?descripcion=' + descripcion
 																			+ '&defaultComm=' + defaultComm
 																			+ '&defaultSNMP=' + defaultSNMP
 																			+ '&driver=' + driver
 																			+ '&technology=' + technology
-																			+ '&vendor=' + vendor, function(){
+																			+ '&vendor=' + vendor).replace(/ /g, "%20"), function(){
 		$('#nuevoequipotab').click(function(event){
 		    if ($(this).hasClass('disabled')) {
 		        return false;
@@ -121,21 +121,21 @@ function displayTipoEquipo(idTipoEquipo, isEdition){
 }
 
 function actualizarTipoEquipo(){
-	id = $('#display-id').val();
-	descripcion = $('#display-descripcion').val();
-	defaultComm = $('#display-defaultComm').val();
-	defaultSNMP = $('#display-defaultSNMP').val();
-	driver = $('#display-driver').val();
-	technology = $('#display-technology').val();
-	vendor = $('#display-vendor').val();
+	var id = $('#display-id').val();
+	var descripcion = $('#display-descripcion').val();
+	var defaultComm = $('#display-defaultComm').val();
+	var defaultSNMP = $('#display-defaultSNMP').val();
+	var driver = $('#display-driver').val();
+	var technology = $('#display-technology').val();
+	var vendor = $('#display-vendor').val();
 	
 	$('#main-content').empty();
-	$('#main-content').load('/TMNIntegralWeb/inventory/updateTipoEquipo.htm?idequipo=' + id + '&descripcion=' + descripcion
+	$('#main-content').load(('/TMNIntegralWeb/inventory/updateTipoEquipo.htm?idequipo=' + id + '&descripcion=' + descripcion
 																			+ '&defaultComm=' + defaultComm
 																			+ '&defaultSNMP=' + defaultSNMP
 																			+ '&driver=' + driver
 																			+ '&technology=' + technology
-																			+ '&vendor=' + vendor, function(){
+																			+ '&vendor=' + vendor).replace(/ /g, "%20"), function(){
 		$('#nuevoequipotab').click(function(event){
 		    if ($(this).hasClass('disabled')) {
 		        return false;
@@ -222,23 +222,20 @@ function agregarEquipo(){
 	var release = $('#release').val();
 	var tipoEquipoId = $('#tipoEquipoId').val();
 	var networkId = $('#networkId').val();
-	var configuracionId = $('#configuracionId').val();
 	var enabled = $('#enabled').prop('checked') ? 1 : 0;
 	
 	$('#main-content').empty();
-	$('#main-content').load('/TMNIntegralWeb/inventory/updateEquipo.htm?communityRead=' + descripcion
-																			+ '&hostName=' + hostName
-																			+ '&iosType=' + iosType
-																			+ '&iosVersion=' + iosVersion
-																			+ '&ip=' + ip
-																			+ '&model=' + modelo
-																			+ '&serialNumber=' + serialNumber
-																			+ '&softwareRelease=' + release
-																			+ '&id_device_type=' + tipoEquipoId
-																			+ '&id_network=' + networkId
-																			+ '&id_configuration=' + configuracionId
-																			//+ '&id_equipment_info=' + eqInfoId
-																			+ '&enable=' + enabled, function(){
+	$('#main-content').load(('/TMNIntegralWeb/inventory/updateEquipo.htm?communityRead=' + descripcion
+										+ '&hostName=' + hostName
+										+ '&iosType=' + iosType
+										+ '&iosVersion=' + iosVersion
+										+ '&ip=' + ip
+										+ '&model=' + modelo
+										+ '&serialNumber=' + serialNumber
+										+ '&softwareRelease=' + release
+										+ '&id_device_type=' + tipoEquipoId
+										+ '&id_network=' + networkId
+										+ '&enable=' + enabled).replace(/ /g, "%20"), function(){
 		$('#goToAgregarEquipo').click(function() {
 			  $('#equipoTabs a[href="#nuevoequipo"]').tab('show');
 			});
@@ -290,8 +287,6 @@ function displayEquipo(idEquipo, isEdition){
         	$("#display-tipoEquipoId").prop('disabled', !isEdition);
         	$('#display-networkId').val(response.id_network);
         	$("#display-networkId").prop('disabled', !isEdition);
-        	$('#display-configuracionId').val(response.id_configuration);
-        	$("#display-configuracionId").prop('disabled', !isEdition);
         	if (response.enabled != '0')
         		$('#display-enabled').prop('checked', true);
         	else
@@ -321,11 +316,10 @@ function actualizarEquipo(){
 	var release = $('#display-release').val();
 	var tipoEquipoId = $('#display-tipoEquipoId').val();
 	var networkId = $('#display-networkId').val();
-	var configuracionId = $('#display-configuracionId').val();
 	var enabled = $('#display-enabled').prop('checked') ? 1 : 0;
 	
 	$('#main-content').empty();
-	$('#main-content').load('/TMNIntegralWeb/inventory/updateEquipo.htm?idDevice=' + id +'&communityRead=' + descripcion
+	$('#main-content').load(('/TMNIntegralWeb/inventory/updateEquipo.htm?idDevice=' + id +'&communityRead=' + descripcion
 																			+ '&hostName=' + hostName
 																			+ '&iosType=' + iosType
 																			+ '&iosVersion=' + iosVersion
@@ -335,9 +329,7 @@ function actualizarEquipo(){
 																			+ '&softwareRelease=' + release
 																			+ '&id_device_type=' + tipoEquipoId
 																			+ '&id_network=' + networkId
-																			+ '&id_configuration=' + configuracionId
-																			//+ '&id_equipment_info=' + eqInfoId
-																			+ '&enable=' + enabled, function(){
+																			+ '&enable=' + enabled).replace(/ /g, "%20"), function(){
 		$('#goToAgregarEquipo').click(function() {
 			  $('#equipoTabs a[href="#nuevoequipo"]').tab('show');
 			});
@@ -422,9 +414,9 @@ function agregarRed(){
 	descripcion = $('#descripcion').val();
 	
 	$('#main-content').empty();
-	$('#main-content').load('/TMNIntegralWeb/inventory/updateRed.htm?network=' + nombre
+	$('#main-content').load(('/TMNIntegralWeb/inventory/updateRed.htm?network=' + nombre
 																			+ '&enabled=' + enabled
-																			+ '&description=' + descripcion, function(){
+																			+ '&description=' + descripcion).replace(/ /g, "%20"), function(){
 		$('#goToAgregarRed').click(function() {
 			  $('#redesTabs a[href="#nuevared"]').tab('show');
 			});
@@ -478,15 +470,15 @@ function displayRed(redId, isEdition){
 
 function actualizarRed(){
 	
-	id = $('#display-idRed').val();
-	nombre = $('#display-nombre').val();
-	enabled = $('#display-enabled').prop('checked') ? 1 : 0;
-	descripcion = $('#display-descripcion').val();
+	var id = $('#display-idRed').val();
+	var nombre = $('#display-nombre').val();
+	var enabled = $('#display-enabled').prop('checked') ? 1 : 0;
+	var descripcion = $('#display-descripcion').val();
 	
 	$('#main-content').empty();
-	$('#main-content').load('/TMNIntegralWeb/inventory/updateRed.htm?idred=' + id + '&network=' + nombre
+	$('#main-content').load(('/TMNIntegralWeb/inventory/updateRed.htm?idred=' + id + '&network=' + nombre
 																			+ '&enabled=' + enabled
-																			+ '&description=' + descripcion, function(){
+																			+ '&description=' + descripcion).replace(/ /g, "%20"), function(){
 		$('#goToAgregarRed').click(function() {
 			  $('#redesTabs a[href="#nuevared"]').tab('show');
 			});
@@ -566,24 +558,24 @@ function deleteInterface(){
 }
 
 function agregarInterface(){
-	nombre = $('#nombre').val();
-	status = $('#status').val();
-	alias = $('#alias').val();
-	shelf = $('#shelf').val();
-	slot = $('#slot').val();
-	puerto = $('#puerto').val();
-	subpuerto = $('#subpuerto').val();
-	tipo = $('#tipo').val();
-	idDevice = $('#idDevice').val();
-	ifIndex = $('#ifIndex').val();
-	ifIndexIp = $('#ifIndexIp').val();
-	mac = $('#mac').val();
-	ipnexthop = $('#ipnexthop').val();
-	macnexthop = $('#macnexthop').val();
+	var nombre = $('#nombre').val();
+	var status = $('#status').val();
+	var alias = $('#alias').val();
+	var shelf = $('#shelf').val();
+	var slot = $('#slot').val();
+	var puerto = $('#puerto').val();
+	var subpuerto = $('#subpuerto').val();
+	var tipo = $('#tipo').val();
+	var idDevice = $('#idDevice').val();
+	var ifIndex = $('#ifIndex').val();
+	var ifIndexIp = $('#ifIndexIp').val();
+	var mac = $('#mac').val();
+	var ipnexthop = $('#ipnexthop').val();
+	var macnexthop = $('#macnexthop').val();
 	
 	
 	$('#main-content').empty();
-	$('#main-content').load('/TMNIntegralWeb/inventory/updateInterface.htm?status=' + status
+	$('#main-content').load(('/TMNIntegralWeb/inventory/updateInterface.htm?status=' + status
 																			+ '&alias=' + alias
 																			+ '&name=' + nombre
 																			+ '&shelf=' + shelf
@@ -596,7 +588,7 @@ function agregarInterface(){
 																			+ '&ipAdEntIfIndex=' + ifIndexIp
 																			+ '&mac=' + mac
 																			+ '&ip_next_hop=' + ipnexthop
-																			+ '&mac_next_hop=' + macnexthop, function(){
+																			+ '&mac_next_hop=' + macnexthop).replace(/ /g, "%20"), function(){
 		$('#goToAgregarInterface').click(function() {
 			  $('#interfacesTabs a[href="#nuevaInterfaz"]').tab('show');
 			});
@@ -669,24 +661,24 @@ function displayInterfaz(idInterface, isEdition){
 }
 
 function actualizarInterfaz(){
-	id = $('#display-id').val();
-	nombre = $('#display-nombre').val();
-	status = $('#display-status').val();
-	alias = $('#display-alias').val();
-	shelf = $('#display-shelf').val();
-	slot = $('#display-slot').val();
-	puerto = $('#display-puerto').val();
-	subpuerto = $('#display-subpuerto').val();
-	tipo = $('#display-tipo').val();
-	idDevice = $('#display-idDevice').val();
-	ifIndex = $('#display-ifIndex').val();
-	ifIndexIp = $('#display-ifIndexIp').val();
-	mac = $('#display-mac').val();
-	ipnexthop = $('#display-ipnexthop').val();
-	macnexthop = $('#display-macnexthop').val();
+	var id = $('#display-id').val();
+	var nombre = $('#display-nombre').val();
+	var status = $('#display-status').val();
+	var alias = $('#display-alias').val();
+	var shelf = $('#display-shelf').val();
+	var slot = $('#display-slot').val();
+	var puerto = $('#display-puerto').val();
+	var subpuerto = $('#display-subpuerto').val();
+	var tipo = $('#display-tipo').val();
+	var idDevice = $('#display-idDevice').val();
+	var ifIndex = $('#display-ifIndex').val();
+	var ifIndexIp = $('#display-ifIndexIp').val();
+	var mac = $('#display-mac').val();
+	var ipnexthop = $('#display-ipnexthop').val();
+	var macnexthop = $('#display-macnexthop').val();
 	
 	$('#main-content').empty();
-	$('#main-content').load('/TMNIntegralWeb/inventory/updateInterface.htm?idInterfaz=' + id + '&status=' + status
+	$('#main-content').load(('/TMNIntegralWeb/inventory/updateInterface.htm?idInterfaz=' + id + '&status=' + status
 													+ '&alias=' + alias
 													+ '&name=' + nombre
 													+ '&shelf=' + shelf
@@ -699,7 +691,7 @@ function actualizarInterfaz(){
 													+ '&ipAdEntIfIndex=' + ifIndexIp
 													+ '&mac=' + mac
 													+ '&ip_next_hop=' + ipnexthop
-													+ '&mac_next_hop=' + macnexthop, function(){
+													+ '&mac_next_hop=' + macnexthop).replace(/ /g, "%20"), function(){
 			$('#goToAgregarInterface').click(function() {
 			$('#interfacesTabs a[href="#nuevaInterfaz"]').tab('show');
 			});

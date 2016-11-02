@@ -25,7 +25,7 @@ public class MailManager implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private static String username = "contacto.tmnintegral@gmail.com";
-	private static String password = "caece2015";
+	private static String password = "TMNIntegral2016";
 
 	
 	public static boolean sendPasswordMail(String name, String email, String motivo, String text){    

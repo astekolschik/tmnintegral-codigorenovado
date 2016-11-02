@@ -43,7 +43,7 @@ public class Interface implements Serializable {
 	private Integer ifIndex;
 	private String ipAdEntIfIndex;
 	private String mac;
-	private Integer ip_next_hop;
+	private String ip_next_hop;
 	private String mac_next_hop;
 	private Date last_update_date;
 	
@@ -113,7 +113,7 @@ public class Interface implements Serializable {
 		this.ifIndex = ifIndex;
 	}
 
-	public void setIp_next_hop(Integer ip_next_hop) {
+	public void setIp_next_hop(String ip_next_hop) {
 		this.ip_next_hop = ip_next_hop;
 	}
 
@@ -321,7 +321,7 @@ public class Interface implements Serializable {
 	/**
 	 * @return the ip_next_hop
 	 */
-	public Integer getIp_next_hop() {
+	public String getIp_next_hop() {
 		return ip_next_hop;
 	}
 	

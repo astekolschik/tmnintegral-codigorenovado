@@ -282,36 +282,36 @@ public class InventoryManager implements Serializable{
 	
 	public Interface modificarInterface(Integer id, String adminStatus, String alias, String name, Integer shelf, Integer slot, 
 			Integer port, Integer subPort, String type, Integer deviceId, Integer ifIndex, String ipAdEntIfIndex, 
-			String mac, Integer ip_next_hop, String mac_next_hop){
+			String mac, String ip_next_hop, String mac_next_hop){
 		Interface i = this.getInterface(id);
 		if (i != null){
-			if (!i.getAdminStatus().equals(adminStatus))
+			if (i.getAdminStatus() == null || !i.getAdminStatus().equals(adminStatus))
 				i.setAdminStatus(adminStatus);
-			if (!i.getAlias().equals(alias))
+			if (i.getAlias() == null || !i.getAlias().equals(alias))
 				i.setAlias(alias);
-			if (!i.getName().equals(name))
+			if (i.getName() == null || !i.getName().equals(name))
 				i.setName(name);
-			if (i.getShelf() != (shelf))
+			if (i.getShelf() == null || i.getShelf() != (shelf))
 				i.setShelf(shelf);
-			if (i.getSlot() != (slot))
+			if (i.getSlot() == null || i.getSlot() != (slot))
 				i.setSlot(slot);
-			if (i.getPort() != (port))
+			if (i.getPort() == null || i.getPort() != (port))
 				i.setPort(port);
-			if (i.getSubPort() != (subPort))
+			if (i.getSubPort() == null || i.getSubPort() != (subPort))
 				i.setSubPort(subPort);
-			if (!i.getType().equals(type))
+			if (i.getType() == null || !i.getType().equals(type))
 				i.setType(type);
-			if (i.getDevice().getDevice_id() != deviceId)
+			if (i.getDevice() == null || i.getDevice().getDevice_id() != deviceId)
 				i.setDevice(new Device(deviceId));
-			if (i.getIfIndex()!= ifIndex)
+			if (i.getIfIndex() == null || i.getIfIndex()!= ifIndex)
 				i.setIfIndex(ifIndex);
-			if (!i.getIpAdEntIfIndex().equals(ipAdEntIfIndex))
+			if (i.getIpAdEntIfIndex() == null || !i.getIpAdEntIfIndex().equals(ipAdEntIfIndex))
 				i.setIpAdEntIfIndex(ipAdEntIfIndex);
-			if (i.getMac()!= mac)
+			if (i.getMac() == null || i.getMac()!= mac)
 				i.setMac(mac);
-			if (i.getIp_next_hop()!=ip_next_hop)
+			if (i.getIp_next_hop() == null || i.getIp_next_hop()!=ip_next_hop)
 				i.setIp_next_hop(ip_next_hop);
-			if (i.getMac_next_hop()!= mac_next_hop)
+			if (i.getMac_next_hop() == null || i.getMac_next_hop()!= mac_next_hop)
 				i.setMac_next_hop(mac_next_hop);
 			
 			i.setLast_update_date(new Date());
@@ -320,9 +320,9 @@ public class InventoryManager implements Serializable{
 		return i;
 	}
 	
-	public Interface crearInterface(String adminStatus, String alias, String name, int shelf, int slot, 
-			int port, int subPort, String type, int deviceId, int ifIndex, String ipAdEntIfIndex, 
-			String mac, int ip_next_hop, String mac_next_hop, Client client){
+	public Interface crearInterface(String adminStatus, String alias, String name, Integer shelf, Integer slot, 
+			Integer port, Integer subPort, String type, Integer deviceId, Integer ifIndex, String ipAdEntIfIndex, 
+			String mac, String ip_next_hop, String mac_next_hop, Client client){
 		Interface i = new Interface();
 		i.setAdminStatus(adminStatus);
 		i.setAlias(alias);

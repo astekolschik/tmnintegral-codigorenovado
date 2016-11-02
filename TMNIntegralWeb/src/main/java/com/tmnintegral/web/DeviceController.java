@@ -80,9 +80,11 @@ public class DeviceController {
 		String model = request.getParameter("model");
 		String serialNumber = request.getParameter("serialNumber");
 		String softwareRelease = request.getParameter("softwareRelease");
-		Integer id_device_type = Integer.parseInt(request.getParameter("id_device_type"));
-		Integer id_network = Integer.parseInt(request.getParameter("id_network"));
-		Integer id_configuration = Integer.parseInt(request.getParameter("id_configuration"));
+		Integer id_device_type = null, id_network = null, id_configuration = null;
+		if (request.getParameter("id_device_type") != null && !request.getParameter("id_device_type").equals("-1"))
+			id_device_type = Integer.parseInt(request.getParameter("id_device_type"));
+		if (request.getParameter("id_network") != null && !request.getParameter("id_network").equals("-1"))
+			id_network = Integer.parseInt(request.getParameter("id_network"));
 		String enable = request.getParameter("enable");
 		
 		if (idDevice != null)

@@ -98,28 +98,28 @@
 							<div class="form-group">
 								<label for="shelf" class="col-sm-2 control-label">Shelf</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="shelf" required="required"
+									<input type="number" class="form-control" id="shelf" required="required"
 										name="shelf" placeholder="Shelf">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="slot" class="col-sm-2 control-label">Slot</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="slot" required="required"
+									<input type="number" class="form-control" id="slot" required="required"
 										name="slot" placeholder="Slot">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="puerto" class="col-sm-2 control-label">Puerto</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="puerto" required="required"
+									<input type="number" class="form-control" id="puerto" required="required"
 										name="puerto" placeholder="Puerto">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="subpuerto" class="col-sm-2 control-label">Sub Puerto</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="subpuerto" required="required"
+									<input type="number" class="form-control" id="subpuerto" required="required"
 										name="subpuerto" placeholder="Sub Puerto">
 								</div>
 							</div>
@@ -144,7 +144,7 @@
 							<div class="form-group">
 								<label for="ifIndex" class="col-sm-2 control-label">IF Index</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="ifIndex" required="required"
+									<input type="number" class="form-control" id="ifIndex" required="required"
 										name="ifIndex" placeholder="if Index">
 								</div>
 							</div>
@@ -217,28 +217,28 @@
 							<div class="form-group">
 								<label for="display-shelf" class="col-sm-2 control-label">Shelf</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="display-shelf" required="required"
+									<input type="number" class="form-control" id="display-shelf" required="required"
 										name="display-shelf" placeholder="Shelf">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="display-slot" class="col-sm-2 control-label">Slot</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="display-slot" required="required"
+									<input type="number" class="form-control" id="display-slot" required="required"
 										name="display-slot" placeholder="Slot">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="display-puerto" class="col-sm-2 control-label">Puerto</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="display-puerto" required="required"
+									<input type="number" class="form-control" id="display-puerto" required="required"
 										name="display-puerto" placeholder="Puerto">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="display-subpuerto" class="col-sm-2 control-label">Sub Puerto</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="display-subpuerto" required="required"
+									<input type="number" class="form-control" id="display-subpuerto" required="required"
 										name="display-subpuerto" placeholder="Sub Puerto">
 								</div>
 							</div>

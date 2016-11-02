@@ -109,27 +109,27 @@
 					</section>
 					<!-- /.Left col -->
 					<!-- right col (We are only adding the ID to make the widgets sortable)-->
-					<section class="col-lg-5 connectedSortable">
-						<!-- solid sales graph -->
-						<div class="box box-solid bg-teal-gradient">
-							<div class="box-header">
-								<i class="fa fa-th"></i>
-								<h3 class="box-title">Reporte de efectividad</h3>
-								<div class="box-tools pull-right">
-									<button class="btn bg-teal btn-sm" data-widget="collapse">
-										<i class="fa fa-minus"></i>
-									</button>
-									<button class="btn bg-teal btn-sm" data-widget="remove">
-										<i class="fa fa-times"></i>
-									</button>
-								</div>
-							</div>
-							<div class="box-body border-radius-none">
-								<div class="chart" id="line-chart" style="height: 250px;"></div>
-							</div>
-						</div>
-						<!-- /.box -->
-					</section>
+<!-- 					<section class="col-lg-5 connectedSortable"> -->
+<!-- 						solid sales graph -->
+<!-- 						<div class="box box-solid bg-teal-gradient"> -->
+<!-- 							<div class="box-header"> -->
+<!-- 								<i class="fa fa-th"></i> -->
+<!-- 								<h3 class="box-title">Reporte de efectividad</h3> -->
+<!-- 								<div class="box-tools pull-right"> -->
+<!-- 									<button class="btn bg-teal btn-sm" data-widget="collapse"> -->
+<!-- 										<i class="fa fa-minus"></i> -->
+<!-- 									</button> -->
+<!-- 									<button class="btn bg-teal btn-sm" data-widget="remove"> -->
+<!-- 										<i class="fa fa-times"></i> -->
+<!-- 									</button> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 							<div class="box-body border-radius-none"> -->
+<!-- 								<div class="chart" id="line-chart" style="height: 250px;"></div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						/.box -->
+<!-- 					</section> -->
 					<!-- right col -->
 				</div>
 				<!-- /.row (main row) -->
