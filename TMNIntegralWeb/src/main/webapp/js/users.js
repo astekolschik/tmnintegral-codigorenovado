@@ -93,9 +93,36 @@ function actualizarDatosUsuario(){
 
 }
 
+function checkUserHasRole(username, adminlist, userlist, reportlist){
+	for (var i in adminlist){
+		if(adminlist[i] == username)
+			return true;
+	}
+	
+	for (var i in userlist){
+		if(userlist[i] == username)
+			return true;
+	}
+	
+	for (var i in reportlist){
+		if(reportlist[i] == username)
+			return true;
+	}
+	
+	return false;
+}
 
+function checkUsersRoles(listOfUsers, adminlist, userlist, reportlist){
+	for (var i = 0; i < listOfUsers.size(); i++){
+		if (!checkUserHasRole(listOfUsers[i].value, adminlist, userlist, reportlist))
+			return false;
+	}
+	return true;
+}
 
 function actualizarUsuarios(){
+	var listOfUsers = $(".clientList");
+	
 	var adminList = [];
 	$("input:checkbox[name=adminCheck]:checked").each(function(){
 	    adminList.push($(this).val());
@@ -110,6 +137,11 @@ function actualizarUsuarios(){
 	$("input:checkbox[name=reportCheck]:checked").each(function(){
 	    reportList.push($(this).val());
 	});
+	
+	if (!checkUsersRoles(listOfUsers, adminList, userList, reportList)){
+		alert('Los usuarios deben tener al menos un rol asignado');
+		return false;
+	}
 
 	$('#main-content').empty();
 	$('#main-content').load('/TMNIntegralWeb/user/enableUser.htm?adminUserList=' + adminList + '&userList=' + userList + '&reportList=' + reportList,
