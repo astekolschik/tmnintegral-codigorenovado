@@ -24,7 +24,7 @@ public class AlarmService {
 	/**
 	 * Chequea las alarmas 
 	 */
-	@Scheduled(cron="* */10 * * * ?")
+	@Scheduled(cron="* */50 * * * ?")
 	public void triggerAlarm(){
 		processConfiguredAlarms();
 		processGeneralAlarms();
