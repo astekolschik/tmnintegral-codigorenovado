@@ -100,10 +100,9 @@ public class UserController {
             throws ServletException, IOException {
 
 		Map<String, Object> myModel = new HashMap<String, Object>();
-		
+		User userobj;
 		if (request.getParameter("saveUser") == null){
-			User userobj = (User)(session.getAttribute("user"));
-			myModel.put("logs", logManager.getLastUserLogs(userobj.getId()));
+			userobj = (User)(session.getAttribute("user"));
 			myModel.put("userObj", userobj);
 		}else{
 			String username = ((User)(session.getAttribute("user"))).getUser_name();
@@ -115,13 +114,15 @@ public class UserController {
 			String notas = request.getParameter("notas");
 			
 			
-			User userobj = this.um.modificarUsuario(nombre, apellido, email, username, password, direccion, notas);
+			userobj = this.um.modificarUsuario(nombre, apellido, email, username, password, direccion, notas);
 			userobj.setPassword(password);
 			session.setAttribute("user", userobj);
 			myModel.put("userObj", userobj);
 			myModel.put("saveMessage", "Usuario actualizado con exito.");
 			myModel.put("context", true);
 		}
+		myModel.put("logs", logManager.getLastUserLogs(userobj.getId()));
+		
 		return new ModelAndView("dashboard/user/updateUser", "model", myModel);
     }
 	

@@ -45,6 +45,11 @@ function eliminarUsuarios(){
 	}
 }
 
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+
 function actualizarDatosUsuario(){
 	if (!createUserValidate())
 		return;
@@ -55,6 +60,24 @@ function actualizarDatosUsuario(){
 	var password = $('#password').val();
 	var direccion = $('#direccion').val();
 	var notas = $('#notas').val();
+	
+	//Validacion
+	if (!nombre || nombre == ''){
+		alert('Debe completar el nombre');
+		return;
+	}
+	if (!apellido || apellido == ''){
+		alert('Debe completar el apellido');
+		return;
+	}
+	if (!email || email == '' || !validateEmail(email)){
+		alert('Debe ingresar un email valido');
+		return;
+	}
+	if (!password || password == ''){
+		alert('Debe completar la contraseña.');
+		return;
+	}
 	
 	$('#main-content').empty();
 	$('#main-content').load(('/TMNIntegralWeb/user/updateUser.htm?nombre=' + nombre
