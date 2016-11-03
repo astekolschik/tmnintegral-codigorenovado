@@ -211,6 +211,12 @@ function deleteEquipo(){
 	});
 }
 
+function validateIp(ipaddress){  
+	if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ipaddress))  
+		return true;  
+	return false;
+}  
+
 function agregarEquipo(){
 	var descripcion = $('#descripcion').val();
 	var hostName = $('#hostName').val();
@@ -223,6 +229,23 @@ function agregarEquipo(){
 	var tipoEquipoId = $('#tipoEquipoId').val();
 	var networkId = $('#networkId').val();
 	var enabled = $('#enabled').prop('checked') ? 1 : 0;
+	
+	if (!descripcion || descripcion == ''){
+		alert('Debe completar la descripcion del equipo.');
+		return false;
+	}
+	if (!ip || ip == '' || !validateIp(ip)){
+		alert('Debe ingresar una IP valida para el equipo.');
+		return false;
+	}
+	if (!tipoEquipoId || tipoEquipoId == '-1'){
+		alert('Debe completar el tipo al que pertenece el equipo.');
+		return false;
+	}
+	if (!networkId || networkId == '-1'){
+		alert('Debe completar la red a la que pertenece el equipo.');
+		return false;
+	}
 	
 	$('#main-content').empty();
 	$('#main-content').load(('/TMNIntegralWeb/inventory/updateEquipo.htm?communityRead=' + descripcion
@@ -266,7 +289,6 @@ function displayEquipo(idEquipo, isEdition){
         success: function (response) {
         	$('#equipoTabs a[href="#editarequipo"]').tab('show');
         	$('#display-id').val(response.device_id);
-        	$("#display-id").prop('disabled', !isEdition);
         	$('#display-descripcion').val(response.communityRead);
         	$("#display-descripcion").prop('disabled', !isEdition);
         	$('#display-hostName').val(response.hostName);
@@ -317,6 +339,23 @@ function actualizarEquipo(){
 	var tipoEquipoId = $('#display-tipoEquipoId').val();
 	var networkId = $('#display-networkId').val();
 	var enabled = $('#display-enabled').prop('checked') ? 1 : 0;
+	
+	if (!descripcion || descripcion == ''){
+		alert('Debe completar la descripcion del equipo.');
+		return false;
+	}
+	if (!ip || ip == '' || !validateIp(ip)){
+		alert('Debe ingresar una IP valida para el equipo.');
+		return false;
+	}
+	if (!tipoEquipoId || tipoEquipoId == '-1'){
+		alert('Debe completar el tipo al que pertenece el equipo.');
+		return false;
+	}
+	if (!networkId || networkId == '-1'){
+		alert('Debe completar la red a la que pertenece el equipo.');
+		return false;
+	}
 	
 	$('#main-content').empty();
 	$('#main-content').load(('/TMNIntegralWeb/inventory/updateEquipo.htm?idDevice=' + id +'&communityRead=' + descripcion

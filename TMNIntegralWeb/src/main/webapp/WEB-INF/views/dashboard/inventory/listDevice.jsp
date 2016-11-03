@@ -76,63 +76,63 @@
 					<div class="tab-pane" id="nuevoequipo">
 						<form method="post" class="form-horizontal">
 							<div class="form-group">
-								<label for="descripcion" class="col-sm-2 control-label">Descripcion</label>
+								<label for="descripcion" class="col-sm-2 control-label">Descripcion *</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="descripcion" required="required"
-										name="descripcion" placeholder="descripcion">
+										name="descripcion" placeholder="descripcion" maxlength="10">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="hostName" class="col-sm-2 control-label">Nombre del host</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="hostName" required="required"
-										name="hostName" placeholder="Nombre del host">
+										name="hostName" placeholder="Nombre del host" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="iosType" class="col-sm-2 control-label">Tipo de IOS</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="iosType" required="required"
-										name="iosType" placeholder="Tipo de IOS">
+										name="iosType" placeholder="Tipo de IOS" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="iosVersion" class="col-sm-2 control-label">Version de IOS</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="iosVersion" required="required"
-										name="iosVersion" placeholder="Version de IOS">
+										name="iosVersion" placeholder="Version de IOS" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="ip" class="col-sm-2 control-label">IP</label>
+								<label for="ip" class="col-sm-2 control-label">IP *</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="ip" required="required"
-										name="ip" placeholder="IP">
+										name="ip" placeholder="IP" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="modelo" class="col-sm-2 control-label">Modelo</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="modelo" required="required"
-										name="modelo" placeholder="Modelo">
+										name="modelo" placeholder="Modelo" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="serialNumber" class="col-sm-2 control-label">Numero de serie</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="serialNumber" required="required"
-										name="serialNumber" placeholder="Numero de serie">
+										name="serialNumber" placeholder="Numero de serie" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="release" class="col-sm-2 control-label">Release</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="release" required="required"
-										name="release" placeholder="Release">
+										name="release" placeholder="Release" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="tipoEquipoId" class="col-sm-2 control-label">Tipo de equipo</label>
+								<label for="tipoEquipoId" class="col-sm-2 control-label">Tipo de equipo *</label>
 								<div class="col-sm-10">
 									<select class="form-control" id="tipoEquipoId" name="tipoEquipoId">
 										<option value="-1">Ninguno</option>
@@ -143,7 +143,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="networkId" class="col-sm-2 control-label">Red</label>
+								<label for="networkId" class="col-sm-2 control-label">Red *</label>
 								<div class="col-sm-10">
 									<select class="form-control" id="networkId" name="networkId">
 										<option value="-1">Ninguno</option>
@@ -172,70 +172,70 @@
 					<div class="tab-pane" id="editarequipo">
 						<form method="post" class="form-horizontal">
 							<div class="form-group">
-								<label for="display-id" class="col-sm-2 control-label">Id</label>
+								<label for="display-id" class="col-sm-2 control-label">Id *</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="display-id"
-										name="display-id" placeholder="descripcion">
+										name="display-id" placeholder="descripcion" disabled="disabled">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="display-descripcion" class="col-sm-2 control-label">Descripcion</label>
+								<label for="display-descripcion" class="col-sm-2 control-label">Descripcion *</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="display-descripcion" required="required"
-										name="display-descripcion" placeholder="descripcion">
+										name="display-descripcion" placeholder="descripcion" maxlength="10">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="display-hostName" class="col-sm-2 control-label">Nombre del host</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="display-hostName" required="required"
-										name="display-hostName" placeholder="Nombre del host">
+										name="display-hostName" placeholder="Nombre del host" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="display-iosType" class="col-sm-2 control-label">Tipo de IOS</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="display-iosType" required="required"
-										name="display-iosType" placeholder="Tipo de IOS">
+										name="display-iosType" placeholder="Tipo de IOS" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="display-iosVersion" class="col-sm-2 control-label">Version de IOS</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="display-iosVersion" required="required"
-										name="display-iosVersion" placeholder="Version de IOS">
+										name="display-iosVersion" placeholder="Version de IOS" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="display-ip" class="col-sm-2 control-label">IP</label>
+								<label for="display-ip" class="col-sm-2 control-label">IP *</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="display-ip" required="required"
-										name="display-ip" placeholder="IP">
+										name="display-ip" placeholder="IP" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="display-modelo" class="col-sm-2 control-label">Modelo</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="display-modelo" required="required"
-										name="display-modelo" placeholder="Modelo">
+										name="display-modelo" placeholder="Modelo" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="display-serialNumber" class="col-sm-2 control-label">Numero de serie</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="display-serialNumber" required="required"
-										name="display-serialNumber" placeholder="Numero de serie">
+										name="display-serialNumber" placeholder="Numero de serie" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="display-release" class="col-sm-2 control-label">Release</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="display-release" required="required"
-										name="display-release" placeholder="Release">
+										name="display-release" placeholder="Release" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="display-tipoEquipoId" class="col-sm-2 control-label">Tipo de equipo</label>
+								<label for="display-tipoEquipoId" class="col-sm-2 control-label">Tipo de equipo *</label>
 								<div class="col-sm-10">
 									<select class="form-control" id="display-tipoEquipoId" name="display-tipoEquipoId">
 										<option value="-1" selected="selected">Ninguno</option>
@@ -246,7 +246,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="display-networkId" class="col-sm-2 control-label">Red</label>
+								<label for="display-networkId" class="col-sm-2 control-label">Red *</label>
 								<div class="col-sm-10">
 									<select class="form-control" id="display-networkId" name="display-networkId">
 										<option value="-1" selected="selected">Ninguno</option>
