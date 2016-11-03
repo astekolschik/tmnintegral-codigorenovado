@@ -75,24 +75,24 @@
 					<div class="tab-pane" id="nuevaInterfaz">
 						<form method="post" class="form-horizontal">
 							<div class="form-group">
-								<label for="nombre" class="col-sm-2 control-label">Nombre</label>
+								<label for="nombre" class="col-sm-2 control-label">Nombre *</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="nombre" required="required"
-										name="nombre" placeholder="Nombre">
+										name="nombre" placeholder="Nombre" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="status" class="col-sm-2 control-label">Status</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="status" required="required"
-										name="status" placeholder="Status">
+										name="status" placeholder="Status" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="alias" class="col-sm-2 control-label">Alias</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="alias" required="required"
-										name="alias" placeholder="Alias">
+										name="alias" placeholder="Alias" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
@@ -127,11 +127,11 @@
 								<label for="tipo" class="col-sm-2 control-label">Tipo</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="tipo" required="required"
-										name="tipo" placeholder="Tipo">
+										name="tipo" placeholder="Tipo" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="idDevice" class="col-sm-2 control-label">Equipo</label>
+								<label for="idDevice" class="col-sm-2 control-label">Equipo *</label>
 								<div class="col-sm-10">
 									<select class="form-control" id="idDevice" name="idDevice">
 										<option value="-1">Ninguno</option>
@@ -152,28 +152,28 @@
 								<label for="ifIndexIp" class="col-sm-2 control-label">IF Index IP</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="ifIndexIp" required="required"
-										name="ifIndexIp" placeholder="if Index IP">
+										name="ifIndexIp" placeholder="if Index IP" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="mac" class="col-sm-2 control-label">MAC</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="mac" required="required"
-										name="mac" placeholder="MAC">
+										name="mac" placeholder="MAC" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="ipnexthop" class="col-sm-2 control-label">Ip del proximo salto</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="ipnexthop" required="required"
-										name="ipnexthop" placeholder="Ip del proximo salto">
+										name="ipnexthop" placeholder="Ip del proximo salto" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="macnexthop" class="col-sm-2 control-label">MAC del proximo salto</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="macnexthop" required="required"
-										name="macnexthop" placeholder="MAC del proximo salto">
+										name="macnexthop" placeholder="MAC del proximo salto" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
@@ -190,28 +190,28 @@
 								<label for="descripcion" class="col-sm-2 control-label">Id</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="display-id"
-										name="descripcion" placeholder="descripcion">
+										name="descripcion" placeholder="descripcion" disabled="disabled">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="display-name" class="col-sm-2 control-label">Nombre</label>
+								<label for="display-name" class="col-sm-2 control-label">Nombre *</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="display-nombre" required="required"
-										name="display-nombre" placeholder="Nombre">
+										name="display-nombre" placeholder="Nombre" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="display-status" class="col-sm-2 control-label">Status</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="display-status" required="required"
-										name="display-status" placeholder="Status">
+										name="display-status" placeholder="Status" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="display-alias" class="col-sm-2 control-label">Alias</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="display-alias" required="required"
-										name="display-alias" placeholder="Alias">
+										name="display-alias" placeholder="Alias" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
@@ -246,11 +246,11 @@
 								<label for="display-tipo" class="col-sm-2 control-label">Tipo</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="display-tipo" required="required"
-										name="display-tipo" placeholder="Tipo">
+										name="display-tipo" placeholder="Tipo" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="display-idDevice" class="col-sm-2 control-label">Equipo</label>
+								<label for="display-idDevice" class="col-sm-2 control-label">Equipo *</label>
 								<div class="col-sm-10">
 									<select class="form-control" id="display-idDevice" name="display-idDevice">
 										<option value="-1">Ninguno</option>
@@ -263,7 +263,7 @@
 							<div class="form-group">
 								<label for="display-ifIndex" class="col-sm-2 control-label">IF Index</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="display-ifIndex" required="required"
+									<input type="number" class="form-control" id="display-ifIndex" required="required"
 										name="display-ifIndex" placeholder="if Index">
 								</div>
 							</div>
@@ -271,28 +271,28 @@
 								<label for="display-ifIndexIp" class="col-sm-2 control-label">IF Index IP</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="display-ifIndexIp" required="required"
-										name="display-ifIndexIp" placeholder="if Index IP">
+										name="display-ifIndexIp" placeholder="if Index IP" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="display-mac" class="col-sm-2 control-label">MAC</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="display-mac" required="required"
-										name="display-mac" placeholder="MAC">
+										name="display-mac" placeholder="MAC" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="display-ipnexthop" class="col-sm-2 control-label">Ip del proximo salto</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="display-ipnexthop" required="required"
-										name="display-ipnexthop" placeholder="Ip del proximo salto">
+										name="display-ipnexthop" placeholder="Ip del proximo salto" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="display-macnexthop" class="col-sm-2 control-label">MAC del proximo salto</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="display-macnexthop" required="required"
-										name="display-macnexthop" placeholder="MAC del proximo salto">
+										name="display-macnexthop" placeholder="MAC del proximo salto" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">

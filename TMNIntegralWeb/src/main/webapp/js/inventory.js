@@ -612,6 +612,22 @@ function agregarInterface(){
 	var ipnexthop = $('#ipnexthop').val();
 	var macnexthop = $('#macnexthop').val();
 	
+	if (!nombre || nombre == ''){
+		alert('Debe completar el nombre de la interfaz.');
+		return false;
+	}
+	if (ipnexthop && ipnexthop != '' && !validateIp(ipnexthop)){
+		alert('Debe ingresar una IP valida para el proximo salto.');
+		return false;
+	}
+	if (ifIndexIp && ifIndexIp != '' && !validateIp(ifIndexIp)){
+		alert('Debe ingresar una IP valida el IF index.');
+		return false;
+	}
+	if (!idDevice || idDevice == '-1'){
+		alert('Debe completar el equipo al que pertenece la interfaz.');
+		return false;
+	}
 	
 	$('#main-content').empty();
 	$('#main-content').load(('/TMNIntegralWeb/inventory/updateInterface.htm?status=' + status
@@ -658,7 +674,6 @@ function displayInterfaz(idInterface, isEdition){
         success: function (response) {
         	$('#interfacesTabs a[href="#editarInterfaz"]').tab('show');
         	$('#display-id').val(response.id);
-        	$("#display-id").prop('disabled', !isEdition);
         	$('#display-nombre').val(response.name);
         	$("#display-nombre").prop('disabled', !isEdition);
         	$('#display-status').val(response.adminStatus);
@@ -715,6 +730,23 @@ function actualizarInterfaz(){
 	var mac = $('#display-mac').val();
 	var ipnexthop = $('#display-ipnexthop').val();
 	var macnexthop = $('#display-macnexthop').val();
+	
+	if (!nombre || nombre == ''){
+		alert('Debe completar el nombre de la interfaz.');
+		return false;
+	}
+	if (ipnexthop && ipnexthop != '' && !validateIp(ipnexthop)){
+		alert('Debe ingresar una IP valida para el proximo salto.');
+		return false;
+	}
+	if (ifIndexIp && ifIndexIp != '' && !validateIp(ifIndexIp)){
+		alert('Debe ingresar una IP valida el IF index.');
+		return false;
+	}
+	if (!idDevice || idDevice == '-1'){
+		alert('Debe completar el equipo al que pertenece la interfaz.');
+		return false;
+	}
 	
 	$('#main-content').empty();
 	$('#main-content').load(('/TMNIntegralWeb/inventory/updateInterface.htm?idInterfaz=' + id + '&status=' + status
