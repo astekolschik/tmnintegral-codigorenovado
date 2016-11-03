@@ -452,6 +452,15 @@ function agregarRed(){
 	var enabled =  $('#enabled').val() == 'on' ? 1 : 0
 	var descripcion = $('#descripcion').val();
 	
+	if (!nombre || nombre == ''){
+		alert('Debe completar el nombre de la red.');
+		return false;
+	}
+	if (!descripcion || descripcion == ''){
+		alert('Debe completar la descripcion de la red.');
+		return false;
+	}
+	
 	$('#main-content').empty();
 	$('#main-content').load(('/TMNIntegralWeb/inventory/updateRed.htm?network=' + nombre
 																			+ '&enabled=' + enabled
@@ -486,7 +495,6 @@ function displayRed(redId, isEdition){
         success: function (response) {
         	$('#redesTabs a[href="#editarred"]').tab('show');
         	$('#display-idRed').val(response.id_network);
-        	$("#display-idRed").prop('disabled', !isEdition);
         	$('#display-nombre').val(response.network);
         	$("#display-nombre").prop('disabled', !isEdition);
         	if (response.enabled != '0')
@@ -513,6 +521,15 @@ function actualizarRed(){
 	var nombre = $('#display-nombre').val();
 	var enabled = $('#display-enabled').prop('checked') ? 1 : 0;
 	var descripcion = $('#display-descripcion').val();
+	
+	if (!nombre || nombre == ''){
+		alert('Debe completar el nombre de la red.');
+		return false;
+	}
+	if (!descripcion || descripcion == ''){
+		alert('Debe completar la descripcion de la red.');
+		return false;
+	}
 	
 	$('#main-content').empty();
 	$('#main-content').load(('/TMNIntegralWeb/inventory/updateRed.htm?idred=' + id + '&network=' + nombre

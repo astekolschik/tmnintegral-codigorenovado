@@ -84,25 +84,25 @@
 					<div class="tab-pane" id="nuevared">
 						<form method="post" class="form-horizontal">
 							<div class="form-group">
-								<label for="nombre" class="col-sm-2 control-label">Nombre</label>
+								<label for="nombre" class="col-sm-2 control-label">Nombre *</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="nombre" required="required"
-										name="nombre" placeholder="Nombre">
+										name="nombre" placeholder="Nombre" maxlength="100">
 								</div>
 							</div>
 							<div class="form-group">
 								 <div class="checkbox">
 			                        <label for="enabled" class="col-sm-2 control-label">
 			                          <input type="checkbox" name="enabled" id="enabled">
-			                          Habilitada
+			                          Habilitada *
 			                        </label>
 			                      </div>
 							</div>
 							<div class="form-group">
-								<label for="descripcion" class="col-sm-2 control-label">Descripcion</label>
+								<label for="descripcion" class="col-sm-2 control-label">Descripcion *</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="descripcion" required="required"
-										name="descripcion" placeholder="Descripcion">
+										name="descripcion" placeholder="Descripcion" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
@@ -119,29 +119,29 @@
 								<label for="display-idRed" class="col-sm-2 control-label">Id</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="display-idRed" required="required"
-										name="display-idRed" placeholder="Id">
+										name="display-idRed" placeholder="Id" disabled="disabled">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="display-nombre" class="col-sm-2 control-label">Nombre</label>
+								<label for="display-nombre" class="col-sm-2 control-label">Nombre *</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="display-nombre" required="required"
-										name="display-nombre" placeholder="Nombre">
+										name="display-nombre" placeholder="Nombre" maxlength="100">
 								</div>
 							</div>
 							<div class="form-group">
 								 <div class="checkbox">
 			                        <label for="display-enabled" class="col-sm-2 control-label">
 			                          <input type="checkbox" name="display-enabled" id="display-enabled">
-			                          Habilitada
+			                          Habilitada *
 			                        </label>
 			                      </div>
 							</div>
 							<div class="form-group">
-								<label for="display-descripcion" class="col-sm-2 control-label">Descripcion</label>
+								<label for="display-descripcion" class="col-sm-2 control-label">Descripcion *</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="display-descripcion" required="required"
-										name="display-descripcion" placeholder="Descripcion">
+										name="display-descripcion" placeholder="Descripcion" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group" id="button-edition">
