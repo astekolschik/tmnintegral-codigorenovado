@@ -35,6 +35,7 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${model.userList}" var="user">
+							<input type="hidden" class="clientList" value="${user.user_name}"/>
 							<tr>
 								<td>${user.user_name}</td>
 								<td>${user.name}</td>

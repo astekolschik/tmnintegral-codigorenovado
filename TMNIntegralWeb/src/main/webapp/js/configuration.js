@@ -99,6 +99,24 @@ function agregarComando(){
 	var operation = $('#operation').val();
 	var device = $('#isdevice').prop('checked') ? 1 : 0;
 	
+	if (!variable || variable == '-1'){
+		alert('Debe completar la variable a la que corresponde el comando.');
+		return false;
+	}
+	if (!tipoequipo || tipoequipo == '-1'){
+		alert('Debe completar el tipo al que pertenece el comando.');
+		return false;
+	}
+	if (!fieldname || fieldname == ''){
+		alert('Debe ingresar nombre de campo valido.');
+		return false;
+	}
+	if (!type || type == ''){
+		alert('Debe ingresar tipo valido.');
+		return false;
+	}
+	
+	
 	$('#main-content').empty();
 	$('#main-content').load('/TMNIntegralWeb/configuration/createCommand.htm?variable=' + variable
 																			+ '&tipoequipo=' + tipoequipo
@@ -136,6 +154,23 @@ function actualizarComando(){
 	var regex = $('#regex-display').val();
 	var operation = $('#operation-display').val();
 	var device = $('#isdevice-display').prop('checked') ? 1 : 0;
+	
+	if (!variable || variable == '-1'){
+		alert('Debe completar la variable a la que corresponde el comando.');
+		return false;
+	}
+	if (!tipoequipo || tipoequipo == '-1'){
+		alert('Debe completar el tipo al que pertenece el comando.');
+		return false;
+	}
+	if (!fieldname || fieldname == ''){
+		alert('Debe ingresar nombre de campo valido.');
+		return false;
+	}
+	if (!type || type == ''){
+		alert('Debe ingresar tipo valido.');
+		return false;
+	}
 	
 	$('#main-content').empty();
 	$('#main-content').load('/TMNIntegralWeb/configuration/updateComando.htm?variable=' + variable

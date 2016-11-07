@@ -74,10 +74,10 @@
 					<div class="tab-pane" id="nuevocomando">
 						<form method="post" class="form-horizontal">
 							<div class="form-group">
-								<label for="variable" class="col-sm-2 control-label">Variable</label>
+								<label for="variable" class="col-sm-2 control-label">Variable *</label>
 								<div class="col-sm-10">
 									<select id="variable" name="variable">
-										<option selected="selected">Seleccione la variable</option>
+										<option selected="selected" value="-1">Seleccione la variable</option>
 										<c:forEach items="${model.variablesList}" var="variable">
 											<option value="${variable[0]}">${variable[1]}</option>
 										</c:forEach>
@@ -85,10 +85,10 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="tipoequipo" class="col-sm-2 control-label">Tipo de equipo</label>
+								<label for="tipoequipo" class="col-sm-2 control-label">Tipo de equipo *</label>
 								<div class="col-sm-10">
 									<select id="tipoequipo" name="tipoequipo">
-										<option selected="selected" value="0">Seleccione el tipo de equipo</option>
+										<option selected="selected" value="-1">Seleccione el tipo de equipo</option>
 										<c:forEach items="${model.tipoEquipoList}" var="te">
 											<option value="${te.id}">${te.description}</option>
 										</c:forEach>
@@ -96,38 +96,38 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="fieldname" class="col-sm-2 control-label">Nombre del campo</label>
+								<label for="fieldname" class="col-sm-2 control-label">Nombre del campo *</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="fieldname" required="required"
-										name="fieldname" placeholder="Nombre del campo">
+										name="fieldname" placeholder="Nombre del campo" maxlength="255">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="type" class="col-sm-2 control-label">Tipo</label>
+								<label for="type" class="col-sm-2 control-label">Tipo *</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="type" required="required"
-										name="type" placeholder="Tipo">
+										name="type" placeholder="Tipo" maxlength="255">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="regex" class="col-sm-2 control-label">Expresion</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="regex" required="required"
-										name="regex" placeholder="Expresion">
+										name="regex" placeholder="Expresion" maxlength="255">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="operation" class="col-sm-2 control-label">Operacion</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="operation" required="required"
-										name="operation" placeholder="Operacion">
+										name="operation" placeholder="Operacion" maxlength="255">
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="checkbox">
 			                        <label for="enabled" class="col-sm-2 control-label">
 			                          <input type="checkbox" name="isdevice" id="isdevice">
-			                          Es para equipo?
+			                          Es para equipo? *
 			                        </label>
 			                      </div>
 							</div>
@@ -145,7 +145,7 @@
 								<label for="variable-display" class="col-sm-2 control-label">Variable</label>
 								<div class="col-sm-10">
 									<select id="variable-display" name="variable-display">
-										<option selected="selected">Seleccione la variable</option>
+										<option selected="selected" value="-1">Seleccione la variable *</option>
 										<c:forEach items="${model.variablesList}" var="variable">
 											<option value="${variable[0]}">${variable[1]}</option>
 										</c:forEach>
@@ -153,10 +153,10 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="tipoequipo-display" class="col-sm-2 control-label">Tipo de equipo</label>
+								<label for="tipoequipo-display" class="col-sm-2 control-label">Tipo de equipo *</label>
 								<div class="col-sm-10">
 									<select id="tipoequipo-display" name="tipoequipo-display">
-										<option selected="selected" value="0">Seleccione el tipo de equipo</option>
+										<option selected="selected" value="-1">Seleccione el tipo de equipo</option>
 										<c:forEach items="${model.tipoEquipoList}" var="te">
 											<option value="${te.id}">${te.description}</option>
 										</c:forEach>
@@ -164,14 +164,14 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="fieldname-display" class="col-sm-2 control-label">Nombre del campo</label>
+								<label for="fieldname-display" class="col-sm-2 control-label">Nombre del campo *</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="fieldname-display" required="required"
 										name="fieldname-display" placeholder="Nombre del campo">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="type-display" class="col-sm-2 control-label">Tipo</label>
+								<label for="type-display" class="col-sm-2 control-label">Tipo *</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="type-display" required="required"
 										name="type-display" placeholder="Tipo">
@@ -195,7 +195,7 @@
 								<div class="checkbox">
 			                        <label for="isdevice-display" class="col-sm-2 control-label">
 			                          <input type="checkbox" name="isdevice-display" id="isdevice-display">
-			                          Es para equipo?
+			                          Es para equipo? *
 			                        </label>
 			                      </div>
 							</div>

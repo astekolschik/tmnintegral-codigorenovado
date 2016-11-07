@@ -84,35 +84,35 @@
 						<div class="tab-pane" id="settings">
 							<form method="post" class="form-horizontal">
 								<div class="form-group">
-									<label for="nombre" class="col-sm-2 control-label">Nombre</label>
+									<label for="nombre" class="col-sm-2 control-label">Nombre *</label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control" id="nombre" name="nombre"
 											placeholder="Nombre" value="${model.userObj.name}">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="apellido" class="col-sm-2 control-label">Apellido</label>
+									<label for="apellido" class="col-sm-2 control-label">Apellido *</label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control" id="apellido" name="apellido"
 											placeholder="Apellido" value="${model.userObj.last_name}">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="email" class="col-sm-2 control-label">Email</label>
+									<label for="email" class="col-sm-2 control-label">Email *</label>
 									<div class="col-sm-10">
 										<input type="email" class="form-control" id="email" name="email"
 											placeholder="Email" value="${model.userObj.email}">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputName" class="col-sm-2 control-label">Contraseña</label>
+									<label for="inputName" class="col-sm-2 control-label">Contraseña *</label>
 									<div class="col-sm-10">
 										<input type="password" class="form-control" id="password" name="password"
 											placeholder="Email" value="${model.userObj.password}">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputName" class="col-sm-2 control-label">Contraseña</label>
+									<label for="inputName" class="col-sm-2 control-label">Contraseña *</label>
 									<div class="col-sm-10">
 										<input type="password" class="form-control" id="password2" name="password2"
 											placeholder="Email" value="${model.userObj.password}">
