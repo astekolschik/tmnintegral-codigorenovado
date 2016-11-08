@@ -133,8 +133,8 @@ public class InventoryManager implements Serializable{
 		this.tipoEquipoDao.deleteTipoEquipo(idTe);
 	}
 	
-	public JsonObject obtenerTopologiaDeRed(){
-		return this.topologiaDao.getTopologia();
+	public JsonObject obtenerTopologiaDeRed(int clientId){
+		return this.topologiaDao.getTopologia(clientId);
 	}
 	
 	/*

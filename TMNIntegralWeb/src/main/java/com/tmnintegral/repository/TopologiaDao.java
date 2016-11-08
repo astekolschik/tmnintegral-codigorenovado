@@ -10,4 +10,6 @@ public interface TopologiaDao {
 
 	public JsonObject getTopologia();
 	
+	public JsonObject getTopologia(int client);
+	
 }

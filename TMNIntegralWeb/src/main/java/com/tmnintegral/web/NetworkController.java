@@ -46,7 +46,7 @@ public class NetworkController {
 
 		
 		Map<String, Object> myModel = new HashMap<String, Object>();
-		JsonObject topologia = this.im.obtenerTopologiaDeRed();
+		JsonObject topologia = this.im.obtenerTopologiaDeRed(((User)session.getAttribute("user")).getClient().getId());
 		myModel.put("networkGraph", topologia.toString().replace("\"", "'"));
 		
 		return new ModelAndView("dashboard/inventory/displayNetwork", "model", myModel);
