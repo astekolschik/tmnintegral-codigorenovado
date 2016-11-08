@@ -146,14 +146,35 @@ function agregarAlarma(){
 	var typealarm = $('input[name=radio-obj]:checked').val();
 	var url = "/TMNIntegralWeb/monitoring/createAlarm.htm?";
 	if (typealarm == 'interface'){
+		if (!$('#interface').val() || $('#interface').val() == '-1'){
+			alert('Debe seleccionar la interface para la alarma.');
+			return false;
+		}
 		url = url + "idInt=" + $('#interface').val();
 	}else if (typealarm == 'device'){
+		if (!$('#device').val() || $('#device').val() == '-1'){
+			alert('Debe seleccionar el equipo para la alarma.');
+			return false;
+		}
 		url = url + "idDev=" + $('#device').val();
+	}else{
+		alert('Debe seleccionar el tipo de la alarma.');
+		return false;
 	}
 	url = url + "&idVar=" + $('#variable').val();
 	url = url + "&dest=" + $('#destinatarios').val();
 	if ($('#umbral').val() != '')
 		url = url + "&umbral=" + $('#umbral').val();
+	
+	if (!$('#variable').val() || $('#variable').val() == '-1'){
+		alert('Debe completar la variable a la que corresponde la alarma.');
+		return false;
+	}
+	
+	if (!$('#destinatarios').val() || $('#destinatarios').val() == ''){
+		alert('Debe completar los destinatarios de la alarma.');
+		return false;
+	}
 	
 	$('#main-content').empty();
 	$('#main-content').load(url, function(){

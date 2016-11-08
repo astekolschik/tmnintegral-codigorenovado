@@ -20,7 +20,7 @@
 				<ul class="nav nav-tabs" id="alarmasTabs">
 					<li class="active"><a href="#listaAlarmas" data-toggle="tab">Listado de alarmas</a></li>
 					<li class="disabled" id="nuevaalarmaTab"><a href="#nuevaalarma" data-toggle="tab">Agregar alarma</a></li>
-					<li class="disabled" id="editaralarmaTab"><a href="#editaralarma" data-toggle="tab">Editar alarma</a></li>
+					<li class="disabled" id="editaralarmaTab"><a href="#editaralarma" data-toggle="tab">Ver alarma</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="active tab-pane" id="listaAlarmas">
@@ -76,10 +76,10 @@
 					<div class="tab-pane" id="nuevaalarma">
 						<form method="post" class="form-horizontal">
 							<div class="form-group">
-								<label for="variable" class="col-sm-2 control-label">Variable</label>
+								<label for="variable" class="col-sm-2 control-label">Variable *</label>
 								<div class="col-sm-10">
 									<select id="variable" name="variable">
-										<option selected="selected">Seleccione la variable</option>
+										<option selected="selected" value="-1">Seleccione la variable</option>
 										<c:forEach items="${model.variablesList}" var="variable">
 											<option value="${variable[0]}">${variable[1]}</option>
 										</c:forEach>
@@ -87,17 +87,17 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="nombre" class="col-sm-2 control-label">Tipo de objeto</label>
+								<label for="nombre" class="col-sm-2 control-label">Tipo de objeto *</label>
 								<div class="col-sm-10">
 									<input type="radio" id="radio-obj" name="radio-obj" value="interface" onchange="javascript:displayComboNew()">Interface</input>
 									<input type="radio" id="radio-obj" name="radio-obj" value="device" onchange="javascript:displayComboNew()">Equipo</input>
 								</div>
 							</div>
 							<div class="form-group" style="display: none;" id="combo-device">
-								<label for="device" class="col-sm-2 control-label">Equipo</label>
+								<label for="device" class="col-sm-2 control-label">Equipo *</label>
 								<div class="col-sm-10">
 									<select id="device" name="device">
-										<option selected="selected">Seleccione el equipo</option>
+										<option selected="selected" value="-1">Seleccione el equipo</option>
 										<c:forEach items="${model.deviceList}" var="device">
 											<option value="${device.device_id},${device.ip}_${device.hostName}">${device.hostName}</option>
 										</c:forEach>
@@ -105,10 +105,10 @@
 								</div>
 							</div>
 							<div class="form-group" style="display: none;" id="combo-interface">
-								<label for="interface" class="col-sm-2 control-label">Interfaz</label>
+								<label for="interface" class="col-sm-2 control-label">Interfaz *</label>
 								<div class="col-sm-10">
 									<select id="interface" name="interface">
-										<option selected="selected">Seleccione la interfaz</option>
+										<option selected="selected" value="">Seleccione la interfaz</option>
 										<c:forEach items="${model.interfacesList}" var="i">
 											<option value="${i.id},${i.device.ip}_${i.device.hostName}_${i.name}">${i.name}</option>
 										</c:forEach>
@@ -116,7 +116,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="destinatarios" class="col-sm-2 control-label">Destinatarios(separados por ;)</label>
+								<label for="destinatarios" class="col-sm-2 control-label">Destinatarios(separados por ;) *</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="destinatarios" required="required"
 										name="destinatarios" placeholder="Destinatarios">
