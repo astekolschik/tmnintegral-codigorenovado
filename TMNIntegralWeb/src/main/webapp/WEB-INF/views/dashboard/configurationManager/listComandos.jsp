@@ -90,7 +90,7 @@
 									<select id="tipoequipo" name="tipoequipo">
 										<option selected="selected" value="-1">Seleccione el tipo de equipo</option>
 										<c:forEach items="${model.tipoEquipoList}" var="te">
-											<option value="${te.id}">${te.description}</option>
+											<option value="${te.id}">${te.typeName}</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -158,7 +158,7 @@
 									<select id="tipoequipo-display" name="tipoequipo-display">
 										<option selected="selected" value="-1">Seleccione el tipo de equipo</option>
 										<c:forEach items="${model.tipoEquipoList}" var="te">
-											<option value="${te.id}">${te.description}</option>
+											<option value="${te.id}">${te.typeName}</option>
 										</c:forEach>
 									</select>
 								</div>

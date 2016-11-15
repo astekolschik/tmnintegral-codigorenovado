@@ -73,59 +73,59 @@
         </a>
 
     </div>
-    <footer>
+<!--     <footer> -->
 
-		<ul>
-			<li id= "li1">
-				<p class="encuentrenos">Encuentrenos</p>
+<!-- 		<ul> -->
+<!-- 			<li id= "li1"> -->
+<!-- 				<p class="encuentrenos">Encuentrenos</p> -->
 	
-				<ul>
-				<div>
-					<iframe
-						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.8025428598326!2d-58.3808433850104!3d-34.609154265292375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccad19fb651f1%3A0xc79a466a81135fcf!2sUniversidad+Caece!5e0!3m2!1ses-419!2sar!4v1462369223869"
-						width="450" height="300" style="border: 0"></iframe>
-				</div>
-				</ul>
-			</li>
-			<li id="li2">
-				<p class="reachus">Contactenos</p>
+<!-- 				<ul> -->
+<!-- 				<div> -->
+<!-- 					<iframe -->
+<!-- 						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.8025428598326!2d-58.3808433850104!3d-34.609154265292375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccad19fb651f1%3A0xc79a466a81135fcf!2sUniversidad+Caece!5e0!3m2!1ses-419!2sar!4v1462369223869" -->
+<!-- 						width="450" height="300" style="border: 0"></iframe> -->
+<!-- 				</div> -->
+<!-- 				</ul> -->
+<!-- 			</li> -->
+<!-- 			<li id="li2"> -->
+<!-- 				<p class="reachus">Contactenos</p> -->
 	
-				<ul>
-					<li><address>
-					<strong>Nuestra dirección</strong><br> Av. De Mayo 866, CABA, Argentina</address></li>
-					<li><address>Email: tmnintegral@gmail.com</address></li>
-					<li><address>Tel: +54 11 5217-7878</address></li>
+<!-- 				<ul> -->
+<!-- 					<li><address> -->
+<!-- 					<strong>Nuestra dirección</strong><br> Av. De Mayo 866, CABA, Argentina</address></li> -->
+<!-- 					<li><address>Email: tmnintegral@gmail.com</address></li> -->
+<!-- 					<li><address>Tel: +54 11 5217-7878</address></li> -->
 					
-				</ul>	
-			</li>		
-			<li id= "li3">
-				<p class= "formulario">Formulario</p>
-				<ul>
-					<form action="/tmnintegral/contacto.htm">
-						<li><div class="form-group">
-							<input type="text" name="name" id="name"  placeholder="Nombre" style="width: 90%"/>
-						</div>
-						</li>
-						<li><div class="form-group">
-							<input type="email" name="email" id="email" placeholder="E-mail" style="width: 90%"/>
-						</div></li>
-						<li><div class="form-group">
-							<input type="text" name="motivo" id="motivo" 
-								placeholder="Motivo de Contacto" style="width: 90%"/>
-						</div></li>
-						<li><div class="form-group">
-							<textarea name="message" id="message"  placeholder="Mensaje" style="width: 90%"
-								rows="5" cols=""></textarea>
-						</div></li>
-						<li><div class="form-group">
-							<input type="submit" class="btn btn-default" value="Enviar" />
-						</div></li>
-					</form>
-					</ul>
-			     </li>
+<!-- 				</ul>	 -->
+<!-- 			</li>		 -->
+<!-- 			<li id= "li3"> -->
+<!-- 				<p class= "formulario">Formulario</p> -->
+<!-- 				<ul> -->
+<!-- 					<form action="/tmnintegral/contacto.htm"> -->
+<!-- 						<li><div class="form-group"> -->
+<!-- 							<input type="text" name="name" id="name"  placeholder="Nombre" style="width: 90%"/> -->
+<!-- 						</div> -->
+<!-- 						</li> -->
+<!-- 						<li><div class="form-group"> -->
+<!-- 							<input type="email" name="email" id="email" placeholder="E-mail" style="width: 90%"/> -->
+<!-- 						</div></li> -->
+<!-- 						<li><div class="form-group"> -->
+<!-- 							<input type="text" name="motivo" id="motivo"  -->
+<!-- 								placeholder="Motivo de Contacto" style="width: 90%"/> -->
+<!-- 						</div></li> -->
+<!-- 						<li><div class="form-group"> -->
+<!-- 							<textarea name="message" id="message"  placeholder="Mensaje" style="width: 90%" -->
+<!-- 								rows="5" cols=""></textarea> -->
+<!-- 						</div></li> -->
+<!-- 						<li><div class="form-group"> -->
+<!-- 							<input type="submit" class="btn btn-default" value="Enviar" /> -->
+<!-- 						</div></li> -->
+<!-- 					</form> -->
+<!-- 					</ul> -->
+<!-- 			     </li> -->
 			  
-		</ul>
-	</footer>
+<!-- 		</ul> -->
+<!-- 	</footer> -->
 </div>
 </body>
 </html>

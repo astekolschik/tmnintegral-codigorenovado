@@ -4,6 +4,7 @@
 package com.tmnintegral.service;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -149,13 +150,14 @@ public class ReportManager implements Serializable{
 	private JsonArray getRowsForChart(List<Object[]> retEqList, int eqLength, List<Object[]> retInList, int interfaceLength) {
 		JsonArrayBuilder rowsBuilder = Json.createArrayBuilder();
 		Map<String, List<Float>> valuesMap = new HashMap<String, List<Float>>();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		//Iteramos sobre los equipos posibles
 		Iterator<Object[]> it = retEqList.iterator();
 		while (it.hasNext()){
 			Object[] curr = it.next();
 			if (!valuesMap.containsKey(curr[0]))
-				valuesMap.put((String) curr[0], new ArrayList<Float>());
-			((List<Float>)valuesMap.get(curr[0])).add((Float) curr[2]);
+				valuesMap.put(sdf.format(curr[0]), new ArrayList<Float>());
+			((List<Float>)valuesMap.get(sdf.format(curr[0]))).add(Float.parseFloat(String.valueOf(curr[2])));
 		}
 		
 		//Iteramos sobre las interfaces posibles
@@ -163,8 +165,8 @@ public class ReportManager implements Serializable{
 		while (it.hasNext()){
 			Object[] curr = it.next();
 			if (!valuesMap.containsKey(curr[0]))
-				valuesMap.put((String) curr[0], new ArrayList<Float>());
-			((List<Float>)valuesMap.get(curr[0])).add((Float) curr[2]);
+				valuesMap.put(sdf.format(curr[0]), new ArrayList<Float>());
+			((List<Float>)valuesMap.get(sdf.format(curr[0]))).add(Float.parseFloat(String.valueOf(curr[2])));
 		}
 		
 		Iterator<String> itMap = valuesMap.keySet().iterator();

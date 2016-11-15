@@ -11,7 +11,7 @@ function displayConfiguracion(){
 		$('#goToAgregarCommand').click(function() {
 			$('#commandTabs a[href="#nuevocomando"]').tab('show');
 		});
-		$('#nuevocomando').click(function(event){
+		$('#nuevocomandotab').click(function(event){
 		    if ($(this).hasClass('disabled')) {
 		        return false;
 		    }
@@ -33,7 +33,7 @@ function deleteComando(){
 		$('#goToAgregarCommand').click(function() {
 			$('#commandTabs a[href="#nuevocomando"]').tab('show');
 		});
-		$('#nuevocomando').click(function(event){
+		$('#nuevocomandotab').click(function(event){
 		    if ($(this).hasClass('disabled')) {
 		        return false;
 		    }
@@ -128,7 +128,7 @@ function agregarComando(){
 		$('#goToAgregarCommand').click(function() {
 			$('#commandTabs a[href="#nuevocomando"]').tab('show');
 		});
-		$('#nuevocomando').click(function(event){
+		$('#nuevocomandotab').click(function(event){
 		    if ($(this).hasClass('disabled')) {
 		        return false;
 		    }
@@ -183,7 +183,7 @@ function actualizarComando(){
 		$('#goToAgregarCommand').click(function() {
 			$('#commandTabs a[href="#nuevocomando"]').tab('show');
 		});
-		$('#nuevocomando').click(function(event){
+		$('#nuevocomandotab').click(function(event){
 		    if ($(this).hasClass('disabled')) {
 		        return false;
 		    }

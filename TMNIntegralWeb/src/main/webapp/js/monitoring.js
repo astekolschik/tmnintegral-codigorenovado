@@ -9,16 +9,16 @@ function displayAlarmasEnviadas(){
 		$('#goToAgregarAlarma').click(function() {
 			$('#alarmasTabs a[href="#nuevaalarma"]').tab('show');
 		});
-		$('#nuevaalarmatab').click(function(event){
+		$('#nuevaalarmaTab').click(function(event){
 		    if ($(this).hasClass('disabled')) {
 		        return false;
 		    }
 		});
-		$('#editaralarmatab').click(function(event){
+		$('#editaralarmaTab').click(function(event){
 		    if ($(this).hasClass('disabled')) {
 		        return false;
 		    }
-		});
+		});		
 		
 		
 		$("#alarmasTable").DataTable();
@@ -28,6 +28,20 @@ function displayAlarmasEnviadas(){
 function configurarAlarmas(){
 	$('#main-content').empty();
 	$('#main-content').load('monitoring/configurarAlarmas.htm', function(){
+		$('#goToAgregarAlarma').click(function() {
+			$('#alarmasTabs a[href="#nuevaalarma"]').tab('show');
+		});
+		$('#nuevaalarmaTab').click(function(event){
+		    if ($(this).hasClass('disabled')) {
+		        return false;
+		    }
+		});
+		$('#editaralarmaTab').click(function(event){
+		    if ($(this).hasClass('disabled')) {
+		        return false;
+		    }
+		});		
+		
 		$("#alarmasTable").DataTable();
 	});
 }
@@ -50,18 +64,29 @@ function validarFormReporte(){
 		return false;
 	}
 	
-	if ($('#nombre-equipo').val().length == 0){
+	/*if ($('#nombre-equipo').val().length == 0){
 		alert('Debe seleccionar al menos un equipo.');
 		return false;
-	}else{
-		var listEq = "";
-		for (var i=0; i < $('#nombre-equipo').val().length; i++){
-			if (i != 0)
-				listEq += ",";
-			listEq += $('#nombre-equipo').val()[i];
+	}else{*/
+		if ($('#nombre-equipo').val()){
+			var listEq = "";
+			for (var i=0; i < $('#nombre-equipo').val().length; i++){
+				if (i != 0)
+					listEq += ",";
+				listEq += $('#nombre-equipo').val()[i];
+			}
+			$('#lista-equipos-value').val(listEq);
 		}
-		$('#lista-equipos-value').val(listEq);
-	}
+		if ($('#nombre-interface').val()){
+			var listIn = "";
+			for (var i=0; i < $('#nombre-interface').val().length; i++){
+				if (i != 0)
+					listIn += ",";
+				listIn += $('#nombre-interface').val()[i];
+			}
+			$('#lista-interfaces-value').val(listIn);
+		}
+	/*}*/
 	
 	return true;
 }
@@ -83,7 +108,13 @@ function generarReporte(){
         type: "POST",
         dataType: "json",
         success: function (response) {
-			var data = new google.visualization.DataTable(response);
+        	if (response.rows == 0){
+        		alert('No se encontro informacion para el reporte');
+        		return;
+        	}
+        		
+        	var data = new google.visualization.DataTable(response);
+			$('#reportesTab a[href="#reporte"]').tab('show');
 		    var options = {
     	      chart: {
     	        title: 'Reporte seleccionado'
@@ -107,16 +138,16 @@ function deleteAlarma(){
 		$('#goToAgregarAlarma').click(function() {
 			$('#alarmasTabs a[href="#nuevaalarma"]').tab('show');
 		});
-		$('#nuevaalarmatab').click(function(event){
+		$('#nuevaalarmaTab').click(function(event){
 		    if ($(this).hasClass('disabled')) {
 		        return false;
 		    }
 		});
-		$('#editaralarmatab').click(function(event){
+		$('#editaralarmaTab').click(function(event){
 		    if ($(this).hasClass('disabled')) {
 		        return false;
 		    }
-		});
+		});		
 		
 		
 		$("#alarmasTable").DataTable();
@@ -181,16 +212,16 @@ function agregarAlarma(){
 		$('#goToAgregarAlarma').click(function() {
 			$('#alarmasTabs a[href="#nuevaalarma"]').tab('show');
 		});
-		$('#nuevaalarmatab').click(function(event){
+		$('#nuevaalarmaTab').click(function(event){
 		    if ($(this).hasClass('disabled')) {
 		        return false;
 		    }
 		});
-		$('#editaralarmatab').click(function(event){
+		$('#editaralarmaTab').click(function(event){
 		    if ($(this).hasClass('disabled')) {
 		        return false;
 		    }
-		});
+		});		
 		
 		
 		$("#alarmasTable").DataTable();

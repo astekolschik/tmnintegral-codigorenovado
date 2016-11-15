@@ -59,7 +59,7 @@ public class JPAReportDao implements ReportDao {
 							"from flt_interface_status a " +
 							"where  	a.elementName = '" + equipmentList[i] + "'" +
 							"		and a.last_update_state between '" + sdf.format(dateFrom)+ "' and '" + sdf.format(dateTo) + "' " +  
-							"		and b.id = " + tipoReporte + 
+							"		and a.idVariable = " + tipoReporte + 
 							" order by a.last_update_state, a.elementName"
 					);
 //			Query q = em.createNativeQuery(
@@ -91,7 +91,7 @@ public class JPAReportDao implements ReportDao {
 							"from flt_interface_status a " +
 							"where  	a.elementName = '" + interfacesList[i] + "'" +
 							"		and a.last_update_state between '" + sdf.format(dateFrom)+ "' and '" + sdf.format(dateTo) + "' " +  
-							"		and b.id = " + tipoReporte + 
+							"		and a.idVariable = " + tipoReporte + 
 							" order by a.last_update_state, a.elementName"
 					);
 //			Query q = em.createNativeQuery(
@@ -205,7 +205,7 @@ public class JPAReportDao implements ReportDao {
 	@Transactional(readOnly = true)
     @SuppressWarnings("unchecked")
 	public List<AlarmSent> getAlarmsSent() {
-		return em.createQuery("select a from AlarmSent a order by a.datesent desc").getResultList();
+		return em.createQuery("select a from AlarmSent a order by a.datesent desc").setMaxResults(10).getResultList();
 	}
 
 	@Transactional(readOnly = false)
