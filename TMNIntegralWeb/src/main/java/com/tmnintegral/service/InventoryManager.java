@@ -464,4 +464,10 @@ public class InventoryManager implements Serializable{
 		this.topologiaDao = topologiaDao;
 	}
 
+	public boolean redHasElements(Integer net) {
+		if (this.deviceDao.getDevicesInNetwork(net).isEmpty())
+			return false;
+		return true;
+	}
+
 }

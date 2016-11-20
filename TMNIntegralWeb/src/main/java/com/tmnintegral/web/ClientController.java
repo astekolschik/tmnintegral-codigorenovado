@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tmnintegral.service.ClientManager;
 import com.tmnintegral.service.UserManager;
 
 /**
@@ -32,47 +33,36 @@ public class ClientController {
 
 	@Autowired
 	private UserManager um;
+	@Autowired
+	private ClientManager cm;
 	
 	
 	@RequestMapping(value="/client/clientes.htm")
-    public ModelAndView registerUser(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+    public ModelAndView listClients(HttpServletRequest request, HttpServletResponse response, HttpSession session)
             throws ServletException, IOException {
 
 		Map<String, Object> myModel = new HashMap<String, Object>();
-		
 		myModel.put("clients", this.um.getClients());
 		return new ModelAndView("dashboard/user/listClient", "model", myModel);
     }
 	
 	@RequestMapping(value="/client/updateClient.htm")
-    public ModelAndView updateUser(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+    public ModelAndView createClient(HttpServletRequest request, HttpServletResponse response, HttpSession session)
             throws ServletException, IOException {
 
+		String clientId = request.getParameter("id");
+		String clientDesc = request.getParameter("descripcion");
+
 		Map<String, Object> myModel = new HashMap<String, Object>();
-//		
-//		if (request.getParameter("saveUser") == null){
-//			User userobj = (User)(session.getAttribute("user"));
-//			myModel.put("logs", logManager.getLastUserLogs(userobj.getId()));
-//			myModel.put("userObj", userobj);
-//			return new ModelAndView("dashboard/user/updateUser", "model", myModel);
-//		}else{
-//			String username = ((User)(session.getAttribute("user"))).getUser_name();
-//			String nombre = request.getParameter("nombre");
-//			String apellido = request.getParameter("apellido");
-//			String email = request.getParameter("email");
-//			String password = request.getParameter("password");
-//			String direccion = request.getParameter("direccion");
-//			String notas = request.getParameter("notas");
-//			
-//			
-//			User userobj = this.um.modificarUsuario(nombre, apellido, email, username, password, direccion, notas);
-//			userobj.setPassword(password);
-//			session.setAttribute("user", userobj);
-//			myModel.put("userObj", userobj);
-//			myModel.put("saveMessage", "Usuario actualizado con exito.");
-//			myModel.put("context", true);
-			return new ModelAndView("dashboard/index", "model", myModel);
-//		}
+		try {
+			this.cm.createClient(Integer.parseInt(clientId), clientDesc);
+		} catch (Exception e) {
+			myModel.put("error", "Error al crear el cliente. Duplicado");
+		}
+		
+		myModel.put("clients", this.um.getClients());
+		return new ModelAndView("dashboard/user/listClient", "model", myModel);
+
     }
 	
 }

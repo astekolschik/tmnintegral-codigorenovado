@@ -35,7 +35,7 @@ public class Client implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private String client_id;
+	private Integer client_id;
 	private String name;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="client", cascade= {CascadeType.PERSIST, CascadeType.MERGE})
@@ -50,9 +50,26 @@ public class Client implements Serializable{
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="client", cascade= {CascadeType.PERSIST, CascadeType.MERGE})
 	private Set<Red> redes;
 
+	/**
+	 * constructor
+	 */
 	public Client(){
 		super();
 	}
+	
+	
+	/**
+	 * Construcctor
+	 * @param client_id
+	 * @param name
+	 */
+	public Client(Integer client_id, String name) {
+		super();
+		this.client_id = client_id;
+		this.name = name;
+	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -62,11 +79,11 @@ public class Client implements Serializable{
 		this.id = id;
 	}
 
-	public String getClient_id() {
+	public Integer getClient_id() {
 		return client_id;
 	}
 
-	public void setClient_id(String client_id) {
+	public void setClient_id(Integer client_id) {
 		this.client_id = client_id;
 	}
 

@@ -61,6 +61,16 @@ public class NetworkController {
 		
 		return new ModelAndView("dashboard/inventory/listRed", "model", myModel);
     }
+	
+    public ModelAndView listRedWithErrors(HttpServletRequest request, HttpServletResponse response, HttpSession session, String error)
+            throws ServletException, IOException {
+
+		Map<String, Object> myModel = new HashMap<String, Object>();
+		myModel.put("error", error);
+		myModel.put("redesList", this.im.getRedList(((User)session.getAttribute("user")).getClient()));
+		
+		return new ModelAndView("dashboard/inventory/listRed", "model", myModel);
+    }
     
     
 	@RequestMapping(value="inventory/eliminarRed.htm")
@@ -68,9 +78,11 @@ public class NetworkController {
 	        throws ServletException, IOException {
 		
 		Integer net = Integer.parseInt(request.getParameter("rId"));
-		this.im.eliminarRed(net);
-		
-		return this.listRed(request, response, session);
+		if (!this.im.redHasElements(net)){
+			this.im.eliminarRed(net);
+			return this.listRed(request, response, session);
+		}
+		return this.listRedWithErrors(request, response, session, "La red contiene elementos. Eliminelos primero para eliminarla.");
 	}
 	
 	@RequestMapping(value="inventory/displayRed.htm", headers="Accept=*/*", produces="application/json; charset=UTF-8")

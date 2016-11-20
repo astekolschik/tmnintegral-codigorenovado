@@ -185,7 +185,12 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title">El equipo fue eliminado correctamente</h4>
+					<c:if test="${empty model.error}">
+						<h4 class="modal-title">La red fue eliminada correctamente</h4>
+					</c:if>
+					<c:if test="${not empty model.error}">
+						<h4 class="modal-title">${model.error}</h4>
+					</c:if>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-outline pull-left"	data-dismiss="modal">Cerrar</button>

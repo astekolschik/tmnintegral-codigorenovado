@@ -30,5 +30,7 @@ public interface DeviceDao {
 	
 	public void deleteDevice(int id_device);
 
+	public List<Device> getDevicesInNetwork(Integer net);
+
 	
 }

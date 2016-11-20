@@ -102,4 +102,10 @@ public class JPADeviceDao implements DeviceDao{
 		em.createQuery("delete from Device d where d.ip=" + ip).executeUpdate();
 	}
 
+    @Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+	public List<Device> getDevicesInNetwork(Integer net) {
+    	return em.createQuery("select d from Device d where d.red.id_network=" + net + " order by d.device_id").getResultList();
+	}
+
 }

@@ -57,7 +57,7 @@
 							<div class="form-group">
 								<label for="clientId" class="col-sm-2 control-label">Id</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="clientId" required="required"
+									<input type="number" class="form-control" id="clientId" required="required"
 										name="clientId" placeholder="Id">
 								</div>
 							</div>
@@ -65,7 +65,7 @@
 								<label for="description" class="col-sm-2 control-label">Descripcion</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="description" required="required"
-										name="description" placeholder="Descripcion">
+										name="description" placeholder="Descripcion" maxlength="50">
 								</div>
 							</div>
 							<div class="form-group">
@@ -88,7 +88,12 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title">El cliente fue creado correctamente</h4>
+					<c:if test="${empty model.error}">
+						<h4 class="modal-title">El cliente fue creado correctamente</h4>
+					</c:if>
+					<c:if test="${not empty model.error}">
+						<h4 class="modal-title">${model.error}</h4>
+					</c:if>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-outline pull-left"	data-dismiss="modal">Cerrar</button>

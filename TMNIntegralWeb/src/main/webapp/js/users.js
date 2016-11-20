@@ -209,6 +209,15 @@ function agregarCliente(){
 	var id = $('#clientId').val();
 	var descripcion = $('#description').val();
 	
+	if (!id || id == ''){
+		alert('Debe completar el identificador');
+		return;
+	}
+	if (!descripcion || descripcion == ''){
+		alert('Debe completar la descripcion');
+		return;
+	}
+	
 	$('#main-content').empty();
 	$('#main-content').load('/TMNIntegralWeb/client/updateClient.htm?descripcion=' + descripcion
 																			+ '&id=' + id, function(){
