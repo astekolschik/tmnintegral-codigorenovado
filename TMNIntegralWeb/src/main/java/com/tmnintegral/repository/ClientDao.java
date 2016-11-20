@@ -13,6 +13,6 @@ public interface ClientDao {
 
 	public Client getClient(int clientId);
 	
-	public void saveClient(Client c) throws Exception;
+	public Client saveClient(Client c) throws Exception;
 	
 }

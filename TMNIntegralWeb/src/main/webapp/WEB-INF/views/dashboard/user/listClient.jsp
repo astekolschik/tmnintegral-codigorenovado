@@ -90,6 +90,7 @@
 					</button>
 					<c:if test="${empty model.error}">
 						<h4 class="modal-title">El cliente fue creado correctamente</h4>
+						<h4 class="modal-title">${model.message}</h4>
 					</c:if>
 					<c:if test="${not empty model.error}">
 						<h4 class="modal-title">${model.error}</h4>

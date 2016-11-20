@@ -30,10 +30,10 @@ public class ClientManager implements Serializable{
 	@Autowired
 	private ClientDao clientDao;
 
-	public void createClient(Integer id, String description) throws Exception{
+	public Client createClient(Integer id, String description) throws Exception{
 		if (!clientExists(id)){
 			Client c = new Client(id, description);
-			this.clientDao.saveClient(c);
+			return this.clientDao.saveClient(c);
 		}else
 			throw new Exception("Cliente duplicado");
 	}

@@ -37,8 +37,8 @@ public class JPAClientDAO implements ClientDao{
 
     @Transactional(readOnly = false)
     @SuppressWarnings("unchecked")
-	public void saveClient(Client c) throws Exception {
-		em.merge(c);
+	public Client saveClient(Client c) throws Exception {
+		return em.merge(c);
 	}
 
 }

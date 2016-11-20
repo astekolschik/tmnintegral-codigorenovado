@@ -222,6 +222,20 @@ public class UserManager implements Serializable{
         return hash;
     }
 	
+	public User crearUsuarioAdministradorInicial(
+			Client client) throws Exception{
+	
+		String encPwd = this.generarPassword("admin_" + client.getClient_id(), "admin_" + client.getClient_id());
+		Role r = roleDao.getRole(1);
+		User u = new User("admin_" + client.getClient_id(), encPwd, 
+				"", "Administrador", "Administrador", r, "", "", client);
+
+		userDao.saveUser(u);
+		
+		return u;
+	}
+
+	
 	/**
 	 * @param roleDao the roleDao to set
 	 */

@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tmnintegral.domain.Client;
 import com.tmnintegral.service.ClientManager;
 import com.tmnintegral.service.UserManager;
 
@@ -54,10 +55,18 @@ public class ClientController {
 		String clientDesc = request.getParameter("descripcion");
 
 		Map<String, Object> myModel = new HashMap<String, Object>();
+		Client client = null;
 		try {
-			this.cm.createClient(Integer.parseInt(clientId), clientDesc);
+			client = this.cm.createClient(Integer.parseInt(clientId), clientDesc);
 		} catch (Exception e) {
 			myModel.put("error", "Error al crear el cliente. Duplicado");
+		}
+		
+		try {
+			this.um.crearUsuarioAdministradorInicial(client);
+			myModel.put("message", "Usuario administrador creado para el cliente. Nombre de usuario y password: admin_" + client.getClient_id());
+		} catch (Exception e) {
+			myModel.put("message", "Error al crear el usuario administrador.");
 		}
 		
 		myModel.put("clients", this.um.getClients());
