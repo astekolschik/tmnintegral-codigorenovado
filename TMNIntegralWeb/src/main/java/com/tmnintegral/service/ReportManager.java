@@ -8,9 +8,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -122,19 +124,25 @@ public class ReportManager implements Serializable{
 						.add("id", "fecha")
 						.add("label", "Fecha")
 						.add("type", "string").build());
-		
+		Set<String> cols = new HashSet<String>();
 		for (int i = 0; i < retEqList.size(); i++){
-			columnsBuilder.add(Json.createObjectBuilder()
-					.add("id", String.valueOf(retEqList.get(i)[1]))
-					.add("label", String.valueOf(retEqList.get(i)[1]))
-					.add("type", "number").build());
+			if (!cols.contains(String.valueOf(retEqList.get(i)[1]))){
+				cols.add(String.valueOf(retEqList.get(i)[1]));
+				columnsBuilder.add(Json.createObjectBuilder()
+						.add("id", String.valueOf(retEqList.get(i)[1]))
+						.add("label", String.valueOf(retEqList.get(i)[1]))
+						.add("type", "number").build());
+			}
 		}
 		
 		for (int i = 0; i < retInList.size(); i++){
-			columnsBuilder.add(Json.createObjectBuilder()
-					.add("id", String.valueOf(retInList.get(i)[1]))
-					.add("label", String.valueOf(retInList.get(i)[1]))
-					.add("type", "number").build());
+			if (!cols.contains(String.valueOf(retInList.get(i)[1]))){
+				cols.add(String.valueOf(retInList.get(i)[1]));
+				columnsBuilder.add(Json.createObjectBuilder()
+						.add("id", String.valueOf(retInList.get(i)[1]))
+						.add("label", String.valueOf(retInList.get(i)[1]))
+						.add("type", "number").build());
+			}
 		}
 		return columnsBuilder.build();
 	}
