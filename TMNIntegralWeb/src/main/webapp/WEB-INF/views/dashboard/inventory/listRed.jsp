@@ -238,7 +238,7 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title">La red fue leida correctamente</h4>
+					<h4 class="modal-title">${model.message}</h4>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-outline pull-left"	data-dismiss="modal">Cerrar</button>

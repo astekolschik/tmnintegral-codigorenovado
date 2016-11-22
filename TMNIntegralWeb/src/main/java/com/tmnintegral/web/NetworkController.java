@@ -5,8 +5,9 @@ package com.tmnintegral.web;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -123,7 +124,7 @@ public class NetworkController {
 				"C:\\PathToExe\\MyExe.exe","param1","param2").start();*/
 
 		//TODO update dir
-		Process process = Runtime.getRuntime().exec("cmd /c dir C:\\Users"); 
+		/*Process process = Runtime.getRuntime().exec("cmd /c dir C:\\Users"); 
 
 		InputStream is = process.getInputStream();
 		InputStreamReader isr = new InputStreamReader(is);
@@ -134,7 +135,26 @@ public class NetworkController {
 		  System.out.println(line);
 		}
 
-		
-		return this.listRed(request, response, session);
+		*/
+		Map<String, Object> myModel = new HashMap<String, Object>();
+
+		URL url = new URL("http://localhost:3030/discovery");
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setRequestMethod("GET");
+		conn.setRequestProperty("Accept", "application/json");
+
+		try {
+			if (conn.getResponseCode() != 200) {
+				myModel.put("message", "Error al intentar descubrir la red...");
+			}else{
+				myModel.put("message", "La red esta siendo descubierta...");
+			}
+		} catch (Exception e) {
+			myModel.put("message", "Error al intentar descubrir la red...");
+		}
+		conn.disconnect();
+
+		myModel.put("redesList", this.im.getRedList(((User)session.getAttribute("user")).getClient()));
+		return new ModelAndView("dashboard/inventory/listRed", "model", myModel);
 	}
 }
