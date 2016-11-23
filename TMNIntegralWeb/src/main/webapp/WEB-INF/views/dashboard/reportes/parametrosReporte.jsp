@@ -40,7 +40,7 @@
 										name="nombre-equipo">
 										<c:forEach items="${model.devices}" var="equipo">
 											<option value="${equipo.ip}_${equipo.hostName}">${equipo.hostName}
-												(${equipo.ip})</option>
+												(${equipo.ip}_${equipo.hostName})</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -51,7 +51,7 @@
 										name="nombre-interface">
 										<c:forEach items="${model.interfaces}" var="i">
 											<option value="${i.device.ip}_${i.device.hostName}_${i.name}">${i.name}
-												(${i.ipAdEntIfIndex})</option>
+												(${i.device.ip}_${i.device.hostName}_${i.name})</option>
 										</c:forEach>
 									</select>
 								</div>

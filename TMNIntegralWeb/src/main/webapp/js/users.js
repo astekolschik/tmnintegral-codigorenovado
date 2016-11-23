@@ -219,8 +219,8 @@ function agregarCliente(){
 	}
 	
 	$('#main-content').empty();
-	$('#main-content').load('/TMNIntegralWeb/client/updateClient.htm?descripcion=' + descripcion
-																			+ '&id=' + id, function(){
+	$('#main-content').load(('/TMNIntegralWeb/client/updateClient.htm?descripcion=' + descripcion
+																			+ '&id=' + id).replace(/ /g, "%20"), function(){
 		$('#goToAgregarCliente').click(function() {
 			  $('#clientesTabs a[href="#nuevocliente"]').tab('show');
 			});

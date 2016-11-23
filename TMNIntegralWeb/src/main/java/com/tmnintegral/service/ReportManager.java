@@ -163,7 +163,7 @@ public class ReportManager implements Serializable{
 		Iterator<Object[]> it = retEqList.iterator();
 		while (it.hasNext()){
 			Object[] curr = it.next();
-			if (!valuesMap.containsKey(curr[0]))
+			if (!valuesMap.containsKey(sdf.format(curr[0])))
 				valuesMap.put(sdf.format(curr[0]), new ArrayList<Float>());
 			((List<Float>)valuesMap.get(sdf.format(curr[0]))).add(Float.parseFloat(String.valueOf(curr[2])));
 		}
@@ -172,7 +172,7 @@ public class ReportManager implements Serializable{
 		it = retInList.iterator();
 		while (it.hasNext()){
 			Object[] curr = it.next();
-			if (!valuesMap.containsKey(curr[0]))
+			if (!valuesMap.containsKey(sdf.format(curr[0])))
 				valuesMap.put(sdf.format(curr[0]), new ArrayList<Float>());
 			((List<Float>)valuesMap.get(sdf.format(curr[0]))).add(Float.parseFloat(String.valueOf(curr[2])));
 		}

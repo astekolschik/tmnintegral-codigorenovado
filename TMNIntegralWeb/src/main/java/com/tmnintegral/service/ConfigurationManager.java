@@ -81,13 +81,13 @@ public class ConfigurationManager implements Serializable{
 	public void actualizarComando(Integer idVariable, Integer idTipoEquipo, String fieldName, String type, String regex,
 			String operation, String isDevice) {
 		Command oldCommand = this.getCommandById(idVariable, idTipoEquipo, fieldName);
-		if (oldCommand.getType() != type)
+		if (oldCommand.getType() != null && oldCommand.getType() != type)
 			oldCommand.setType(type);
-		if (oldCommand.getRegex() != regex)
+		if (oldCommand.getRegex() != null && oldCommand.getRegex() != regex)
 			oldCommand.setRegex(regex);
-		if (oldCommand.getOperation() != operation)
+		if (oldCommand.getOperation() != null && oldCommand.getOperation() != operation)
 			oldCommand.setOperation(operation);
-		if (oldCommand.getIs_device() != isDevice)
+		if (oldCommand.getIs_device() != null && oldCommand.getIs_device() != isDevice)
 			oldCommand.setIs_device(isDevice);
 		
 		this.commandDao.updateComando(oldCommand);
