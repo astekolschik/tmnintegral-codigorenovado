@@ -397,8 +397,7 @@ public class InventoryManager implements Serializable{
 	
 	
 	public Device modificarDevice(int dId, String communityRead, String hostName, String iosType, String iosVersion, String ip,
-			String model, String serialNumber, String softwareRelease, Integer id_device_type, Integer id_network,
-			Integer id_configuration, String enable){
+			String model, String serialNumber, String softwareRelease, Integer id_device_type, String enable){
 		
 		Device d = this.getDevice(dId);
 		if (!d.getCommunityRead().equals(communityRead))
@@ -419,8 +418,6 @@ public class InventoryManager implements Serializable{
 			d.setSoftwareRelease(softwareRelease);
 		if (d.getTipoEquipo().getId() != id_device_type)
 			d.setTipoEquipo(new TipoEquipo(id_device_type));
-		if (d.getRed().getId_network() != id_network)
-			d.setRed(new Red(id_network));
 		if (!d.getEnable().equals(enable))
 			d.setEnable(enable);
 		d.setLast_update_date(new Date());
@@ -432,8 +429,7 @@ public class InventoryManager implements Serializable{
 	
 	
 	public Device crearDevice(String communityRead, String hostName, String iosType, String iosVersion, String ip,
-			String model, String serialNumber, String softwareRelease, Integer id_device_type, Integer id_network,
-			Integer id_configuration, String enable, Client client){
+			String model, String serialNumber, String softwareRelease, Integer id_device_type, String enable, Client client){
 		Device d = new Device();
 		d.setCommunityRead(communityRead);
 		d.setHostName(hostName);
@@ -444,7 +440,6 @@ public class InventoryManager implements Serializable{
 		d.setSerialNumber(serialNumber);
 		d.setSoftwareRelease(softwareRelease);
 		d.setTipoEquipo(new TipoEquipo(id_device_type));
-		d.setRed(new Red(id_network));
 		d.setEnable(enable);
 		d.setLast_update_date(new Date());
 		d.setClient(client);

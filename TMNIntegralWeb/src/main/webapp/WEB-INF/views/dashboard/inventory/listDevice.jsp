@@ -143,17 +143,6 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="networkId" class="col-sm-2 control-label">Red *</label>
-								<div class="col-sm-10">
-									<select class="form-control" id="networkId" name="networkId">
-										<option value="-1">Ninguno</option>
-										<c:forEach items="${model.redesList}" var="net">
-											<option value="${net.id_network}">${net.network}</option>
-										</c:forEach>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
 								 <div class="checkbox">
 			                        <label for="enabled" class="col-sm-2 control-label">
 			                          <input type="checkbox" name="enabled" id="enabled">
@@ -241,17 +230,6 @@
 										<option value="-1" selected="selected">Ninguno</option>
 										<c:forEach items="${model.tipoEquipoList}" var="equipo">
 											<option value="${equipo.id}">${equipo.typeName}</option>
-										</c:forEach>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="display-networkId" class="col-sm-2 control-label">Red *</label>
-								<div class="col-sm-10">
-									<select class="form-control" id="display-networkId" name="display-networkId">
-										<option value="-1" selected="selected">Ninguno</option>
-										<c:forEach items="${model.redesList}" var="net">
-											<option value="${net.id_network}">${net.network}</option>
 										</c:forEach>
 									</select>
 								</div>
