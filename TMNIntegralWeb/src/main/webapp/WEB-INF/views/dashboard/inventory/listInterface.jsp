@@ -313,7 +313,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="deleteConfirmModal" class="modal fade modal-danger" role="dialog">
+	<div id="deleteConfirmModal" class="modal fade modal-warning" role="dialog">
 	  <div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
