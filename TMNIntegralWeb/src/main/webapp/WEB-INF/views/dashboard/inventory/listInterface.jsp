@@ -37,7 +37,7 @@
 											<td>Id</td>
 											<td>Status</td>
 											<td>Descripcion</td>
-											<td>Alias</td>
+											<td>Equipo</td>
 											<td>Ver</td>
 											<td>Modificar</td>
 											<td>Eliminar</td>
@@ -49,7 +49,7 @@
 												<td>${inter.id}</td>
 												<td>${inter.adminStatus}</td>
 												<td>${inter.name}</td>
-												<td>${inter.alias}</td>
+												<td>${inter.device.hostName}</td>
 												<td style="text-align: center;"><a
 													onclick="javascript:displayInterfaz(${inter.id}, false);">
 														<i class="fa fa-search"></i>
