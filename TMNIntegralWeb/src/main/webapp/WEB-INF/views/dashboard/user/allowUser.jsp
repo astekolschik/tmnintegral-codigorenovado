@@ -19,6 +19,8 @@
 			<div class="box-header">
 				<h3 class="box-title">Administracion de usuarios</h3>
 			</div>
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmModal">Actualizar</button>
+			<br/>
 			<!-- /.box-header -->
 			<div class="box-body">
 				<table id="usersTable" class="table table-bordered table-striped" style="font-size: small">
@@ -45,7 +47,6 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmModal">Actualizar</button>
 			</div>
 		</div>
 	</div>

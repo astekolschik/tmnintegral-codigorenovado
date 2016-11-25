@@ -24,6 +24,7 @@
 						<div class="box">
 							<div class="box-header">
 								<h3 class="box-title">Administracion de Redes</h3>
+								<br/>
 								<button type="button" class="btn btn-danger" onclick="javascript:callDiscoveryPgm();">Descubrir red</button>
 							</div>
 						</div>

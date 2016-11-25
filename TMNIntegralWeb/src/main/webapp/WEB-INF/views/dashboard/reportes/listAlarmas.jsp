@@ -28,6 +28,10 @@
 							<div class="box-header">
 								<h3 class="box-title">Administracion de Alarmas configuradas</h3>
 							</div>
+							<a href="#" id="goToAgregarAlarma">
+								<button type="button" class="btn btn-primary">Agregar</button>
+							</a>
+							<br/>
 							<!-- /.box-header -->
 							<div class="box-body">
 								<table id="alarmasTable" style="font-size: small"
@@ -66,9 +70,6 @@
 										</c:forEach>
 									</tbody>
 								</table>
-								<a href="#" id="goToAgregarAlarma">
-									<button type="button" class="btn btn-primary">Agregar</button>
-								</a>
 							</div>
 						</div>
 					</div>

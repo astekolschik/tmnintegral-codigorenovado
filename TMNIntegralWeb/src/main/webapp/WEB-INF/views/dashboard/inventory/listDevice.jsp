@@ -28,6 +28,10 @@
 							<div class="box-header">
 								<h3 class="box-title">Administracion de Equipos</h3>
 							</div>
+							<a href="#" id="goToAgregarEquipo">
+								<button type="button" class="btn btn-primary">Agregar</button>
+							</a>
+							<br/>
 							<!-- /.box-header -->
 							<div class="box-body">
 								<table id="equiposTable"
@@ -67,9 +71,6 @@
 										</c:forEach>
 									</tbody>
 								</table>
-								<a href="#" id="goToAgregarEquipo">
-									<button type="button" class="btn btn-primary">Agregar</button>
-								</a>
 							</div>
 						</div>
 					</div>

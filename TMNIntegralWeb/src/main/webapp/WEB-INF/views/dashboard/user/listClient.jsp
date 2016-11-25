@@ -27,6 +27,10 @@
 							<div class="box-header">
 								<h3 class="box-title">Administracion de Clientes</h3>
 							</div>
+							<a href="#" id="goToAgregarCliente">
+								<button type="button" class="btn btn-primary">Agregar</button>
+							</a>
+							<br/>
 							<!-- /.box-header -->
 							<div class="box-body">
 								<table id="clientsTable" class="table table-bordered table-striped" style="font-size: small">
@@ -45,9 +49,6 @@
 										</c:forEach>
 									</tbody>
 								</table>
-								<a href="#" id="goToAgregarCliente">
-									<button type="button" class="btn btn-primary">Agregar</button>
-								</a>
 							</div>
 						</div>
 					</div>
