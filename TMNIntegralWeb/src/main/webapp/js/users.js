@@ -5,17 +5,23 @@ function loadChgUser(){
 
 function loadDeleteUser(){
 	$('#main-content').empty();
-	$('#main-content').load('user/deleteUser.htm');
+	$('#main-content').load('user/deleteUser.htm', function(){
+		$("#usersTable").DataTable(dataTableParams);
+	});
 }
 
 function loadEnableUser(){
 	$('#main-content').empty();
-	$('#main-content').load('user/enableUser.htm');
+	$('#main-content').load('user/enableUser.htm', function(){
+		$("#usersTable").DataTable(dataTableParams);
+	});
 }
 
 function loadAllowUser(){
 	$('#main-content').empty();
-	$('#main-content').load('user/allowUser.htm');
+	$('#main-content').load('user/allowUser.htm', function(){
+		$("#usersTable").DataTable(dataTableParams);
+	});
 }
 
 function selectAllCheckbox(chk){
@@ -41,6 +47,7 @@ function eliminarUsuarios(){
 						$("div").remove(".modal-backdrop.fade.in");
 						//Load ok modal
 						$('#okModal').modal('show');
+						$("#usersTable").DataTable(dataTableParams);
 		        }); 
 	}
 }
@@ -151,6 +158,7 @@ function actualizarUsuarios(){
 					$("div").remove(".modal-backdrop.fade.in");
 					//Load ok modal
 					$('#okModal').modal('show');
+					$("#usersTable").DataTable(dataTableParams);
 	        }); 
 }
 
@@ -168,6 +176,7 @@ function habilitarUsuarios(){
 					$("div").remove(".modal-backdrop.fade.in");
 					//Load ok modal
 					$('#okModal').modal('show');
+					$("#usersTable").DataTable(dataTableParams);
 	        }); 
 }
 
