@@ -21,7 +21,7 @@ function displayLisTipoEquipo(){
 		    }
 		});
 		
-		$("#tipoEquiposTable").DataTable();
+		$("#tipoEquiposTable").DataTable(dataTableParams);
 	});
 }
 
@@ -51,7 +51,7 @@ function agregarTipoEquipo(){
 		    }
 		});
 		
-		$("#tipoEquiposTable").DataTable();
+		$("#tipoEquiposTable").DataTable(dataTableParams);
 		
 		//Load ok modal
 		$('#createConfirmModal').modal('show');
@@ -77,7 +77,7 @@ function deleteTipoEquipo(){
 		    }
 		});
 		
-		$("#tipoEquiposTable").DataTable();
+		$("#tipoEquiposTable").DataTable(dataTableParams);
 
 		//Remove modal leftovers
 		$("body").removeClass('modal-open');
@@ -147,7 +147,7 @@ function actualizarTipoEquipo(){
 		    }
 		});
 		
-		$("#tipoEquiposTable").DataTable();
+		$("#tipoEquiposTable").DataTable(dataTableParams);
 		
 		//Load ok modal
 		$('#updateConfirmModal').modal('show');
@@ -178,7 +178,7 @@ function displayLisEquipo(){
 		    }
 		});
 		
-		$("#equiposTable").DataTable();
+		$("#equiposTable").DataTable(dataTableParams);
 	});
 }
 
@@ -200,7 +200,7 @@ function deleteEquipo(){
 		    }
 		});
 		
-		$("#equiposTable").DataTable();
+		$("#equiposTable").DataTable(dataTableParams);
 		
 		//Remove modal leftovers
 		$("body").removeClass('modal-open');
@@ -273,7 +273,7 @@ function agregarEquipo(){
 		    }
 		});
 		
-		$("#equiposTable").DataTable();
+		$("#equiposTable").DataTable(dataTableParams);
 		
 		//Load ok modal
 		$('#createConfirmModal').modal('show');
@@ -383,7 +383,7 @@ function actualizarEquipo(){
 		    }
 		});
 		
-		$("#equiposTable").DataTable();
+		$("#equiposTable").DataTable(dataTableParams);
 		
 		//Load ok modal
 		$('#updateConfirmModal').modal('show');
@@ -414,7 +414,7 @@ function displayRedes(){
 		    }
 		});
 		
-		$("#redesTable").DataTable();
+		$("#redesTable").DataTable(dataTableParams);
 	});
 }
 
@@ -436,7 +436,7 @@ function deleteRed(){
 		    }
 		});
 		
-		$("#redesTable").DataTable();
+		$("#redesTable").DataTable(dataTableParams);
 
 		//Remove modal leftovers
 		$("body").removeClass('modal-open');
@@ -479,7 +479,7 @@ function agregarRed(){
 		    }
 		});
 		
-		$("#redesTable").DataTable();
+		$("#redesTable").DataTable(dataTableParams);
 		
 		//Load ok modal
 		$('#createConfirmModal').modal('show');
@@ -549,7 +549,7 @@ function actualizarRed(){
 		    }
 		});
 		
-		$("#redesTable").DataTable();
+		$("#redesTable").DataTable(dataTableParams);
 		
 		//Load ok modal
 		$('#updateConfirmModal').modal('show');
@@ -580,7 +580,7 @@ function displayInterfaces(){
 		    }
 		});
 		
-		$("#interfacesTable").DataTable();
+		$("#interfacesTable").DataTable(dataTableParams);
 	});
 }
 
@@ -602,7 +602,7 @@ function deleteInterface(){
 		    }
 		});
 		
-		$("#interfacesTable").DataTable();
+		$("#interfacesTable").DataTable(dataTableParams);
 
 		//Remove modal leftovers
 		$("body").removeClass('modal-open');
@@ -675,7 +675,7 @@ function agregarInterface(){
 		    }
 		});
 		
-		$("#interfacesTable").DataTable();
+		$("#interfacesTable").DataTable(dataTableParams);
 
 		//Load ok modal
 		$('#createConfirmModal').modal('show');
@@ -794,7 +794,7 @@ function actualizarInterfaz(){
 			}
 			});
 			
-			$("#interfacesTable").DataTable();
+			$("#interfacesTable").DataTable(dataTableParams);
 			
 			//Load ok modal
 			$('#updateConfirmModal').modal('show');
@@ -870,7 +870,7 @@ function callDiscoveryPgm(){
 		    }
 		});
 		
-		$("#interfacesTable").DataTable();
+		$("#interfacesTable").DataTable(dataTableParams);
 
 		//Load ok modal
 		$('#createConfirmDiscoveryModal').modal('show');

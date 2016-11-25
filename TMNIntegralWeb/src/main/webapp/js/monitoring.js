@@ -21,7 +21,7 @@ function displayAlarmasEnviadas(){
 		});		
 		
 		
-		$("#alarmasTable").DataTable();
+		$("#alarmasTable").DataTable(dataTableParams);
 	});
 }
 
@@ -42,7 +42,7 @@ function configurarAlarmas(){
 		    }
 		});		
 		
-		$("#alarmasTable").DataTable();
+		$("#alarmasTable").DataTable(dataTableParams);
 	});
 }
 
@@ -150,7 +150,7 @@ function deleteAlarma(){
 		});		
 		
 		
-		$("#alarmasTable").DataTable();
+		$("#alarmasTable").DataTable(dataTableParams);
 		//Remove modal leftovers
 		$("body").removeClass('modal-open');
 		$("div").remove(".modal-backdrop.fade.in");
@@ -224,7 +224,7 @@ function agregarAlarma(){
 		});		
 		
 		
-		$("#alarmasTable").DataTable();
+		$("#alarmasTable").DataTable(dataTableParams);
 		$('#createConfirmModal').modal('show');
 	});
 	

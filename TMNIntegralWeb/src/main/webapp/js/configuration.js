@@ -22,7 +22,7 @@ function displayConfiguracion(){
 		    }
 		});		
 		
-		$("#comandosTable").DataTable();
+		$("#comandosTable").DataTable(dataTableParams);
 	});
 }
 
@@ -45,7 +45,7 @@ function deleteComando(){
 		});
 		
 		
-		$("#comandosTable").DataTable();
+		$("#comandosTable").DataTable(dataTableParams);
 		//Remove modal leftovers
 		$("body").removeClass('modal-open');
 		$("div").remove(".modal-backdrop.fade.in");
@@ -140,7 +140,7 @@ function agregarComando(){
 		});
 		
 		
-		$("#comandosTable").DataTable();
+		$("#comandosTable").DataTable(dataTableParams);
 		$('#createConfirmModal').modal('show');
 	});
 	
@@ -194,7 +194,7 @@ function actualizarComando(){
 		    }
 		});
 		
-		$("#comandosTable").DataTable();
+		$("#comandosTable").DataTable(dataTableParams);
 		
 		//Load ok modal
 		$('#updateConfirmModal').modal('show');

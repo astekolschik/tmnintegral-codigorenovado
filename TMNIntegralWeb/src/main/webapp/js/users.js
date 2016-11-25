@@ -201,7 +201,7 @@ function loadClients(){
 			  $('#clientesTabs a[href="#nuevocliente"]').tab('show');
 			});
 		
-		$("#clientsTable").DataTable();
+		$("#clientsTable").DataTable(dataTableParams);
 	});
 }
 
@@ -225,7 +225,7 @@ function agregarCliente(){
 			  $('#clientesTabs a[href="#nuevocliente"]').tab('show');
 			});
 		
-		$("#clientsTable").DataTable();
+		$("#clientsTable").DataTable(dataTableParams);
 		
 		//Load ok modal
 		$('#createConfirmModal').modal('show');
