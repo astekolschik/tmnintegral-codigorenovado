@@ -21,7 +21,7 @@
 			</div>
 			<!-- /.box-header -->
 			<div class="box-body">
-				<table id="alarmasTable" class="table table-bordered table-striped">
+				<table id="alarmasTable" class="table table-bordered table-striped" style="font-size: small">
 					<thead>
 						<tr>
 							<td>Id</td>

@@ -21,7 +21,7 @@
 			</div>
 			<!-- /.box-header -->
 			<div class="box-body">
-				<table id="usersTable" class="table table-bordered table-striped">
+				<table id="usersTable" class="table table-bordered table-striped" style="font-size: small">
 					<thead>
 						<tr>
 							<td><input type="checkbox" name="userCheck" value="all"

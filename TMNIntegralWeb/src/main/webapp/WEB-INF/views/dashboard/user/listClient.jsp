@@ -29,7 +29,7 @@
 							</div>
 							<!-- /.box-header -->
 							<div class="box-body">
-								<table id="clientsTable" class="table table-bordered table-striped">
+								<table id="clientsTable" class="table table-bordered table-striped" style="font-size: small">
 									<thead>
 										<tr>
 											<td>Cliente</td>

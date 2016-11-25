@@ -31,6 +31,7 @@
 							<!-- /.box-header -->
 							<div class="box-body">
 								<table id="comandosTable"
+									style="font-size: small"
 									class="table table-bordered table-striped">
 									<thead>
 										<tr>
