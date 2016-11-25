@@ -35,37 +35,39 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${model.userList}" var="user">
-							<input type="hidden" class="clientList" value="${user.user_name}"/>
-							<tr>
-								<td>${user.user_name}</td>
-								<td>${user.name}</td>
-								<td>${user.lastName}</td>
-								<td>${user.email}</td>
-								<td>
-									<c:if test="${user.role.role_id==1}">
-										<input type="checkbox" name="adminCheck" checked="checked" value="${user.user_name}"/>
-									</c:if>
-									<c:if test="${user.role.role_id!=1}">
-										<input type="checkbox" name="adminCheck" value="${user.user_name}"/>
-									</c:if>
-								</td>
-								<td>
-									<c:if test="${user.role.role_id==2}">
-										<input type="checkbox" name="userCheck" checked="checked" value="${user.user_name}"/>
-									</c:if>
-									<c:if test="${user.role.role_id!=2}">
-										<input type="checkbox" name="userCheck" value="${user.user_name}"/>
-									</c:if>
-								</td>
-								<td>
-									<c:if test="${user.role.role_id==3}">
-										<input type="checkbox" name="reportCheck" checked="checked" value="${user.user_name}"/>
-									</c:if>
-									<c:if test="${user.role.role_id!=3}">
-										<input type="checkbox" name="reportCheck" value="${user.user_name}"/>
-									</c:if>
-								</td>
-							</tr>
+							<c:if test="${user.role.role_id!=4}">
+								<tr>
+									<input type="hidden" class="clientList" value="${user.user_name}"/>
+									<td>${user.user_name}</td>
+									<td>${user.name}</td>
+									<td>${user.lastName}</td>
+									<td>${user.email}</td>
+									<td>
+										<c:if test="${user.role.role_id==1}">
+											<input type="checkbox" name="adminCheck" checked="checked" value="${user.user_name}"/>
+										</c:if>
+										<c:if test="${user.role.role_id!=1}">
+											<input type="checkbox" name="adminCheck" value="${user.user_name}"/>
+										</c:if>
+									</td>
+									<td>
+										<c:if test="${user.role.role_id==2}">
+											<input type="checkbox" name="userCheck" checked="checked" value="${user.user_name}"/>
+										</c:if>
+										<c:if test="${user.role.role_id!=2}">
+											<input type="checkbox" name="userCheck" value="${user.user_name}"/>
+										</c:if>
+									</td>
+									<td>
+										<c:if test="${user.role.role_id==3}">
+											<input type="checkbox" name="reportCheck" checked="checked" value="${user.user_name}"/>
+										</c:if>
+										<c:if test="${user.role.role_id!=3}">
+											<input type="checkbox" name="reportCheck" value="${user.user_name}"/>
+										</c:if>
+									</td>
+								</tr>							
+							</c:if>
 						</c:forEach>
 					</tbody>
 				</table>
@@ -111,6 +113,23 @@
 		</div>
 	</div>
 
+	<div id="validationModal" class="modal fade modal-danger" role="dialog">
+	  <div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Error en la validacion:</h4>
+					<label id="validation-modal-error"/>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline pull-left"	data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 <!-- /.content -->
 <!-- </div> -->

@@ -37,7 +37,10 @@ function eliminarUsuarios(){
 	    delList.push($(this).val());
 	});
 	if(delList.length == 0){
-		alert('Debe seleccionar al menos un usuario.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe seleccionar al menos un usuario.');
+		$('#validationModal').modal('show');
+		//alert('Debe seleccionar al menos un usuario.');
 	}else{
 		$('#main-content').empty();
 		$('#main-content').load('/TMNIntegralWeb/user/deleteUser.htm?deleteUserList=' + delList,
@@ -70,19 +73,31 @@ function actualizarDatosUsuario(){
 	
 	//Validacion
 	if (!nombre || nombre == ''){
-		alert('Debe completar el nombre');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe completar el nombre.');
+		$('#validationModal').modal('show');
+		//alert('Debe completar el nombre');
 		return;
 	}
 	if (!apellido || apellido == ''){
-		alert('Debe completar el apellido');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe completar el apellido.');
+		$('#validationModal').modal('show');
+		//alert('Debe completar el apellido');
 		return;
 	}
 	if (!email || email == '' || !validateEmail(email)){
-		alert('Debe ingresar un email valido');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe ingresar un email valido');
+		$('#validationModal').modal('show');
+		//alert('Debe ingresar un email valido');
 		return;
 	}
 	if (!password || password == ''){
-		alert('Debe completar la contraseña.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe completar la contraseña.');
+		$('#validationModal').modal('show');
+		//alert('Debe completar la contraseña.');
 		return;
 	}
 	
@@ -146,7 +161,10 @@ function actualizarUsuarios(){
 	});
 	
 	if (!checkUsersRoles(listOfUsers, adminList, userList, reportList)){
-		alert('Los usuarios deben tener al menos un rol asignado');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Los usuarios deben tener al menos un rol asignado.');
+		$('#validationModal').modal('show');
+		//alert('Los usuarios deben tener al menos un rol asignado');
 		return false;
 	}
 
@@ -193,10 +211,14 @@ function uploadImage(){
 	    	$('#main-img-user').attr("src", imgpath);
 	    	$('#mini-img-user-1').attr("src", imgpath);
 	    	$('#mini-img-user-2').attr("src", imgpath);
-	    	alert("La imagen se guardo correctamente.");
+	    	//alert("La imagen se guardo correctamente.");
+	    	$('#okImgModal').modal('show');
 	    },
 	    error: function(message){
-	    	alert("Error al subir el archivo");
+	    	$('#validation-modal-error').empty();
+			$('#validation-modal-error').append('Error al subir el archivo.');
+			$('#validationModal').modal('show');
+			//alert("Error al subir el archivo");
 	    	console.log(message);
 	    }
 	});
@@ -219,11 +241,17 @@ function agregarCliente(){
 	var descripcion = $('#description').val();
 	
 	if (!id || id == ''){
-		alert('Debe completar el identificador');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe completar el identificador.');
+		$('#validationModal').modal('show');
+		//alert('Debe completar el identificador');
 		return;
 	}
 	if (!descripcion || descripcion == ''){
-		alert('Debe completar la descripcion');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe completar la descripcion.');
+		$('#validationModal').modal('show');
+		//alert('Debe completar la descripcion');
 		return;
 	}
 	

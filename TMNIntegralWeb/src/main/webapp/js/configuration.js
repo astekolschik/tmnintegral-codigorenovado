@@ -100,19 +100,31 @@ function agregarComando(){
 	var device = $('#isdevice').prop('checked') ? 1 : 0;
 	
 	if (!variable || variable == '-1'){
-		alert('Debe completar la variable a la que corresponde el comando.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe completar la variable a la que corresponde el comando.');
+		$('#validationModal').modal('show');
+		//alert('Debe completar la variable a la que corresponde el comando.');
 		return false;
 	}
 	if (!tipoequipo || tipoequipo == '-1'){
-		alert('Debe completar el tipo al que pertenece el comando.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe completar el tipo al que pertenece el comando.');
+		$('#validationModal').modal('show');
+		//alert('Debe completar el tipo al que pertenece el comando.');
 		return false;
 	}
 	if (!fieldname || fieldname == ''){
-		alert('Debe ingresar nombre de campo valido.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe ingresar nombre de campo valido.');
+		$('#validationModal').modal('show');
+		//alert('Debe ingresar nombre de campo valido.');
 		return false;
 	}
 	if (!type || type == ''){
-		alert('Debe ingresar tipo valido.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe ingresar tipo valido.');
+		$('#validationModal').modal('show');
+		//alert('Debe ingresar tipo valido.');
 		return false;
 	}
 	
@@ -156,19 +168,31 @@ function actualizarComando(){
 	var device = $('#isdevice-display').prop('checked') ? 1 : 0;
 	
 	if (!variable || variable == '-1'){
-		alert('Debe completar la variable a la que corresponde el comando.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe completar la variable a la que corresponde el comando.');
+		$('#validationModal').modal('show');
+		//alert('Debe completar la variable a la que corresponde el comando.');
 		return false;
 	}
 	if (!tipoequipo || tipoequipo == '-1'){
-		alert('Debe completar el tipo al que pertenece el comando.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe completar el tipo al que pertenece el comando.');
+		$('#validationModal').modal('show');
+		//alert('Debe completar el tipo al que pertenece el comando.');
 		return false;
 	}
 	if (!fieldname || fieldname == ''){
-		alert('Debe ingresar nombre de campo valido.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe ingresar nombre de campo valido.');
+		$('#validationModal').modal('show');
+		//alert('Debe ingresar nombre de campo valido.');
 		return false;
 	}
 	if (!type || type == ''){
-		alert('Debe ingresar tipo valido.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe ingresar tipo valido.');
+		$('#validationModal').modal('show');
+		//alert('Debe ingresar tipo valido.');
 		return false;
 	}
 	

@@ -55,12 +55,18 @@ function displayInicioReportes(){
 
 function validarFormReporte(){
 	if ($('#tipo-reporte').val() == -1){
-		alert('Debe seleccionar el tipo de reporte.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe seleccionar el tipo de reporte.');
+		$('#validationModal').modal('show');
+		//alert('Debe seleccionar el tipo de reporte.');
 		return false;
 	}
 	
 	if ($('#fecha-desde').val() == "" ||  $('#fecha-hasta').val() == ""){
-		alert('Debe seleccionar las fechas para el reporte.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe seleccionar las fechas para el reporte.');
+		$('#validationModal').modal('show');
+		//alert('Debe seleccionar las fechas para el reporte.');
 		return false;
 	}
 	
@@ -109,7 +115,10 @@ function generarReporte(){
         dataType: "json",
         success: function (response) {
         	if (response.rows == 0){
-        		alert('No se encontro informacion para el reporte');
+        		$('#validation-modal-error').empty();
+        		$('#validation-modal-error').append('No se encontró información para el reporte.');
+        		$('#validationModal').modal('show');
+        		//alert('No se encontro informacion para el reporte');
         		return;
         	}
         		
@@ -178,18 +187,27 @@ function agregarAlarma(){
 	var url = "/TMNIntegralWeb/monitoring/createAlarm.htm?";
 	if (typealarm == 'interface'){
 		if (!$('#interface').val() || $('#interface').val() == '-1'){
-			alert('Debe seleccionar la interface para la alarma.');
+			$('#validation-modal-error').empty();
+			$('#validation-modal-error').append('Debe seleccionar la interface para la alarma.');
+			$('#validationModal').modal('show');
+			//alert('Debe seleccionar la interface para la alarma.');
 			return false;
 		}
 		url = url + "idInt=" + $('#interface').val();
 	}else if (typealarm == 'device'){
 		if (!$('#device').val() || $('#device').val() == '-1'){
-			alert('Debe seleccionar el equipo para la alarma.');
+			$('#validation-modal-error').empty();
+			$('#validation-modal-error').append('Debe seleccionar el equipo para la alarma.');
+			$('#validationModal').modal('show');
+			//alert('Debe seleccionar el equipo para la alarma.');
 			return false;
 		}
 		url = url + "idDev=" + $('#device').val();
 	}else{
-		alert('Debe seleccionar el tipo de la alarma.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe seleccionar el tipo de la alarma.');
+		$('#validationModal').modal('show');
+		//alert('Debe seleccionar el tipo de la alarma.');
 		return false;
 	}
 	url = url + "&idVar=" + $('#variable').val();
@@ -198,12 +216,18 @@ function agregarAlarma(){
 		url = url + "&umbral=" + $('#umbral').val();
 	
 	if (!$('#variable').val() || $('#variable').val() == '-1'){
-		alert('Debe completar la variable a la que corresponde la alarma.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe completar la variable a la que corresponde la alarma.');
+		$('#validationModal').modal('show');
+		//alert('Debe completar la variable a la que corresponde la alarma.');
 		return false;
 	}
 	
 	if (!$('#destinatarios').val() || $('#destinatarios').val() == ''){
-		alert('Debe completar los destinatarios de la alarma.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe completar los destinatarios de la alarma.');
+		$('#validationModal').modal('show');
+		//alert('Debe completar los destinatarios de la alarma.');
 		return false;
 	}
 	

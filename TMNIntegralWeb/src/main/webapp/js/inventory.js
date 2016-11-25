@@ -230,15 +230,24 @@ function agregarEquipo(){
 	var enabled = $('#enabled').prop('checked') ? 1 : 0;
 	
 	if (!descripcion || descripcion == ''){
-		alert('Debe completar la descripcion del equipo.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe completar la descripcion del equipo.');
+		$('#validationModal').modal('show');
+		//alert('Debe completar la descripcion del equipo.');
 		return false;
 	}
 	if (!ip || ip == '' || !validateIp(ip)){
-		alert('Debe ingresar una IP valida para el equipo.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe ingresar una IP valida para el equipo.');
+		$('#validationModal').modal('show');
+		//alert('Debe ingresar una IP valida para el equipo.');
 		return false;
 	}
 	if (!tipoEquipoId || tipoEquipoId == '-1'){
-		alert('Debe completar el tipo al que pertenece el equipo.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe completar el tipo al que pertenece el equipo.');
+		$('#validationModal').modal('show');
+		//alert('Debe completar el tipo al que pertenece el equipo.');
 		return false;
 	}
 	
@@ -334,18 +343,26 @@ function actualizarEquipo(){
 	var enabled = $('#display-enabled').prop('checked') ? 1 : 0;
 	
 	if (!descripcion || descripcion == ''){
-		alert('Debe completar la descripcion del equipo.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe completar la descripcion del equipo.');
+		$('#validationModal').modal('show');
+		//alert('Debe completar la descripcion del equipo.');
 		return false;
 	}
 	if (!ip || ip == '' || !validateIp(ip)){
-		alert('Debe ingresar una IP valida para el equipo.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe ingresar una IP valida para el equipo.');
+		$('#validationModal').modal('show');
+		//alert('Debe ingresar una IP valida para el equipo.');
 		return false;
 	}
 	if (!tipoEquipoId || tipoEquipoId == '-1'){
-		alert('Debe completar el tipo al que pertenece el equipo.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe completar el tipo al que pertenece el equipo.');
+		$('#validationModal').modal('show');
+		//alert('Debe completar el tipo al que pertenece el equipo.');
 		return false;
 	}
-	
 	$('#main-content').empty();
 	$('#main-content').load(('/TMNIntegralWeb/inventory/updateEquipo.htm?idDevice=' + id +'&communityRead=' + descripcion
 																			+ '&hostName=' + hostName
@@ -618,19 +635,31 @@ function agregarInterface(){
 	var macnexthop = $('#macnexthop').val();
 	
 	if (!nombre || nombre == ''){
-		alert('Debe completar el nombre de la interfaz.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe completar el nombre de la interfaz.');
+		$('#validationModal').modal('show');
+		//alert('Debe completar el nombre de la interfaz.');
 		return false;
 	}
 	if (ipnexthop && ipnexthop != '' && !validateIp(ipnexthop)){
-		alert('Debe ingresar una IP valida para el proximo salto.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe ingresar una IP valida para el proximo salto.');
+		$('#validationModal').modal('show');
+		//alert('Debe ingresar una IP valida para el proximo salto.');
 		return false;
 	}
 	if (ifIndexIp && ifIndexIp != '' && !validateIp(ifIndexIp)){
-		alert('Debe ingresar una IP valida el IF index.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe ingresar una IP valida el IF index.');
+		$('#validationModal').modal('show');
+		//alert('Debe ingresar una IP valida el IF index.');
 		return false;
 	}
 	if (!idDevice || idDevice == '-1'){
-		alert('Debe completar el equipo al que pertenece la interfaz.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe completar el equipo al que pertenece la interfaz.');
+		$('#validationModal').modal('show');
+		//alert('Debe completar el equipo al que pertenece la interfaz.');
 		return false;
 	}
 	
@@ -737,19 +766,31 @@ function actualizarInterfaz(){
 	var macnexthop = $('#display-macnexthop').val();
 	
 	if (!nombre || nombre == ''){
-		alert('Debe completar el nombre de la interfaz.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe completar el nombre de la interfaz.');
+		$('#validationModal').modal('show');
+		//alert('Debe completar el nombre de la interfaz.');
 		return false;
 	}
 	if (ipnexthop && ipnexthop != '' && !validateIp(ipnexthop)){
-		alert('Debe ingresar una IP valida para el proximo salto.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe ingresar una IP valida para el proximo salto.');
+		$('#validationModal').modal('show');
+		//alert('Debe ingresar una IP valida para el proximo salto.');
 		return false;
 	}
 	if (ifIndexIp && ifIndexIp != '' && !validateIp(ifIndexIp)){
-		alert('Debe ingresar una IP valida el IF index.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe ingresar una IP valida el IF index.');
+		$('#validationModal').modal('show');
+		//alert('Debe ingresar una IP valida el IF index.');
 		return false;
 	}
 	if (!idDevice || idDevice == '-1'){
-		alert('Debe completar el equipo al que pertenece la interfaz.');
+		$('#validation-modal-error').empty();
+		$('#validation-modal-error').append('Debe completar el equipo al que pertenece la interfaz.');
+		$('#validationModal').modal('show');
+		//alert('Debe completar el equipo al que pertenece la interfaz.');
 		return false;
 	}
 	
