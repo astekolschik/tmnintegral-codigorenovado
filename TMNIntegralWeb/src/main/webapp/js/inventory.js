@@ -227,7 +227,6 @@ function agregarEquipo(){
 	var serialNumber = $('#serialNumber').val();
 	var release = $('#release').val();
 	var tipoEquipoId = $('#tipoEquipoId').val();
-	var networkId = $('#networkId').val();
 	var enabled = $('#enabled').prop('checked') ? 1 : 0;
 	
 	if (!descripcion || descripcion == ''){
@@ -242,10 +241,6 @@ function agregarEquipo(){
 		alert('Debe completar el tipo al que pertenece el equipo.');
 		return false;
 	}
-	if (!networkId || networkId == '-1'){
-		alert('Debe completar la red a la que pertenece el equipo.');
-		return false;
-	}
 	
 	$('#main-content').empty();
 	$('#main-content').load(('/TMNIntegralWeb/inventory/updateEquipo.htm?communityRead=' + descripcion
@@ -257,7 +252,6 @@ function agregarEquipo(){
 										+ '&serialNumber=' + serialNumber
 										+ '&softwareRelease=' + release
 										+ '&id_device_type=' + tipoEquipoId
-										+ '&id_network=' + networkId
 										+ '&enable=' + enabled).replace(/ /g, "%20"), function(){
 		$('#goToAgregarEquipo').click(function() {
 			  $('#equipoTabs a[href="#nuevoequipo"]').tab('show');
@@ -337,7 +331,6 @@ function actualizarEquipo(){
 	var serialNumber = $('#display-serialNumber').val();
 	var release = $('#display-release').val();
 	var tipoEquipoId = $('#display-tipoEquipoId').val();
-	var networkId = $('#display-networkId').val();
 	var enabled = $('#display-enabled').prop('checked') ? 1 : 0;
 	
 	if (!descripcion || descripcion == ''){
@@ -352,10 +345,6 @@ function actualizarEquipo(){
 		alert('Debe completar el tipo al que pertenece el equipo.');
 		return false;
 	}
-	if (!networkId || networkId == '-1'){
-		alert('Debe completar la red a la que pertenece el equipo.');
-		return false;
-	}
 	
 	$('#main-content').empty();
 	$('#main-content').load(('/TMNIntegralWeb/inventory/updateEquipo.htm?idDevice=' + id +'&communityRead=' + descripcion
@@ -367,7 +356,6 @@ function actualizarEquipo(){
 																			+ '&serialNumber=' + serialNumber
 																			+ '&softwareRelease=' + release
 																			+ '&id_device_type=' + tipoEquipoId
-																			+ '&id_network=' + networkId
 																			+ '&enable=' + enabled).replace(/ /g, "%20"), function(){
 		$('#goToAgregarEquipo').click(function() {
 			  $('#equipoTabs a[href="#nuevoequipo"]').tab('show');
