@@ -21,7 +21,11 @@ function displayAlarmasEnviadas(){
 		});		
 		
 		
-		$("#alarmasTable").DataTable(dataTableParams);
+		var table = $("#alarmasTable").DataTable(dataTableParams);
+	    new $.fn.dataTable.FixedHeader( table, {
+	        alwaysCloneTop: true
+	    });
+		
 	});
 }
 
@@ -42,7 +46,10 @@ function configurarAlarmas(){
 		    }
 		});		
 		
-		$("#alarmasTable").DataTable(dataTableParams);
+		var table = $("#alarmasTable").DataTable(dataTableParams);
+	    new $.fn.dataTable.FixedHeader( table, {
+	        alwaysCloneTop: true
+	    });
 	});
 }
 
@@ -164,7 +171,10 @@ function deleteAlarma(){
 		});		
 		
 		
-		$("#alarmasTable").DataTable(dataTableParams);
+		var table = $("#alarmasTable").DataTable(dataTableParams);
+	    new $.fn.dataTable.FixedHeader( table, {
+	        alwaysCloneTop: true
+	    });
 		//Remove modal leftovers
 		$("body").removeClass('modal-open');
 		$("div").remove(".modal-backdrop.fade.in");
@@ -253,7 +263,10 @@ function agregarAlarma(){
 		});		
 		
 		
-		$("#alarmasTable").DataTable(dataTableParams);
+		var table = $("#alarmasTable").DataTable(dataTableParams);
+	    new $.fn.dataTable.FixedHeader( table, {
+	        alwaysCloneTop: true
+	    });
 		$('#createConfirmModal').modal('show');
 	});
 	

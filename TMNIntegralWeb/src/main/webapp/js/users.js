@@ -6,21 +6,30 @@ function loadChgUser(){
 function loadDeleteUser(){
 	$('#main-content').empty();
 	$('#main-content').load('user/deleteUser.htm', function(){
-		$("#usersTable").DataTable(dataTableParams);
+		var table = $("#usersTable").DataTable(dataTableParams);
+	    new $.fn.dataTable.FixedHeader( table, {
+	        alwaysCloneTop: true
+	    });
 	});
 }
 
 function loadEnableUser(){
 	$('#main-content').empty();
 	$('#main-content').load('user/enableUser.htm', function(){
-		$("#usersTable").DataTable(dataTableParams);
+		var table = $("#usersTable").DataTable(dataTableParams);
+	    new $.fn.dataTable.FixedHeader( table, {
+	        alwaysCloneTop: true
+	    });
 	});
 }
 
 function loadAllowUser(){
 	$('#main-content').empty();
 	$('#main-content').load('user/allowUser.htm', function(){
-		$("#usersTable").DataTable(dataTableParams);
+		var table = $("#usersTable").DataTable(dataTableParams);
+	    new $.fn.dataTable.FixedHeader( table, {
+	        alwaysCloneTop: true
+	    });
 	});
 }
 
@@ -50,7 +59,10 @@ function eliminarUsuarios(){
 						$("div").remove(".modal-backdrop.fade.in");
 						//Load ok modal
 						$('#okModal').modal('show');
-						$("#usersTable").DataTable(dataTableParams);
+						var table = $("#usersTable").DataTable(dataTableParams);
+					    new $.fn.dataTable.FixedHeader( table, {
+					        alwaysCloneTop: true
+					    });
 		        }); 
 	}
 }
@@ -176,7 +188,10 @@ function actualizarUsuarios(){
 					$("div").remove(".modal-backdrop.fade.in");
 					//Load ok modal
 					$('#okModal').modal('show');
-					$("#usersTable").DataTable(dataTableParams);
+					var table = $("#usersTable").DataTable(dataTableParams);
+				    new $.fn.dataTable.FixedHeader( table, {
+				        alwaysCloneTop: true
+				    });
 	        }); 
 }
 
@@ -194,7 +209,10 @@ function habilitarUsuarios(){
 					$("div").remove(".modal-backdrop.fade.in");
 					//Load ok modal
 					$('#okModal').modal('show');
-					$("#usersTable").DataTable(dataTableParams);
+					var table = $("#usersTable").DataTable(dataTableParams);
+				    new $.fn.dataTable.FixedHeader( table, {
+				        alwaysCloneTop: true
+				    });
 	        }); 
 }
 
@@ -232,7 +250,10 @@ function loadClients(){
 			  $('#clientesTabs a[href="#nuevocliente"]').tab('show');
 			});
 		
-		$("#clientsTable").DataTable(dataTableParams);
+		var table = $("#clientsTable").DataTable(dataTableParams);
+	    new $.fn.dataTable.FixedHeader( table, {
+	        alwaysCloneTop: true
+	    });
 	});
 }
 
@@ -262,7 +283,10 @@ function agregarCliente(){
 			  $('#clientesTabs a[href="#nuevocliente"]').tab('show');
 			});
 		
-		$("#clientsTable").DataTable(dataTableParams);
+		var table = $("#clientsTable").DataTable(dataTableParams);
+	    new $.fn.dataTable.FixedHeader( table, {
+	        alwaysCloneTop: true
+	    });
 		
 		//Load ok modal
 		$('#createConfirmModal').modal('show');

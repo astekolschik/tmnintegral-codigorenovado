@@ -1,5 +1,5 @@
 var dataTableParams = 
-		{ language: {
+	{ 	language: {
 				"sProcessing": "Procesando...",
 				"sLengthMenu": "Mostrar _MENU_ registros",
 				"sZeroRecords": "No se encontraron resultados",

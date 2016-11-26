@@ -22,6 +22,7 @@
 
 <c:if test="${not model.context}">
 
+	<link rel="stylesheet" href="css/main.css">
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -111,6 +112,7 @@
 	<!-- Data tables -->
 	<script src="js/dashboard/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="js/dashboard/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="js/dashboard/plugins/datatables/extensions/FixedHeader/js/dataTables.fixedHeader.min.js"></script>
     
     <!-- topologia -->
    	<link rel="stylesheet" 	href="js/dashboard/vis.min.css"></link>
@@ -118,6 +120,7 @@
 </c:if>
 <c:if test="${model.context}">
 
+	<link rel="stylesheet" href="../css/bootstrap.css">
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="../css/bootstrap.css">
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -206,6 +209,7 @@
 	<!-- Data tables -->
 	<script src="../js/dashboard/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="../js/dashboard/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="../js/dashboard/plugins/datatables/extensions/FixedHeader/js/dataTables.fixedHeader.min.js"></script>
     
     <!-- topologia -->
    	<link rel="stylesheet" 	href="../js/dashboard/vis.min.css"></link>

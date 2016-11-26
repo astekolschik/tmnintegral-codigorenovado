@@ -19,6 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * @author Agustina
@@ -39,6 +40,8 @@ public class Alarm implements Serializable{
 	private Integer id;
 	
 	private Integer idVariable;
+	@Transient
+	private String variableName;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="idDevice")
@@ -178,6 +181,7 @@ public class Alarm implements Serializable{
 	public JsonObject toJSON(){
 		JsonObject obj = Json.createObjectBuilder()
 			.add("idVariable", this.getIdVariable() != null ? this.getIdVariable().toString() : "")
+			.add("variableName", this.getVariableName() != null ? this.getVariableName() : "")
 			.add("idDevice", this.getDevice() != null ? String.valueOf(this.getDevice().getDevice_id()) : "")
 			.add("deviceName", this.getDevice() != null ? this.getDevice().getHostName() : "")
 			.add("idInterface", this.getInterfaz() != null ? String.valueOf(this.getInterfaz().getId()) : "")
@@ -222,5 +226,19 @@ public class Alarm implements Serializable{
 	 */
 	public void setAlarmSents(Set<AlarmSent> alarmSents) {
 		this.alarmSents = alarmSents;
+	}
+
+	/**
+	 * @return the variableName
+	 */
+	public String getVariableName() {
+		return variableName;
+	}
+
+	/**
+	 * @param variableName the variableName to set
+	 */
+	public void setVariableName(String variableName) {
+		this.variableName = variableName;
 	}
 }

@@ -22,7 +22,10 @@ function displayConfiguracion(){
 		    }
 		});		
 		
-		$("#comandosTable").DataTable(dataTableParams);
+		var table = $("#comandosTable").DataTable(dataTableParams);
+	    new $.fn.dataTable.FixedHeader( table, {
+	        alwaysCloneTop: true
+	    });
 	});
 }
 
@@ -45,7 +48,10 @@ function deleteComando(){
 		});
 		
 		
-		$("#comandosTable").DataTable(dataTableParams);
+		var table = $("#comandosTable").DataTable(dataTableParams);
+	    new $.fn.dataTable.FixedHeader( table, {
+	        alwaysCloneTop: true
+	    });
 		//Remove modal leftovers
 		$("body").removeClass('modal-open');
 		$("div").remove(".modal-backdrop.fade.in");
@@ -152,7 +158,10 @@ function agregarComando(){
 		});
 		
 		
-		$("#comandosTable").DataTable(dataTableParams);
+		var table = $("#comandosTable").DataTable(dataTableParams);
+	    new $.fn.dataTable.FixedHeader( table, {
+	        alwaysCloneTop: true
+	    });
 		$('#createConfirmModal').modal('show');
 	});
 	
@@ -218,7 +227,10 @@ function actualizarComando(){
 		    }
 		});
 		
-		$("#comandosTable").DataTable(dataTableParams);
+		var table = $("#comandosTable").DataTable(dataTableParams);
+	    new $.fn.dataTable.FixedHeader( table, {
+	        alwaysCloneTop: true
+	    });
 		
 		//Load ok modal
 		$('#updateConfirmModal').modal('show');
