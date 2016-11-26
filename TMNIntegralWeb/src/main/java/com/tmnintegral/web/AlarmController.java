@@ -5,6 +5,8 @@ package com.tmnintegral.web;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -57,14 +59,19 @@ public class AlarmController {
             throws ServletException, IOException {
 		
 		Map<String, Object> myModel = new HashMap<String, Object>();
-		myModel.put("alarmasList", this.reportManager.getAlarmsConfigured(((User)session.getAttribute("user")).getClient().getId()));
-		myModel.put("variablesList", this.configurationManager.getVariablesList());
+		List<Alarm> alarms = this.reportManager.getAlarmsConfigured(((User)session.getAttribute("user")).getClient().getId());
+		List<Object[]> variables = this.configurationManager.getVariablesList();
+		this.completeVariableName(alarms, variables);
+		myModel.put("alarmasList", alarms);
+		myModel.put("variablesList", variables);
 		myModel.put("deviceList", this.inventoryManager.getDeviceList(((User)session.getAttribute("user")).getClient().getId()));
 		myModel.put("interfacesList", this.inventoryManager.getInterfaceList(((User)session.getAttribute("user")).getClient()));
 		
 		return new ModelAndView("dashboard/reportes/listAlarmas", "model", myModel);
     }
 	
+	
+
 	@RequestMapping(value="/monitoring/eliminarAlarma.htm")
 	public ModelAndView borrarAlarma(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 	        throws ServletException, IOException {
@@ -156,4 +163,35 @@ public class AlarmController {
 		this.inventoryManager = inventoryManager;
 	}
 	
+	/**
+	 * Completa el nombre de las variables
+	 * @param alarms
+	 * @param variables
+	 */
+	private void completeVariableName(List<Alarm> alarms, List<Object[]> variables) {
+		Iterator<Alarm> itAlarms = alarms.iterator();
+		Alarm current;
+		while (itAlarms.hasNext()){
+			current = itAlarms.next();
+			current.setVariableName(this.getVariableName(current.getIdVariable(), variables));
+		}
+		
+	}
+
+	/**
+	 * Compara variables y sus ids para obtener el nombre
+	 * @param idVariable
+	 * @param variables
+	 * @return
+	 */
+	private String getVariableName(Integer idVariable, List<Object[]> variables) {
+		Iterator<Object[]> itVar = variables.iterator();
+		Object[] current;
+		while(itVar.hasNext()){
+			current = itVar.next();
+			if ((Integer)current[0] == idVariable)
+				return (String) current[1];
+		}
+		return null;
+	}
 }

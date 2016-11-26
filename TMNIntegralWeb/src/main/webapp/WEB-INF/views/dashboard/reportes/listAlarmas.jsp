@@ -49,7 +49,7 @@
 										<c:forEach items="${model.alarmasList}" var="a">
 											<tr>
 												<td>${a.id}</td>
-												<td>${a.idVariable}</td>
+												<td>${a.variableName}</td>
 												<td>
 													<c:if test="${not empty a.device}">
 														Equipo: ${a.device.hostName}

@@ -53,6 +53,11 @@ function displayInicioReportes(){
 	});
 }
 
+function limpiarValoresReporte(){
+	$('#lista-equipos-value').val('');
+	$('#lista-interfaces-value').val('');
+}
+
 function validarFormReporte(){
 	if ($('#tipo-reporte').val() == -1){
 		$('#validation-modal-error').empty();
@@ -116,7 +121,7 @@ function generarReporte(){
         success: function (response) {
         	if (response.rows == 0){
         		$('#validation-modal-error').empty();
-        		$('#validation-modal-error').append('No se encontró información para el reporte.');
+        		$('#validation-modal-error').append('No se encontro informacion para el reporte.');
         		$('#validationModal').modal('show');
         		//alert('No se encontro informacion para el reporte');
         		return;
@@ -261,7 +266,7 @@ function displayAlarma(idAlarm){
         dataType: "json",
         success: function (response) {
         	$('#alarmasTabs a[href="#editaralarma"]').tab('show');
-    		$('#variable-display').val(response.idVariable);
+    		$('#variable-display').val(response.variableName);
         	if (response.idDevice != null)
         		$('#Objeto-display').val('Equipo: ' + response.deviceName);
         	if (response.idInterface != null)

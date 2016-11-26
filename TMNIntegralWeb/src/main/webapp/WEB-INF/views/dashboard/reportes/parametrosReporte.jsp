@@ -79,7 +79,7 @@
 									<div class="col-sm-offset-2 col-sm-10">
 										<button type="button" class="btn btn-danger"
 											onclick="javascript:generarReporte();">Generar</button>
-										<button type="reset" class="btn btn-danger">Limpiar</button>
+										<button type="reset" class="btn btn-danger" onclick="javascript:limpiarValoresReporte();">Limpiar</button>
 									</div>
 								</div>
 							</form>

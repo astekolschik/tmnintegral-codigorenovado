@@ -27,6 +27,7 @@ import com.tmnintegral.domain.Alarm;
 import com.tmnintegral.domain.AlarmSent;
 import com.tmnintegral.domain.InterfaceStatus;
 import com.tmnintegral.domain.User;
+import com.tmnintegral.repository.CommandDao;
 import com.tmnintegral.repository.ReportDao;
 import com.tmnintegral.repository.UserDao;
 
@@ -44,6 +45,8 @@ public class ReportManager implements Serializable{
 	private ReportDao reportDao;
 	@Autowired
 	private UserDao userDao;
+	@Autowired
+	private CommandDao commandDao;
 
 	/**
 	 * 
@@ -210,7 +213,16 @@ public class ReportManager implements Serializable{
 	}
 
 	public Alarm getAlarmById(int alarmId) {
-		return this.reportDao.getAlarm(alarmId);
+		Alarm ret =this.reportDao.getAlarm(alarmId);
+		ret.setVariableName(this.getVariableName(ret.getIdVariable()));
+		return ret;
+	}
+
+	private String getVariableName(Integer idVariable) {
+		Object[] variable = this.commandDao.getVariable(idVariable);
+		if (variable != null)
+			return (String) variable[1];
+		return null;
 	}
 
 	public List<Alarm> getAlarmsConfigured() {
@@ -254,6 +266,13 @@ public class ReportManager implements Serializable{
 
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
+	}
+
+	/**
+	 * @param commandDao the commandDao to set
+	 */
+	public void setCommandDao(CommandDao commandDao) {
+		this.commandDao = commandDao;
 	}
 }
 

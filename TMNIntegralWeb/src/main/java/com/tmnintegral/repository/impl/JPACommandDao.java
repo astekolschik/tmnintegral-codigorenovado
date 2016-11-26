@@ -75,6 +75,14 @@ public class JPACommandDao implements CommandDao{
     	Query q = em.createNativeQuery("SELECT a.id, a.variableName FROM variable a");
     	return q.getResultList();
 	}
+    
+    @Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+    public Object[] getVariable(Integer idVariable) {
+    	Query q = em.createNativeQuery("SELECT a.id, a.variableName FROM variable a where a.id = " + idVariable);
+    	return (Object[]) q.getSingleResult();
+	}
+
 
     @Transactional(readOnly = false)
     @SuppressWarnings("unchecked")

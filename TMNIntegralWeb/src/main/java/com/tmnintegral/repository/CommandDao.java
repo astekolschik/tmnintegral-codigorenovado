@@ -24,6 +24,8 @@ public interface CommandDao {
 
 	public List<Object[]> getVariables();
 
+	public Object[] getVariable(Integer idVariable);
+
 	public void crearComando(Command newCommand);
 	
 	public void updateComando(Command newCommand);
