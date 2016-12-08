@@ -55,7 +55,8 @@
 														Equipo: ${a.device.hostName}
 													</c:if>
 													<c:if test="${not empty a.interfaz}">
-														Interfaz: ${a.interfaz.name}
+														Interfaz: ${a.interfaz.name} -
+														Equipo: ${a.interfaz.device.hostName}
 													</c:if>
 												</td>
 												<td style="text-align: center;"><a
@@ -105,14 +106,22 @@
 									</select>
 								</div>
 							</div>
+							<div class="form-group" style="display: none;" id="combo-interface-device">
+								<label for="interface" class="col-sm-2 control-label">Equipo *</label>
+								<div class="col-sm-10">
+									<select id="interface-device" name="interface-device" onchange="displayInterfacesByDevice();">
+										<option selected="selected" value="-1">Seleccione el equipo </option>
+										<c:forEach items="${model.deviceList}" var="device">
+											<option value="${device.device_id}">${device.hostName}</option>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
 							<div class="form-group" style="display: none;" id="combo-interface">
 								<label for="interface" class="col-sm-2 control-label">Interfaz *</label>
 								<div class="col-sm-10">
 									<select id="interface" name="interface">
 										<option selected="selected" value="">Seleccione la interfaz</option>
-										<c:forEach items="${model.interfacesList}" var="i">
-											<option value="${i.id},${i.device.ip}_${i.device.hostName}_${i.name}">${i.name}</option>
-										</c:forEach>
 									</select>
 								</div>
 							</div>

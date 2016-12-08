@@ -135,4 +135,10 @@ public class JPAInterfaceDao implements InterfaceDao{
 		return em.createQuery("select i from Interface i where i.client.id=" + id + " order by i.id").getResultList();
 	}
 
+    @Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+	public List<Interface> getInterfacesByDevice(int deviceId) {
+    	return em.createQuery("select i from Interface i where i.device.device_id=" + deviceId + " order by i.id").getResultList();
+	}
+
 }

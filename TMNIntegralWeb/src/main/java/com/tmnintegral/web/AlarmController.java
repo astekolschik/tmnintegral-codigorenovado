@@ -9,6 +9,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -70,7 +73,29 @@ public class AlarmController {
 		return new ModelAndView("dashboard/reportes/listAlarmas", "model", myModel);
     }
 	
+	@RequestMapping(value="monitoring/getDeviceInterfaces.htm", headers="Accept=*/*", produces="application/json; charset=UTF-8")
+	@ResponseBody
+    public String obtenerInterfacesDeEquipo(HttpSession session, HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+		
+		String deviceId = request.getParameter("deviceId");
+		List<Interface> interfaces =  this.inventoryManager.getInterfaceListByDevice(Integer.parseInt(deviceId));
+		
+		return this.toJson(interfaces).toString();
+    }
 	
+	
+	/**
+	 * Convierte la lista en un json
+	 */
+	private JsonArray toJson(List<Interface> interfaces) {
+		JsonArrayBuilder lista = Json.createArrayBuilder();
+		Iterator<Interface> it = interfaces.iterator();
+		while (it.hasNext()){
+			lista.add(it.next().toJSON());
+		}
+		return lista.build();
+	}
 
 	@RequestMapping(value="/monitoring/eliminarAlarma.htm")
 	public ModelAndView borrarAlarma(HttpServletRequest request, HttpServletResponse response, HttpSession session)

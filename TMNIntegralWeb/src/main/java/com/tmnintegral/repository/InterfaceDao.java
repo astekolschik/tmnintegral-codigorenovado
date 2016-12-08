@@ -39,4 +39,6 @@ public interface InterfaceDao {
 	
 	public List<InterfaceStatus> getInterfaceAlarmedInTheLastHour();
 
+	public List<Interface> getInterfacesByDevice(int deviceId);
+
 }

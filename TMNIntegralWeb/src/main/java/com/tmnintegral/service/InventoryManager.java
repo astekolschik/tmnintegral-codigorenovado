@@ -465,4 +465,8 @@ public class InventoryManager implements Serializable{
 		return true;
 	}
 
+	public List<Interface> getInterfaceListByDevice(int deviceId) {
+		return this.interfaceDao.getInterfacesByDevice(deviceId);
+	}
+
 }

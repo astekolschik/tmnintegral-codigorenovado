@@ -189,10 +189,12 @@ function displayComboNew(){
 	case "interface":
 		$('#combo-interface').show();
 		$('#combo-device').hide();
+		$('#combo-interface-device').show();
 		break;
 	case "device":
 		$('#combo-interface').hide();
 		$('#combo-device').show();
+		$('#combo-interface-device').hide();
 		break;
 	}
 }
@@ -291,4 +293,26 @@ function displayAlarma(idAlarm){
            console.log(textStatus, errorThrown);
         }
     });
+}
+function displayInterfacesByDevice(){
+	var idDevice = $('#interface-device').val();
+	$.ajax({
+        url: "/TMNIntegralWeb/monitoring/getDeviceInterfaces.htm?deviceId=" + idDevice,
+        type: "POST",
+        dataType: "json",
+        success: function (response) {
+        	$('#interface option').remove();
+        	$('#interface').append('<option value="-1">Seleccione la interfaz</option>');
+        	for (i in response){
+        		//${i.id},${i.device.ip}_${i.device.hostName}_${i.name}
+        		
+        		$('#interface').append('<option value="' + response[i].id + ','+ response[i].device_ip + '_'+ response[i].device_name + '_' + response[i].name + '">' 
+        				+ response[i].name + '</option>');
+        	}
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+           console.log(textStatus, errorThrown);
+        }
+    });
+
 }
