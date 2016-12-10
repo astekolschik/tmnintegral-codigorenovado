@@ -87,9 +87,29 @@
 					</div>
 					<!-- /.tab-pane -->
 					<div class="tab-pane" id="reporte">
-						<div class="box">
-							<h3>Reporte</h3>
-							<div id="report-content"></div>
+						<h3>Reporte</h3>
+						<h4>Puede cambiar el tipo de reporte seleccionando de las opciones listadas debajo</h4>
+						<div>
+							<input type="radio" name="radio-reporte" value="lineal" checked="checked" onchange="displayReportSelected();">Lineal</input>
+							<input type="radio" name="radio-reporte" value="columna" onchange="displayReportSelected();">Columnas</input>
+							<input type="radio" name="radio-reporte" value="torta" onchange="displayReportSelected();">Torta</input>
+							<input type="radio" name="radio-reporte" value="tabla" onchange="displayReportSelected();">Tabla</input>
+						</div>
+						<div class="box" id="reporte-lineal">
+							<div id="report-content-lineal-toolbar"></div>
+							<div id="report-content-lineal"></div>
+						</div>
+						<div class="box" id="reporte-columna" style="display: none;">
+							<div id="report-content-columna-toolbar"></div>
+							<div id="report-content-columna"></div>
+						</div>
+						<div class="box" id="reporte-torta" style="display: none;">
+							<div id="report-content-torta-toolbar"></div>
+							<div id="report-content-torta"></div>
+						</div>
+						<div class="box" id="reporte-tabla" style="display: none;">
+							<div id="report-content-tabla-toolbar"></div>
+							<div id="report-content-tabla"></div>
 						</div>
 					</div>
 				</div>

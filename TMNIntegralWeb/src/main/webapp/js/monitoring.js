@@ -56,7 +56,7 @@ function configurarAlarmas(){
 function displayInicioReportes(){
 	$('#main-content').empty();
 	$('#main-content').load('monitoring/parametrosReporte.htm', function(){
-		google.charts.load('current', {'packages':['corechart', 'line']});
+		google.charts.load('current', {'packages':['corechart', 'line', 'table']});
 	});
 }
 
@@ -130,26 +130,114 @@ function generarReporte(){
         		$('#validation-modal-error').empty();
         		$('#validation-modal-error').append('No se encontro informacion para el reporte.');
         		$('#validationModal').modal('show');
-        		//alert('No se encontro informacion para el reporte');
         		return;
         	}
         		
         	var data = new google.visualization.DataTable(response);
 			$('#reportesTab a[href="#reporte"]').tab('show');
-		    var options = {
+		    //Reporte lineal
+			/*var componentsToolbar = [{type: 'html', datasource: response},
+			                         {type: 'csv', datasource: response}
+			              		];
+			google.visualization.drawToolbar(document.getElementById('report-content-lineal-toolbar'), componentsToolbar);*/
+			var optionsLine = {
     	      chart: {
-    	        title: 'Reporte seleccionado'
+    	        title: 'Reporte Lineal'
     	      },
-    	      width: 700,
+    	      width: 900,
     	      height: 400
     	    };
-    	    var chart = new google.charts.Line(document.getElementById('report-content'));
-    	    chart.draw(data, options);
+    	    var lineChart = new google.charts.Line(document.getElementById('report-content-lineal'));
+    	    lineChart.draw(data, optionsLine);
+    	    //Reporte Columnas
+			//google.visualization.drawToolbar(document.getElementById('report-content-columna-toolbar'), componentsToolbar);
+    	    var optionsCol = {
+    	      chart: {
+    	        title: 'Reporte Columnas'
+    	      },
+    	      width: 900,
+    	      height: 400
+    	    };
+    	    var columnChart = new google.visualization.ColumnChart(document.getElementById('report-content-columna'));
+    	    columnChart.draw(data, optionsCol);
+    	    //Reporte torta
+    	    var dataForPieJson = getDataForPie(response);
+    	    /*var componentsToolbarPie = [{type: 'html', datasource: dataForPieJson},
+			                         {type: 'csv', datasource: dataForPieJson}
+			              		];
+			google.visualization.drawToolbar(document.getElementById('report-content-torta-toolbar'), componentsToolbarPie);
+			*/
+    	    var dataForPie = google.visualization.arrayToDataTable(dataForPieJson);
+            var optionsForPie = {chart: {
+		    	        title: 'Porcentajes'
+		  	      },
+		  	      width: 900,
+		  	      height: 400};
+            var pieChart = new google.visualization.PieChart(document.getElementById('report-content-torta'));
+            pieChart.draw(dataForPie, optionsForPie);
+    	    //Reporte Tabla
+            //google.visualization.drawToolbar(document.getElementById('report-content-tablalumna-toolbar'), componentsToolbar);
+    	    var table = new google.visualization.Table(document.getElementById('report-content-tabla'));
+            table.draw(data, {showRowNumber: true, width: '100%', height: '100%', title: 'Mediciones'});
         },
         error: function(jqXHR, textStatus, errorThrown) {
-           console.log(textStatus, errorThrown);
+        	$('#validation-modal-error').empty();
+    		$('#validation-modal-error').append('Error al generar el reporte');
+    		$('#validationModal').modal('show');
+        	console.log(textStatus, errorThrown);
         }
     });
+}
+
+function getDataForPie(info){
+	var cols = [];
+	for (var i=1; i<info.cols.length;i++){
+		cols.push(info.cols[i]);
+	}
+	
+	var rows = [];
+	for (i in info.rows){
+		for (var j = 0; j < cols.length; j++){
+			if (rows[j] == null)
+				rows[j] = 0;
+			rows[j] = rows[j] + (info.rows[i].c[j+1]? info.rows[i].c[j+1].v : 0);
+		}
+	}
+	
+	var ret = [['Nombre', 'Valor']];
+	for (i = 0; i < cols.length; i++){
+		ret.push([cols[i].label, rows[i]]);
+	}
+	return ret;
+}
+
+function displayReportSelected(){
+	switch($('input[name=radio-reporte]:checked').val()){
+	case "lineal":
+		$('#reporte-lineal').show();
+		$('#reporte-columna').hide();
+		$('#reporte-torta').hide();
+		$('#reporte-tabla').hide();
+		break;
+	case "columna":
+		$('#reporte-lineal').hide();
+		$('#reporte-columna').show();
+		$('#reporte-torta').hide();
+		$('#reporte-tabla').hide();
+		break;
+	case "torta":
+		$('#reporte-lineal').hide();
+		$('#reporte-columna').hide();
+		$('#reporte-torta').show();
+		$('#reporte-tabla').hide();
+		break;
+	case "tabla":
+		$('#reporte-lineal').hide();
+		$('#reporte-columna').hide();
+		$('#reporte-torta').hide();
+		$('#reporte-tabla').show();
+		break;
+	}
 }
 
 function deleteAlarma(){

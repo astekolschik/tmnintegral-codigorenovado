@@ -89,24 +89,6 @@ public class ReportManager implements Serializable{
 	public JsonObject getInformationForReports(String tipoReporte, String[] equipmentList, String[] interfacesList, Date dateFrom, Date dateTo) {
 		List<Object[]> retEqList = this.reportDao.getEquipmentInformationForReports(tipoReporte, equipmentList, dateFrom, dateTo);
 		List<Object[]> retInList = this.reportDao.getInterfaceInformationForReports(tipoReporte, interfacesList, dateFrom, dateTo);
-//		List<Object[]> retEqList = new ArrayList<Object[]>();
-//		List<Object[]> retInList = new ArrayList<Object[]>();
-//		
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		Calendar c = Calendar.getInstance();
-//		c.setTime(new Date());
-//		Random r = new Random();
-//		int maxX = 100, minX =0;
-//		for (int i = 0; i < 10; i++){
-//			String date = sdf.format(c.getTime());
-//			c.add(Calendar.DATE, 1);
-//			Object[] a = {date, "Device 1", r.nextFloat()* (maxX - minX) + minX};
-//			retEqList.add(a);
-//			Object[] b = {date, "Device 2", r.nextFloat()* (maxX - minX) + minX};
-//			retEqList.add(b);
-//			Object[] d = {date, "Interface 1", r.nextFloat()* (maxX - minX) + minX};
-//			retInList.add(d);
-//		}
 		
 		
 		JsonObjectBuilder retObj = Json.createObjectBuilder()
