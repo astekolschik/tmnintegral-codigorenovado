@@ -177,8 +177,33 @@ function generarReporte(){
             pieChart.draw(dataForPie, optionsForPie);
     	    //Reporte Tabla
             //google.visualization.drawToolbar(document.getElementById('report-content-tablalumna-toolbar'), componentsToolbar);
-    	    var table = new google.visualization.Table(document.getElementById('report-content-tabla'));
-            table.draw(data, {showRowNumber: true, width: '100%', height: '100%', title: 'Mediciones'});
+            $('#report-content-tabla-table thead').remove();
+            $('#report-content-tabla-table tbody').remove();
+            $('#report-content-tabla-table tr').remove();
+            
+            $('#report-content-tabla-table').append('<thead></thead>');
+            var rowhead = '<tr>';
+    	    for (var i in response.cols){
+    	    	rowhead = rowhead + '<td>' + response.cols[i].label + '</td>';
+    	    }
+    	    rowhead = rowhead + '</tr>';
+    	    $('#report-content-tabla-table thead').append(rowhead);
+    	    $('#report-content-tabla-table').append('<tbody></tbody>');
+    	    for (var j in response.rows){
+    	    	var rowval = '<tr>';
+    	    	for (var x in response.rows[j].c){
+    	    		rowval = rowval + '<td>' + response.rows[j].c[x].v+ '</td>';
+    	    	}
+    	    	rowval =  rowval + '</tr>';
+    	    	$('#report-content-tabla-table tbody').append(rowval);
+    	    }
+    	    var datatable = $("#report-content-tabla-table").DataTable(dataTableParams);
+    	    new $.fn.dataTable.FixedHeader( datatable, {
+    	        alwaysCloneTop: true
+    	    });
+    		
+            /*var table = new google.visualization.Table(document.getElementById('report-content-tabla'));
+            table.draw(data, {showRowNumber: true, width: '100%', height: '100%', title: 'Mediciones'});*/
         },
         error: function(jqXHR, textStatus, errorThrown) {
         	$('#validation-modal-error').empty();

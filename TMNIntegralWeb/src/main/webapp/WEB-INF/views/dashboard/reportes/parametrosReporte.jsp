@@ -109,7 +109,10 @@
 						</div>
 						<div class="box" id="reporte-tabla" style="display: none;">
 							<div id="report-content-tabla-toolbar"></div>
-							<div id="report-content-tabla"></div>
+							<div id="report-content-tabla">
+								<table id="report-content-tabla-table" style="font-size: small"
+									class="table table-bordered table-striped"></table>
+							</div>
 						</div>
 					</div>
 				</div>
