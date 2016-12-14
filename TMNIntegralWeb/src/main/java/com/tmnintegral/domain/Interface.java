@@ -75,6 +75,8 @@ public class Interface implements Serializable {
 			.add("subport", this.getSubPort() == null ? "" :  this.getSubPort().toString())
 			.add("type", this.getType() == null ? "" : this.getType())
 			.add("id_device", this.getDevice() == null ? "" : String.valueOf(this.getDevice().getDevice_id()))
+			.add("device_ip", this.getDevice() == null ? "" : String.valueOf(this.getDevice().getIp()))
+			.add("device_name", this.getDevice() == null ? "" : String.valueOf(this.getDevice().getHostName()))
 			.add("ifIndex", this.getIfIndex() == null ? "" : this.getIfIndex().toString())
 			.add("ipAdEntIfIndex", this.getIpAdEntIfIndex() == null ? "" : this.getIpAdEntIfIndex())
 			.add("mac", this.getMac() == null ? "" : this.getMac())

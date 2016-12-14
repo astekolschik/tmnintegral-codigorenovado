@@ -90,10 +90,18 @@
 						<h3>Reporte</h3>
 						<h4>Puede cambiar el tipo de reporte seleccionando de las opciones listadas debajo</h4>
 						<div>
-							<input type="radio" name="radio-reporte" value="lineal" checked="checked" onchange="displayReportSelected();">Lineal</input>
-							<input type="radio" name="radio-reporte" value="columna" onchange="displayReportSelected();">Columnas</input>
-							<input type="radio" name="radio-reporte" value="torta" onchange="displayReportSelected();">Torta</input>
-							<input type="radio" name="radio-reporte" value="tabla" onchange="displayReportSelected();">Tabla</input>
+							<input type="radio" name="radio-reporte" value="lineal" checked="checked" onchange="displayReportSelected();" id="radio-lineal">
+								<label id="radio-label-lineal">Lineal</label>
+							</input>
+							<input type="radio" name="radio-reporte" value="columna" onchange="displayReportSelected();" id="radio-columna">
+								<label id="radio-label-columna">Columna</label>
+							</input>
+							<input type="radio" name="radio-reporte" value="torta" onchange="displayReportSelected();" id="radio-torta">
+								<label id="radio-label-torta">Porcentajes</label>
+							</input>
+							<input type="radio" name="radio-reporte" value="tabla" onchange="displayReportSelected();" id="radio-tabla">
+								<label id="radio-label-tabla">Tabla</label>
+							</input>
 						</div>
 						<div class="box" id="reporte-lineal">
 							<div id="report-content-lineal-toolbar"></div>

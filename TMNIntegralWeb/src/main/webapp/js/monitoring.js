@@ -132,7 +132,31 @@ function generarReporte(){
         		$('#validationModal').modal('show');
         		return;
         	}
+        	//oculto tipos de reporte
+        	if (tiporeporte == 8){
+        		$('#radio-lineal').show();
+        		$('#radio-label-lineal').show();
+        		$('#radio-columna').hide();
+        		$('#radio-label-columna').hide();
+        		$('#radio-torta').hide();
+        		$('#radio-label-torta').hide();
+        		$('#radio-tabla').show();
+        		$('#radio-label-tabla').show();
+        	}else{
+        		$('#radio-lineal').show();
+        		$('#radio-label-lineal').show();
+        		$('#radio-columna').show();
+        		$('#radio-label-columna').show();
+        		$('#radio-torta').show();
+        		$('#radio-label-torta').show();
+        		$('#radio-tabla').show();
+        		$('#radio-label-tabla').show();
+        	}
         		
+        	$('#report-content-lineal').empty();
+        	$('#report-content-columna').empty();
+        	$('#report-content-torta').empty();
+        	
         	var data = new google.visualization.DataTable(response);
 			$('#reportesTab a[href="#reporte"]').tab('show');
 		    //Reporte lineal
